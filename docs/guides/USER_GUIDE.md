@@ -50,11 +50,11 @@ other tools; `pnpm docs:check` fails if the copies drift.
 
 ## Hooks - what runs without you asking
 
-| Hook              | Fires when                                                                 | Effect                                                                                               |
-| ----------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `SessionStart`    | Every new chat                                                             | Injects the project state (AGENTS.md pointer + PROGRESS summary) so you never paste a kickoff prompt |
-| `PreCompact`      | The conversation is about to be summarized                                 | Preserves the rules and pending gates so long sessions don't "forget" the design system              |
-| UI rules reminder | A file in `apps/web/src` or `packages/ui/src` is edited (once per session) | Pushes the critical UI rules into context mechanically                                               |
+| Hook              | Fires when                                                                 | Effect                                                                                                                                                                                                                                                                             |
+| ----------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `SessionStart`    | Every new chat                                                             | Injects the project state (AGENTS.md pointer + PROGRESS summary) so you never paste a kickoff prompt                                                                                                                                                                               |
+| `PreCompact`      | The conversation is about to be summarized                                 | Preserves the rules and pending gates so long sessions don't "forget" the design system. When the compaction is **automatic** (context nearly exhausted), it also orders an immediate `/handoff` doc sync before any work resumes - so a dying session saves its state to the docs |
+| UI rules reminder | A file in `apps/web/src` or `packages/ui/src` is edited (once per session) | Pushes the critical UI rules into context mechanically                                                                                                                                                                                                                             |
 
 Wired in `.claude/settings.json`; scripts in `scripts/hooks/`.
 

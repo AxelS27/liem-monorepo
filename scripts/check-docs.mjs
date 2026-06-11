@@ -178,7 +178,12 @@ const placeholderChecks = [
 
 for (const doc of placeholderChecks) {
   try {
-    const content = read(doc);
+    // Angle-bracket tokens inside code (fenced blocks or inline backticks) are
+    // legitimate examples like `pnpm db:diff -- -f <migration_name>`, not unfilled
+    // template placeholders - strip code before counting.
+    const content = read(doc)
+      .replace(/```[\s\S]*?```/g, '')
+      .replace(/`[^`\n]*`/g, '');
     const placeholderCount = (content.match(/<[^>\n]+>/g) ?? []).length;
     if (placeholderCount > 0) {
       warnings.push(`${doc} still contains ${placeholderCount} template placeholder(s).`);

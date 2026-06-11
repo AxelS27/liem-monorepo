@@ -8,6 +8,8 @@ Internal guide for starting a new project from this monorepo template. The publi
 > chat automatically.
 > **Quick start (other tools):** `INIT.md` is the copy-paste flow for setting up a new
 > product; `CONTINUE.md` is the kickoff prompt for resuming work in a fresh chat.
+> **`USER_GUIDE.md` is the human cheat sheet** - every command, agent, skill, and hook,
+> what each one does, and what is enforced vs. on you.
 > This file is the full reference behind all of them.
 
 ## What this is

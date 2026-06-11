@@ -24,6 +24,7 @@ const guideDocs = [
   'docs/guides/HOW_TO_USE_THIS_TEMPLATE.md',
   'docs/guides/INIT.md',
   'docs/guides/CONTINUE.md',
+  'docs/guides/USER_GUIDE.md',
 ];
 const supabaseFiles = [
   'supabase/migrations/.gitkeep',

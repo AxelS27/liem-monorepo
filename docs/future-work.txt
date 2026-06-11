@@ -23,3 +23,5 @@ apakah bisa megabungkan ide dari
 D:\Experiments\forge-rules
 D:\Experiments\ecc
 D:\Experiments\liem-monorepo-template
+
+4. apply rtk

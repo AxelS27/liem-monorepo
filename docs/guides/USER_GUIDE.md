@@ -21,6 +21,16 @@ precision.
 /axel udahan, save dulu         → handoff doc sync
 ```
 
+Axel is also the project's support desk - questions get answers (from the docs and the
+actual repo state), not unrequested work:
+
+```
+/axel progres sampai mana?       → status summary from PROGRESS.md + recent commits
+/axel kenapa pakai Supabase?     → the ADR behind the decision
+/axel cara nambah bahasa gimana? → the relevant doc, explained
+/axel ada masalah ga di repo?    → runs the cheap checks, reports honestly
+```
+
 ## Commands - what you type
 
 These are slash commands. Type them in chat, optionally with context after them.

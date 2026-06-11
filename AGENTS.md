@@ -89,6 +89,32 @@ Stack rules:
 - Auth extras are **Supabase-native**: OAuth (Google, GitHub) and password reset run through the Supabase SDK with providers and redirect URLs configured in the dashboard; profile pictures go to a Supabase **Storage** bucket with RLS. See ADR-013.
 - Frontend is **pre-wired** (ADR-014): shadcn is configured (`components.json` -> `packages/ui`), Tailwind maps the `globals.css` tokens, and `cn()` plus a retuned reference `Button` exist. The starter page (`apps/web/src/app/page.tsx`) is the **design foundation** — build on it, do not replace it with a fresh generation. Change the palette (accent only, keep background white), content, and routes per product; keep the open-band layout, nav shell, font wiring, and footer structure unless `docs/product/UI_UX.md` explicitly calls for something different. Do **not** re-init shadcn or accept its default theme. The **`shadcn-ui` skill** drives the UI workflow and lint blocks the worst generic-AI class tells. See `docs/engineering/DESIGN_DNA.md` (short) and `docs/engineering/FRONTEND.md` (detailed).
 
+## Agent Routing (Claude Code)
+
+Sector work is owned by dedicated subagents in `.claude/agents/`. Each one loads its
+sector's docs into a fresh context, so the rules apply at full strength regardless of how
+long the main conversation has been running. Delegate instead of doing sector work inline;
+the main thread orchestrates, reviews reports, and handles small cross-cutting edits.
+
+| Agent             | Owns                                                | Delegate when                               |
+| ----------------- | --------------------------------------------------- | ------------------------------------------- |
+| `web-builder`     | `apps/web`, `packages/ui` - screens, styling, copy  | Any frontend or UI/UX build work            |
+| `api-builder`     | `apps/server`, `packages/types` - routes, contracts | Any backend or endpoint work                |
+| `db-engineer`     | `supabase/` - schema, migrations, RLS, types        | Any database change                         |
+| `design-reviewer` | Audit only - DESIGN_DNA verdict, PASS/FAIL          | After ANY `apps/web` UI change, before done |
+
+Rules:
+
+- **UI work is not done until `design-reviewer` returns PASS.** This applies whether the
+  change was made by `web-builder` or inline by the main thread.
+- A hook (`scripts/hooks/ui-rules-reminder.mjs`) injects the critical UI rules when a file
+  under `apps/web/src` or `packages/ui/src` is edited - mechanical backup, not a substitute
+  for the reviewer gate.
+- Agents report back; the main thread keeps `docs/engineering/PROGRESS.md` and
+  `docs/engineering/DECISIONS.md` current from those reports.
+- Other tools (Codex, Cursor) don't read `.claude/agents/` - for them, the sector docs in
+  the table above remain the direct rulebook.
+
 ## Workflow
 
 1. Confirm which app/package you're touching: `apps/web`, `apps/server`, or `packages/*`.

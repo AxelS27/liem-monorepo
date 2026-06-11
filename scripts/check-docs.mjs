@@ -38,12 +38,21 @@ const goldenPathFiles = [
   'apps/web/src/app/page.tsx',
   'packages/utils/src/index.test.ts',
 ];
+const agentSystemFiles = [
+  '.claude/agents/web-builder.md',
+  '.claude/agents/api-builder.md',
+  '.claude/agents/db-engineer.md',
+  '.claude/agents/design-reviewer.md',
+  '.claude/settings.json',
+  'scripts/hooks/ui-rules-reminder.mjs',
+];
 const requiredFiles = [
   ...rootDocs,
   ...guideDocs,
   ...coreDocs,
   ...supabaseFiles,
   ...goldenPathFiles,
+  ...agentSystemFiles,
 ];
 const failures = [];
 const warnings = [];

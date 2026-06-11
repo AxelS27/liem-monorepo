@@ -153,3 +153,11 @@
 - Rejected: Staying on Tailwind v3 / Next 15 (teaches dead patterns); partial bumps (mixed-generation toolchain causes peer conflicts, e.g. Vitest 4 requires Vite 6+).
 - Status: Accepted. Supersedes the `tailwind.config.ts` mechanics described in ADR-014 (the rest of ADR-014 - pre-wired shadcn, lint-enforced tells, the skill - stands).
 - Date: 2026-06-11
+
+## ADR-018: Sector subagents + UI rules hook on top of the docs
+
+- Decision: Add four Claude Code subagents in `.claude/agents/`: `web-builder`, `api-builder`, and `db-engineer` author their sectors (each loads its sector docs into a fresh context before working and runs its sector gates before reporting), and `design-reviewer` is a read-only gate that runs the DESIGN_DNA double-check and returns PASS/FAIL - UI work is not done until it passes. A `PostToolUse` hook (`scripts/hooks/ui-rules-reminder.mjs`, wired in `.claude/settings.json`) injects the critical UI rules once per session when a file under `apps/web/src` or `packages/ui/src` is edited. The docs stay the law; agents and hooks are the delivery and enforcement layer.
+- Reason: Rule compliance through docs alone is pull-based and decays over long sessions - models stop opening DESIGN_DNA.md and ship rule-violating UI. Subagents fix the decay (rules live in a fresh system prompt every invocation) and the hook fixes the bypass path (inline edits by the main thread get the rules pushed into context mechanically). This works here specifically because the template is documentation-first: a fresh-context agent loses nothing, since briefs and state live in `docs/`, not in the chat. One owner per sector avoids two agents fighting over the same files (no separate "ui/ux agent" - design rules are the web-builder's input and the design-reviewer's checklist).
+- Rejected: Replacing docs with agent prompts (loses the cross-tool source of truth; Codex/Cursor don't read `.claude/agents/`); a large agent roster ecc-style (dilutes triggering, most roles are theater without enforcement); a router/CEO orchestration layer forge-rules-style (manual simulation of what Claude Code already does natively); writer-agents without the reviewer gate (agents drift too - the gate is what makes violations un-shippable).
+- Status: Accepted
+- Date: 2026-06-11

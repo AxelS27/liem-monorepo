@@ -5,6 +5,22 @@ written for the AI; this one is the cheat sheet for what you can type, who does 
 and what runs automatically. Everything here works in Claude Code; other tools fall back
 to the manual flows in `INIT.md` and `CONTINUE.md`.
 
+## The short version: just talk to Axel
+
+You don't have to memorize anything below. `/axel <what you want>` - or simply addressing
+it ("axel, buat frontend dulu") - hands your instruction to the repo's chief of staff: it
+reads PROGRESS, translates your intent to the right workflow, delegates to the right
+agents, and holds the gates. The commands and agents below are what Axel uses under the
+hood, listed so you know what's happening and can call them directly when you want
+precision.
+
+```
+/axel buat frontend dulu        → UI-first slices with mock data, reviewer-gated
+/axel lanjutin                  → next item from PROGRESS.md
+/axel siap rilis ga?            → ship-check audit
+/axel udahan, save dulu         → handoff doc sync
+```
+
 ## Commands - what you type
 
 These are slash commands. Type them in chat, optionally with context after them.

@@ -122,6 +122,7 @@ existing docs and checklists, it does not duplicate them.
 
 | Command         | Does                                                                               |
 | --------------- | ---------------------------------------------------------------------------------- |
+| `/axel`         | Chief of staff: translates a plain user instruction into the right flow below      |
 | `/init-product` | Fill the product docs from a brief, stop for review before code (new-product flow) |
 | `/new-feature`  | Build one feature slice through the sector agents, gates included                  |
 | `/ship-check`   | Launch-readiness audit ending in a GO/NO-GO verdict                                |

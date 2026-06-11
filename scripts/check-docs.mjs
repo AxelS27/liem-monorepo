@@ -44,6 +44,7 @@ const agentSystemFiles = [
   '.claude/agents/api-builder.md',
   '.claude/agents/db-engineer.md',
   '.claude/agents/design-reviewer.md',
+  '.claude/skills/axel/SKILL.md',
   '.claude/skills/init-product/SKILL.md',
   '.claude/skills/new-feature/SKILL.md',
   '.claude/skills/ship-check/SKILL.md',

@@ -169,3 +169,11 @@
 - Rejected: Separate session-state files ecc-style (`~/.claude/session-data/`) - state outside the repo splits the source of truth that PROGRESS.md already owns; importing ecc's command catalog wholesale (60+ commands for stacks this repo doesn't use dilutes triggering); checkpoint/quality-gate commands (git and `pnpm run verify` already cover them); forge-rules' router and intent classifier (manual reimplementation of native agent routing).
 - Status: Accepted
 - Date: 2026-06-11
+
+## ADR-020: Axel - a single conversational entry point
+
+- Decision: Add `/axel`, a chief-of-staff skill that rides the main thread: it translates a plain-language instruction ("buat frontend dulu", "lanjutin", "siap rilis?") into the right workflow, delegates to the sector agents, and holds the gates. It is a skill rather than a subagent because subagents cannot spawn other subagents - an @axel subagent could never orchestrate; on the main thread it keeps full context and can delegate to everyone.
+- Reason: Real usage showed the system's UX cost: four agents, five commands, and twenty docs require routing knowledge the user should not need. One name that knows the whole system removes that burden without weakening anything - Axel uses the same flows and the same gates, so casual phrasing does not lower the bar.
+- Rejected: An @axel subagent (cannot delegate - mechanical dead end); making Axel bypass gates for speed (the gates are the product); replacing the explicit commands (power users and docs still need precise entry points).
+- Status: Accepted
+- Date: 2026-06-11

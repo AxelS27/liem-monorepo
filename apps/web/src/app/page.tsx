@@ -3,16 +3,21 @@ import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 
 import { PreviewCarousel } from '@/components/shared/preview-carousel';
+import { defaultLocale } from '@/i18n/config';
+import { getDictionary } from '@/i18n/dictionaries';
 
-export const metadata: Metadata = {
-  title: 'Home',
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getDictionary(defaultLocale);
+  return { title: t.home.metaTitle };
+}
 
 /*
- * This landing page is a WIRING EXAMPLE, not a layout to clone. It exists to demonstrate the
- * configured stack: typography, tokens, anchored nav with active state, a client carousel
- * island, section rhythm, and a real footer. When building an actual product, design the page
- * from docs/product/UI_UX.md and the product brief - do not reskin this composition. See docs/engineering/FRONTEND.md.
+ * This landing page is the DESIGN FOUNDATION for every product built from the template.
+ * Build on it: swap the copy (src/i18n/locales/en.json), the accent palette, the preview
+ * assets, and the routes to fit the product, and adjust sections as the product needs.
+ * What stays unless docs/product/UI_UX.md calls for something different: the open-band
+ * composition, nav shell, font wiring, and footer structure. Do not throw it away and
+ * regenerate from scratch. See docs/engineering/DESIGN_DNA.md.
  */
 
 // Brand marks are official single-path logos (simple-icons), rendered monochrome so the row
@@ -44,52 +49,24 @@ const stack: { name: string; path: string }[] = [
   },
 ];
 
-const features: { title: string; detail: string; icon: ReactNode }[] = [
-  {
-    title: 'Typed end to end',
-    detail: 'Shared Zod contracts in packages/types keep the web and server from drifting.',
-    icon: (
-      <>
-        <path d="m16 18 6-6-6-6" />
-        <path d="m8 6-6 6 6 6" />
-      </>
-    ),
-  },
-  {
-    title: 'Clean boundaries',
-    detail: 'Apps stay thin, packages stay shared, and imports cannot cross the lines by accident.',
-    icon: (
-      <>
-        <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
-        <path d="m9 12 2 2 4-4" />
-      </>
-    ),
-  },
-  {
-    title: 'Design pre-wired',
-    detail: 'Tailwind tokens, shadcn, and a retuned reference button ship configured, not generic.',
-    icon: (
-      <>
-        <rect width="7" height="7" x="3" y="3" rx="1" />
-        <rect width="7" height="7" x="14" y="3" rx="1" />
-        <rect width="7" height="7" x="14" y="14" rx="1" />
-        <rect width="7" height="7" x="3" y="14" rx="1" />
-      </>
-    ),
-  },
-  {
-    title: 'Fast by default',
-    detail: 'Turborepo caching, server components, and small client islands out of the box.',
-    icon: (
-      <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z" />
-    ),
-  },
-];
-
-const foundations = [
-  { title: 'Plan first', detail: 'Settle scope and structure before the first screen.' },
-  { title: 'Stay consistent', detail: 'Every new page reuses the same system and patterns.' },
-  { title: 'Ship focused', detail: 'Launch with one clear next step for the user.' },
+// Icons pair by index with the feature copy in src/i18n/locales/en.json (home.features.items).
+// Keep the two lists the same length and order.
+const featureIcons: ReactNode[] = [
+  <>
+    <path d="m16 18 6-6-6-6" />
+    <path d="m8 6-6 6 6 6" />
+  </>,
+  <>
+    <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
+    <path d="m9 12 2 2 4-4" />
+  </>,
+  <>
+    <rect width="7" height="7" x="3" y="3" rx="1" />
+    <rect width="7" height="7" x="14" y="3" rx="1" />
+    <rect width="7" height="7" x="14" y="14" rx="1" />
+    <rect width="7" height="7" x="3" y="14" rx="1" />
+  </>,
+  <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z" />,
 ];
 
 function FeatureIcon({ children }: { children: ReactNode }) {
@@ -109,7 +86,11 @@ function FeatureIcon({ children }: { children: ReactNode }) {
   );
 }
 
-export default function HomePage() {
+export default async function HomePage() {
+  // All rendered copy comes from the locale dictionary (ADR-010): no hardcoded strings,
+  // so reskinning a product means editing en.json, not hunting strings through markup.
+  const t = await getDictionary(defaultLocale);
+
   return (
     <>
       {/*
@@ -118,23 +99,22 @@ export default function HomePage() {
        * above the fold to invite scrolling.
        */}
       <section className="mx-auto w-full max-w-6xl px-6 pt-20 text-center sm:pt-28">
-        <p className="text-sm font-medium text-muted-foreground">Product starter</p>
+        <p className="text-sm font-medium text-muted-foreground">{t.home.eyebrow}</p>
         <h1 className="mx-auto mt-4 max-w-3xl text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
-          A starter that keeps agents aligned from spec to ship.
+          {t.home.headline}
         </h1>
         <p className="mx-auto mt-5 max-w-2xl text-base text-muted-foreground sm:text-lg">
-          Liem gives every new product a clear plan, a consistent interface, and a focused path
-          from first idea to first release.
+          {t.home.subhead}
         </p>
         <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
           <a href="/features" className={cn(buttonVariants({ size: 'lg' }), 'w-full sm:w-auto')}>
-            Explore features
+            {t.home.exploreFeatures}
           </a>
           <a
             href="/pricing"
             className={cn(buttonVariants({ variant: 'outline', size: 'lg' }), 'w-full sm:w-auto')}
           >
-            View pricing
+            {t.home.viewPricing}
           </a>
         </div>
       </section>
@@ -146,7 +126,7 @@ export default function HomePage() {
 
       {/* Stack strip: quiet reassurance that the tooling is familiar, not a logo wall. */}
       <section className="mx-auto w-full max-w-6xl px-6 pt-16 sm:pt-20">
-        <p className="text-center text-sm text-muted-foreground">Built on tools you already know</p>
+        <p className="text-center text-sm text-muted-foreground">{t.home.stackHeading}</p>
         <ul className="mt-6 flex flex-wrap items-center justify-center gap-x-7 gap-y-3 text-sm font-medium text-foreground/70">
           {stack.map((tool) => (
             <li key={tool.name} className="flex items-center gap-2">
@@ -163,18 +143,15 @@ export default function HomePage() {
       <section className="mx-auto w-full max-w-6xl px-6 py-20 sm:py-28">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-            Everything wired, nothing generic
+            {t.home.features.heading}
           </h2>
-          <p className="mt-4 text-base text-muted-foreground">
-            The starter makes the decisions once, so each product builds features instead of
-            boilerplate.
-          </p>
+          <p className="mt-4 text-base text-muted-foreground">{t.home.features.subheading}</p>
         </div>
         <div className="mt-14 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
-          {features.map((feature) => (
+          {t.home.features.items.map((feature, i) => (
             <div key={feature.title}>
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-secondary text-foreground">
-                <FeatureIcon>{feature.icon}</FeatureIcon>
+                <FeatureIcon>{featureIcons[i]}</FeatureIcon>
               </div>
               <h3 className="mt-5 font-medium text-foreground">{feature.title}</h3>
               <p className="mt-2 text-sm text-muted-foreground">{feature.detail}</p>
@@ -188,15 +165,12 @@ export default function HomePage() {
         <div className="mx-auto w-full max-w-6xl px-6 py-20 sm:py-28">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-              One system, from the first route onward
+              {t.home.foundations.heading}
             </h2>
-            <p className="mt-4 text-base text-muted-foreground">
-              The starter sets the conventions so every page stays consistent as the product
-              grows, instead of drifting screen by screen.
-            </p>
+            <p className="mt-4 text-base text-muted-foreground">{t.home.foundations.subheading}</p>
           </div>
           <dl className="mt-14 grid gap-10 text-left sm:grid-cols-3">
-            {foundations.map((item) => (
+            {t.home.foundations.items.map((item) => (
               <div key={item.title}>
                 <dt className="font-medium text-foreground">{item.title}</dt>
                 <dd className="mt-2 text-sm text-muted-foreground">{item.detail}</dd>
@@ -210,23 +184,26 @@ export default function HomePage() {
       <section className="mx-auto w-full max-w-6xl px-6 py-20 sm:py-28">
         <div className="rounded-2xl bg-foreground px-8 py-14 text-center text-background sm:px-16">
           <h2 className="mx-auto max-w-2xl text-2xl font-semibold tracking-tight sm:text-3xl">
-            Start your next product on a foundation that holds.
+            {t.home.cta.heading}
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-base text-background/70">
-            Scaffold once, then build features with the conventions already in place.
+            {t.home.cta.subheading}
           </p>
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
             <a
               href="/signup"
               className={cn(buttonVariants({ variant: 'inverse', size: 'lg' }), 'w-full sm:w-auto')}
             >
-              Get started
+              {t.home.cta.getStarted}
             </a>
             <a
               href="/features"
-              className={cn(buttonVariants({ variant: 'inverseOutline', size: 'lg' }), 'w-full sm:w-auto')}
+              className={cn(
+                buttonVariants({ variant: 'inverseOutline', size: 'lg' }),
+                'w-full sm:w-auto',
+              )}
             >
-              See features
+              {t.home.cta.seeFeatures}
             </a>
           </div>
         </div>

@@ -1,40 +1,46 @@
 import Image from 'next/image';
 
 import logo from '@/app/icon.png';
-
-const footerSections = [
-  {
-    title: 'Product',
-    links: [
-      { label: 'Features', href: '/features' },
-      { label: 'Pricing', href: '/pricing' },
-      { label: 'Changelog', href: '/changelog' },
-    ],
-  },
-  {
-    title: 'Resources',
-    links: [
-      { label: 'Documentation', href: '/docs' },
-      { label: 'Guides', href: '/guides' },
-      { label: 'Blog', href: '/blog' },
-    ],
-  },
-  {
-    title: 'Company',
-    links: [
-      { label: 'About', href: '/about' },
-      { label: 'Careers', href: '/careers' },
-      { label: 'Contact', href: '/contact' },
-    ],
-  },
-];
+import { defaultLocale } from '@/i18n/config';
+import { getDictionary } from '@/i18n/dictionaries';
 
 /**
  * Public footer endcap: a surface band with a top border, a brand block, structured link
  * columns, and a bottom bar with copyright and legal links. It reads as a deliberate page
- * ending, not stray muted text, and stays consistent across every public route.
+ * ending, not stray muted text, and stays consistent across every public route. As a server
+ * component it loads its own strings from the dictionary (ADR-010).
  */
-export function SiteFooter() {
+export async function SiteFooter() {
+  const t = await getDictionary(defaultLocale);
+  const s = t.footer.sections;
+
+  const footerSections = [
+    {
+      title: s.product.title,
+      links: [
+        { label: s.product.features, href: '/features' },
+        { label: s.product.pricing, href: '/pricing' },
+        { label: s.product.changelog, href: '/changelog' },
+      ],
+    },
+    {
+      title: s.resources.title,
+      links: [
+        { label: s.resources.documentation, href: '/docs' },
+        { label: s.resources.guides, href: '/guides' },
+        { label: s.resources.blog, href: '/blog' },
+      ],
+    },
+    {
+      title: s.company.title,
+      links: [
+        { label: s.company.about, href: '/about' },
+        { label: s.company.careers, href: '/careers' },
+        { label: s.company.contact, href: '/contact' },
+      ],
+    },
+  ];
+
   return (
     <footer className="border-t border-border bg-secondary/30">
       <div className="mx-auto w-full max-w-6xl px-6 py-14">
@@ -42,12 +48,9 @@ export function SiteFooter() {
           <div className="max-w-sm">
             <a href="/" className="flex items-center gap-2.5 font-semibold tracking-tight">
               <Image src={logo} alt="" width={28} height={28} className="h-7 w-7 rounded-md" />
-              <span>Liem Monorepo</span>
+              <span>{t.app.name}</span>
             </a>
-            <p className="mt-4 text-sm text-muted-foreground">
-              An opinionated monorepo starter for building consistent, production-ready products
-              without the boilerplate.
-            </p>
+            <p className="mt-4 text-sm text-muted-foreground">{t.footer.description}</p>
           </div>
           {footerSections.map((section) => (
             <div key={section.title}>
@@ -69,13 +72,15 @@ export function SiteFooter() {
         </div>
 
         <div className="mt-12 flex flex-col gap-3 border-t border-border pt-6 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
-          <span>© {new Date().getFullYear()} Liem Monorepo. All rights reserved.</span>
+          <span>
+            © {new Date().getFullYear()} {t.app.name}. {t.footer.rights}
+          </span>
           <nav aria-label="Legal" className="flex gap-6">
             <a href="/privacy" className="transition-colors hover:text-foreground">
-              Privacy
+              {t.footer.privacy}
             </a>
             <a href="/terms" className="transition-colors hover:text-foreground">
-              Terms
+              {t.footer.terms}
             </a>
           </nav>
         </div>

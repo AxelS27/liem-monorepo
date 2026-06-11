@@ -2,20 +2,24 @@ import { buttonVariants, cn } from '@repo/ui';
 import type { Metadata } from 'next';
 
 import { PlaceholderPage } from '@/components/shared/placeholder-page';
+import { defaultLocale } from '@/i18n/config';
+import { getDictionary } from '@/i18n/dictionaries';
 
-export const metadata: Metadata = {
-  title: 'Sign in',
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getDictionary(defaultLocale);
+  return { title: t.pages.signIn.metaTitle };
+}
 
-export default function SignInPage() {
+export default async function SignInPage() {
+  const t = await getDictionary(defaultLocale);
   return (
     <PlaceholderPage
-      eyebrow="Account"
-      title="Sign in"
-      description="Auth runs through Supabase Auth. Build the real sign-in form here. A product would also give auth routes a focused auth layout instead of the marketing shell (see docs/engineering/FRONTEND.md)."
+      eyebrow={t.pages.signIn.eyebrow}
+      title={t.pages.signIn.title}
+      description={t.pages.signIn.description}
       action={
         <a href="/signup" className={cn(buttonVariants())}>
-          Create an account
+          {t.pages.signIn.action}
         </a>
       }
     />

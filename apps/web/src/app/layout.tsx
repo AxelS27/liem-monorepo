@@ -4,6 +4,8 @@ import type { ReactNode } from 'react';
 
 import { SiteFooter } from '@/components/shared/site-footer';
 import { SiteHeader } from '@/components/shared/site-header';
+import { defaultLocale } from '@/i18n/config';
+import { getDictionary } from '@/i18n/dictionaries';
 
 import '../styles/globals.css';
 
@@ -12,25 +14,29 @@ import '../styles/globals.css';
  * (Times/serif) or a bland system stack - that is an instant generic-AI tell and the most
  * common cause of a "weird font" landing page.
  *
- * This loads a deliberate modern sans and binds it to the `--font-sans` token that
- * tailwind.config.ts and globals.css already consume. To give a product its own type
- * identity, swap this one import for another next/font family (one or two families total, no
- * decorative serif-italic) and keep the `--font-sans` variable. See docs/engineering/FRONTEND.md
+ * This loads a deliberate modern sans as `--font-jakarta`, which globals.css feeds into
+ * the `--font-sans` theme token (Tailwind v4 `@theme inline`). To give a product its own
+ * type identity, swap this import for another next/font family (one or two families total,
+ * no decorative serif-italic), rename the variable to match (e.g. `--font-inter`), and
+ * update the two var() references in globals.css. See docs/engineering/FRONTEND.md
  * (Typography) and the shadcn-ui skill.
  */
 const fontSans = Plus_Jakarta_Sans({
   subsets: ['latin'],
-  variable: '--font-sans',
+  variable: '--font-jakarta',
   display: 'swap',
 });
 
-export const metadata: Metadata = {
-  title: {
-    default: 'Liem Monorepo',
-    template: '%s | Liem Monorepo',
-  },
-  description: 'An opinionated monorepo starter for building consistent, production-ready products.',
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getDictionary(defaultLocale);
+  return {
+    title: {
+      default: t.app.name,
+      template: `%s | ${t.app.name}`,
+    },
+    description: t.app.description,
+  };
+}
 
 /**
  * Persistent public shell. The header and footer live here so every route (including stubs
@@ -38,12 +44,16 @@ export const metadata: Metadata = {
  * while only the page content swaps. A product that adds signed-in or auth areas should split
  * these into route-group layouts (public / app / auth) per docs/engineering/FRONTEND.md.
  */
-export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
+export default async function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
+  // The header is a client island (it needs usePathname), so it cannot await the
+  // dictionary itself; the layout resolves the strings and passes them down as props.
+  const t = await getDictionary(defaultLocale);
+
   return (
-    <html lang="en" className={fontSans.variable}>
+    <html lang={defaultLocale} className={fontSans.variable}>
       <body className="font-sans antialiased">
         <div className="flex min-h-dvh flex-col bg-background text-foreground">
-          <SiteHeader />
+          <SiteHeader brand={t.app.name} labels={t.nav} />
           <main className="flex flex-1 flex-col">{children}</main>
           <SiteFooter />
         </div>

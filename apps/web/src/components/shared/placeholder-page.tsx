@@ -12,11 +12,15 @@ export function PlaceholderPage({
   title,
   description,
   action,
+  homeLabel,
 }: {
   eyebrow?: string;
   title: string;
   description: string;
+  /** Custom action; when omitted, a "back to home" link renders using homeLabel. */
   action?: ReactNode;
+  /** Label for the default home link (pages.backToHome in the dictionary). */
+  homeLabel?: string;
 }) {
   return (
     <section className="flex flex-1 items-center justify-center px-6 py-24">
@@ -29,7 +33,7 @@ export function PlaceholderPage({
         <div className="mt-8 flex justify-center">
           {action ?? (
             <a href="/" className={cn(buttonVariants({ variant: 'outline' }))}>
-              Back to home
+              {homeLabel}
             </a>
           )}
         </div>

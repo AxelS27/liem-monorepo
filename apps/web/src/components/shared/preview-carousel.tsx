@@ -75,7 +75,7 @@ export function PreviewCarousel() {
         type="button"
         aria-label="Previous slide"
         onClick={() => go(index - 1)}
-        className="absolute left-3 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-background/70 text-foreground opacity-0 shadow-sm backdrop-blur transition hover:bg-background focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background group-hover:opacity-100"
+        className="absolute left-3 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-background/70 text-foreground opacity-0 shadow-xs backdrop-blur transition hover:bg-background focus-visible:opacity-100 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background group-hover:opacity-100"
       >
         <svg
           viewBox="0 0 24 24"
@@ -94,7 +94,7 @@ export function PreviewCarousel() {
         type="button"
         aria-label="Next slide"
         onClick={() => go(index + 1)}
-        className="absolute right-3 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-background/70 text-foreground opacity-0 shadow-sm backdrop-blur transition hover:bg-background focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background group-hover:opacity-100"
+        className="absolute right-3 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-background/70 text-foreground opacity-0 shadow-xs backdrop-blur transition hover:bg-background focus-visible:opacity-100 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background group-hover:opacity-100"
       >
         <svg
           viewBox="0 0 24 24"
@@ -110,13 +110,13 @@ export function PreviewCarousel() {
         </svg>
       </button>
 
-      <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 items-center gap-2 rounded-full border border-border bg-background/70 py-2 pl-2 pr-3 shadow-sm backdrop-blur">
+      <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 items-center gap-2 rounded-full border border-border bg-background/70 py-2 pl-2 pr-3 shadow-xs backdrop-blur">
         <button
           type="button"
           aria-label={playing ? 'Pause automatic slideshow' : 'Play automatic slideshow'}
           aria-pressed={!playing}
           onClick={() => setPlaying((p) => !p)}
-          className="mr-0.5 flex h-5 w-5 items-center justify-center rounded-full text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="mr-0.5 flex h-5 w-5 items-center justify-center rounded-full text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
         >
           {playing ? (
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="h-3 w-3">
@@ -137,8 +137,10 @@ export function PreviewCarousel() {
             aria-current={i === index}
             onClick={() => go(i)}
             className={cn(
-              'h-1.5 rounded-full transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
-              i === index ? 'w-5 bg-foreground' : 'w-1.5 bg-muted-foreground/40 hover:bg-muted-foreground',
+              'h-1.5 rounded-full transition-all focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring',
+              i === index
+                ? 'w-5 bg-foreground'
+                : 'w-1.5 bg-muted-foreground/40 hover:bg-muted-foreground',
             )}
           />
         ))}

@@ -1,9 +1,9 @@
 {
   "name": "liem-monorepo-template",
   "private": true,
-  "packageManager": "pnpm@9.0.0",
+  "packageManager": "pnpm@11.5.3",
   "engines": {
-    "node": ">=20"
+    "node": ">=24"
   },
   "scripts": {
     "dev": "turbo dev",
@@ -24,8 +24,8 @@
   "prettier": "@repo/config/prettier",
   "devDependencies": {
     "@repo/config": "workspace:*",
-    "prettier": "^3.3.0",
-    "turbo": "^2.0.0",
-    "typescript": "^5.4.0"
+    "prettier": "^3.8.0",
+    "turbo": "^2.9.0",
+    "typescript": "^6.0.0"
   }
 }

@@ -22,6 +22,13 @@ conversation history to soften them.
    - raw palette classes, hex colors, or off-grid spacing the greps may have missed
    - interactive elements missing hover/focus-visible/active treatment
    - copy violations: em dashes, decorative emoji, lorem ipsum, AI-marketing filler
+   - internal design vocabulary leaking into user-facing copy ("search-led", "seller
+     signals", "clutter", "open bands" - brief language a real customer would never read)
+   - empty placeholder image boxes rendered in the UI (bare gray rectangles)
+   - fake-impressive mock state: invented metrics, pre-filled cart badges, fabricated
+     counts - flag each one for removal before ship
+   - duplicated controls in one viewport (the same link/button/search appearing twice
+     with no reason) and the same icon reused for different nav items
 
 ## Verdict format (always end with this)
 

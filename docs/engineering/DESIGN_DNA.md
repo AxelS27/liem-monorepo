@@ -126,6 +126,15 @@ Arbitrary values like `p-[10px]` `gap-[14px]` `mt-[22px]` are violations.
 - Plain English, specific, conventional terms
 - No em dash, no decorative emoji, no AI-marketing filler
 - No lorem ipsum, no "Feature Title", no "User Name" in rendered UI
+- **No internal design vocabulary in user-facing copy.** Terms from the briefs and these
+  docs ("search-led", "seller signals", "open bands", "surface budget", "clutter-free")
+  describe the design TO the builder; they are not what users read. Write what a real
+  customer would understand and a real company would publish.
+- **No empty placeholder image boxes in rendered UI.** Mock data is fine; bare gray
+  rectangles are not. Use real-looking imagery or a deliberate icon tile.
+- **Mock state must be plausible, not fake-impressive.** No invented metrics ("120K+
+  products"), no pre-filled cart badges, no fabricated review counts. Neutral or empty
+  beats fake; anything mocked for layout gets flagged for removal before ship.
 
 ---
 

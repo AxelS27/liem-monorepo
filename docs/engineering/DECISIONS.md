@@ -161,3 +161,11 @@
 - Rejected: Replacing docs with agent prompts (loses the cross-tool source of truth; Codex/Cursor don't read `.claude/agents/`); a large agent roster ecc-style (dilutes triggering, most roles are theater without enforcement); a router/CEO orchestration layer forge-rules-style (manual simulation of what Claude Code already does natively); writer-agents without the reviewer gate (agents drift too - the gate is what makes violations un-shippable).
 - Status: Accepted
 - Date: 2026-06-11
+
+## ADR-019: Command layer and session hooks - the workflow surface
+
+- Decision: Add four pointer-based commands as skills (`/init-product`, `/new-feature`, `/ship-check`, `/handoff`) and two session hooks (`SessionStart` injects AGENTS.md pointer + PROGRESS.md state into every new session; `PreCompact` carries the rules and pending gates through compaction). Commands execute the existing docs and checklists - they never duplicate spec content. Session state lives exclusively in the repo docs (PROGRESS, DECISIONS, UI_UX); `/handoff` syncs the docs at session end and `SessionStart` reads them back, replacing the manual CONTINUE.md kickoff paste.
+- Reason: The template's workflows (init, feature slice, launch audit, session handoff) existed as prose guides that users had to find and paste. Wrapping each in one command makes the workflow surface discoverable and consistent, and the two hooks close the remaining context gaps: fresh sessions start oriented automatically, and compaction - the main trigger for rule decay mid-session - no longer drops the laws or the pending gates.
+- Rejected: Separate session-state files ecc-style (`~/.claude/session-data/`) - state outside the repo splits the source of truth that PROGRESS.md already owns; importing ecc's command catalog wholesale (60+ commands for stacks this repo doesn't use dilutes triggering); checkpoint/quality-gate commands (git and `pnpm run verify` already cover them); forge-rules' router and intent classifier (manual reimplementation of native agent routing).
+- Status: Accepted
+- Date: 2026-06-11

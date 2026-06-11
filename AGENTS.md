@@ -115,6 +115,22 @@ Rules:
 - Other tools (Codex, Cursor) don't read `.claude/agents/` - for them, the sector docs in
   the table above remain the direct rulebook.
 
+## Commands (skills in `.claude/skills/`, mirrored in `.agents/skills/`)
+
+The big workflows are one command each. Each command is pointer-based: it executes the
+existing docs and checklists, it does not duplicate them.
+
+| Command         | Does                                                                               |
+| --------------- | ---------------------------------------------------------------------------------- |
+| `/init-product` | Fill the product docs from a brief, stop for review before code (new-product flow) |
+| `/new-feature`  | Build one feature slice through the sector agents, gates included                  |
+| `/ship-check`   | Launch-readiness audit ending in a GO/NO-GO verdict                                |
+| `/handoff`      | End-of-session doc sync so the next chat starts oriented                           |
+
+Session hooks (wired in `.claude/settings.json`): `SessionStart` injects the project state
+(AGENTS.md pointer + PROGRESS summary) into every new session; `PreCompact` preserves the
+rules and pending gates through context compaction.
+
 ## Workflow
 
 1. Confirm which app/package you're touching: `apps/web`, `apps/server`, or `packages/*`.

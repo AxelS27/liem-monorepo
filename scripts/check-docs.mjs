@@ -43,8 +43,14 @@ const agentSystemFiles = [
   '.claude/agents/api-builder.md',
   '.claude/agents/db-engineer.md',
   '.claude/agents/design-reviewer.md',
+  '.claude/skills/init-product/SKILL.md',
+  '.claude/skills/new-feature/SKILL.md',
+  '.claude/skills/ship-check/SKILL.md',
+  '.claude/skills/handoff/SKILL.md',
   '.claude/settings.json',
   'scripts/hooks/ui-rules-reminder.mjs',
+  'scripts/hooks/session-start-context.mjs',
+  'scripts/hooks/pre-compact-preserve.mjs',
 ];
 const requiredFiles = [
   ...rootDocs,

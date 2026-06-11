@@ -8,7 +8,9 @@
     "pricing": "Pricing",
     "signIn": "Sign in",
     "getStarted": "Get started",
-    "menu": "Menu"
+    "menu": "Menu",
+    "themeLight": "Light",
+    "themeDark": "Dark"
   },
   "home": {
     "metaTitle": "Home",

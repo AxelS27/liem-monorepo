@@ -29,6 +29,14 @@ conversation history to soften them.
      counts - flag each one for removal before ship
    - duplicated controls in one viewport (the same link/button/search appearing twice
      with no reason) and the same icon reused for different nav items
+   - auth controls that are not state-exclusive (Sign in and Account rendered at the
+     same time, or the same auth link twice in one bar)
+   - a near-black `bg-foreground` band anywhere without an explicit opt-in in
+     `docs/product/UI_UX.md` (the default closing CTA is a soft secondary band)
+   - layout integrity: labels overflowing their container, grids ending in an orphan
+     empty slot, invented stats strips
+   - the language/theme placeholder controls missing from the header
+     (`components/shared/header-controls.tsx` ships in every product)
 
 ## Verdict format (always end with this)
 

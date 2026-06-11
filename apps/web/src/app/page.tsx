@@ -180,28 +180,27 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Closing CTA: a high-contrast band so the page ends on a clear next step. */}
+      {/*
+       * Closing CTA: a soft contained band so the page ends on a clear next step without a
+       * jarring near-black block. Dark/inverted CTA bands are opt-in only - use them when
+       * docs/product/UI_UX.md explicitly calls for one (the Button inverse variants exist
+       * for that case).
+       */}
       <section className="mx-auto w-full max-w-6xl px-6 py-20 sm:py-28">
-        <div className="rounded-2xl bg-foreground px-8 py-14 text-center text-background sm:px-16">
-          <h2 className="mx-auto max-w-2xl text-2xl font-semibold tracking-tight sm:text-3xl">
+        <div className="rounded-2xl border border-border bg-secondary/40 px-8 py-14 text-center sm:px-16">
+          <h2 className="mx-auto max-w-2xl text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
             {t.home.cta.heading}
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-base text-background/70">
+          <p className="mx-auto mt-4 max-w-xl text-base text-muted-foreground">
             {t.home.cta.subheading}
           </p>
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-            <a
-              href="/signup"
-              className={cn(buttonVariants({ variant: 'inverse', size: 'lg' }), 'w-full sm:w-auto')}
-            >
+            <a href="/signup" className={cn(buttonVariants({ size: 'lg' }), 'w-full sm:w-auto')}>
               {t.home.cta.getStarted}
             </a>
             <a
               href="/features"
-              className={cn(
-                buttonVariants({ variant: 'inverseOutline', size: 'lg' }),
-                'w-full sm:w-auto',
-              )}
+              className={cn(buttonVariants({ variant: 'outline', size: 'lg' }), 'w-full sm:w-auto')}
             >
               {t.home.cta.seeFeatures}
             </a>

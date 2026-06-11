@@ -52,7 +52,10 @@ Never override a higher source with a lower one without flagging it.
 - **Build on `apps/web/` — don't regenerate from scratch.** Extend the existing code.
 - **Background stays white.** Only change the accent/brand color (`--primary`, `--ring`). Never warm the background to cream/beige.
 - **Hero is never wrapped in a card.** Open band, fits first viewport (~720px) without scrolling.
-- **One focal point in the first viewport** — the headline + primary action. No heavy `bg-foreground`/near-black panel in the hero; it steals the eye. Dark/inverted surfaces are for late-page CTA bands and the footer. In a split hero, the side panel must be lighter than the headline column (`bg-secondary`/`bg-muted`, not solid black).
+- **One focal point in the first viewport** — the headline + primary action. No heavy `bg-foreground`/near-black panel in the hero; it steals the eye. Dark/inverted bands are **opt-in only** (via `docs/product/UI_UX.md`) — the default closing CTA is a soft `bg-secondary` band. In a split hero, the side panel must be lighter than the headline column (`bg-secondary`/`bg-muted`, not solid black).
+- **Auth controls are state-exclusive** — signed-out shows Sign in (+ sign-up CTA), signed-in shows Account; never both, never the same link twice in one bar.
+- **Keep the language/theme placeholder controls in the header** (`header-controls.tsx`) — restyle per product, never remove.
+- **Layout integrity** — labels never overflow their box; grids never leave an orphan empty slot; no invented stats strips ("120K+ products").
 - **Sections = open bands by default.** Cards only for product listings, data panels, dialogs. Not as a default wrapper for every section.
 - **Sticky nav** — `sticky top-0 bg-background/80 border-b border-border backdrop-blur` — with `aria-current="page"` on the active link. Never put `overflow-x-hidden` on a sticky ancestor (it kills sticky — use `overflow-x-clip`). Keep header bg partly transparent (`/80`) or the blur shows nothing.
 - **Font must be wired** — `next/font` → `--font-sans` in layout.tsx. Unset = browser serif fallback = instant AI tell.

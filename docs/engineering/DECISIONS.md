@@ -177,3 +177,11 @@
 - Rejected: An @axel subagent (cannot delegate - mechanical dead end); making Axel bypass gates for speed (the gates are the product); replacing the explicit commands (power users and docs still need precise entry points).
 - Status: Accepted
 - Date: 2026-06-11
+
+## ADR-021: Storefront lessons from the first product - soft CTA default, header placeholder controls, layout integrity rules
+
+- Decision: Codify the first real product review (MarketplaceX) into the template. (1) The closing CTA band defaults to a soft contained surface (`bg-secondary` + border); near-black `bg-foreground` bands are opt-in via `docs/product/UI_UX.md` only (the Button `inverse` variants remain for that case). (2) Every header ships placeholder language and theme controls (`components/shared/header-controls.tsx`, Liem Center style: globe + label dropdown, sun/moon + label) - placeholders until real i18n routing or dark mode is wired, restyled per product, never removed. (3) New written rules with design-reviewer checks: auth controls are state-exclusive (never Sign in + Account together), labels never overflow their container, grids never end in an orphan empty slot, no invented stats strips. (4) The ecommerce playbook gains storefront hard rules: products above the fold, one dominant search, one-message promo panels, light category chips, a semantic deal accent, purposeful utility-bar clustering.
+- Reason: The first product built from the template surfaced these as real failure modes, not theory: a jarring black band on a light page, duplicate auth/seller links, fake metrics, overflowing tile labels, an unbalanced category grid, and a storefront that sold the concept instead of products. Fixing them at the template level (starter code + rules + reviewer checks) prevents every future product from repeating them.
+- Rejected: Fixing only the product repo (the template would keep teaching the mistakes); wiring real next-themes/i18n switching now (the controls are placeholders by design - ship one theme and one language first, per FRONTEND.md); banning dark CTA bands outright (some brands genuinely want one - opt-in keeps the option without making it a default).
+- Status: Accepted
+- Date: 2026-06-12

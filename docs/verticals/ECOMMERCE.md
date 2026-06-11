@@ -66,6 +66,25 @@ user has to scroll just to reach the hero or the search bar, the fold is being w
 by an oversized headline band or too much top padding. Tighten spacing instead of stacking a
 tall atmospheric hero above the real storefront.
 
+### Storefront hard rules (learned from real builds)
+
+- **The storefront sells products, not the concept of the marketplace.** A
+  badge + headline + subcopy + input + buttons + stats stack is a SaaS hero skeleton in
+  marketplace clothes. Real merchandise (images, names, prices) must appear above the
+  fold.
+- **One dominant search.** The header search IS the search. Do not render a second large
+  search input in the hero - replace it with category chips or a product module.
+- **A promo panel carries one message.** Heading + product imagery + one action. Stacked
+  badges + paragraph + tiles + bullet list + button in a single card is clutter.
+- **Category entry points are light chips/rails** (icon + label), not a row of heavy
+  uniform cards with subtitle noise. Distinct icons or imagery per category; never the
+  same glyph repeated across different items.
+- **Deals need a visual signal.** Use the semantic discount/price accent on price drops
+  and deal badges - a storefront that is 100% neutral + brand color has no "deal" energy.
+  One accent, applied at the price/badge level, never sprayed across sections.
+- **Utility bar items cluster purposefully** - location/delivery context on one side,
+  account/help on the other. No item floats alone in the middle, no link appears twice.
+
 ## Navigation And Search
 
 Ecommerce navigation is a product control surface.

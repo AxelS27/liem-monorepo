@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
 import logo from '@/app/icon.png';
+import { LanguageSwitcher, ThemeSwitcher } from '@/components/shared/header-controls';
 import type { Dictionary } from '@/i18n/dictionaries';
 
 /**
@@ -48,13 +49,16 @@ export function SiteHeader({ brand, labels }: { brand: string; labels: Dictionar
               {item.label}
             </a>
           ))}
+          <span aria-hidden="true" className="h-5 w-px bg-border" />
+          <LanguageSwitcher />
+          <ThemeSwitcher labels={{ light: labels.themeLight, dark: labels.themeDark }} />
           <a href="/signup" className={cn(buttonVariants({ size: 'sm' }))}>
             {labels.getStarted}
           </a>
         </nav>
 
         <details className="group relative md:hidden">
-          <summary className="flex h-10 cursor-pointer list-none items-center rounded-md border border-border px-3 text-sm font-medium marker:hidden [&::-webkit-details-marker]:hidden">
+          <summary className="flex h-10 cursor-pointer list-none items-center rounded-md border border-border px-3 text-sm font-medium transition hover:bg-secondary focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.98] marker:hidden [&::-webkit-details-marker]:hidden">
             {labels.menu}
           </summary>
           <nav
@@ -79,6 +83,10 @@ export function SiteHeader({ brand, labels }: { brand: string; labels: Dictionar
             <a href="/signup" className={cn(buttonVariants({ size: 'sm' }), 'mt-1 w-full')}>
               {labels.getStarted}
             </a>
+            <div className="mt-2 flex items-center justify-between gap-2 border-t border-border px-1 pt-2">
+              <LanguageSwitcher />
+              <ThemeSwitcher labels={{ light: labels.themeLight, dark: labels.themeDark }} />
+            </div>
           </nav>
         </details>
       </div>

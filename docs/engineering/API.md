@@ -64,6 +64,41 @@ details unless the user explicitly asks for a developer/status product.
 
 ---
 
+## Reference Feature: Notes
+
+The starter ships `apps/server/src/features/notes` as the backend pattern to copy: shared
+Zod contracts, boundary validation, thin routes, a service, the standard envelopes, and
+contract tests. It stores notes in memory (no auth, no database) so the template runs with
+zero configuration. **Replace or delete it once the product has a real feature** - it is a
+teaching scaffold, not a product capability.
+
+Contracts: `noteSchema`, `createNoteInputSchema`, `listNotesQuerySchema`,
+`noteResponseSchema`, `notesListResponseSchema` in `packages/types`.
+
+### `GET /api/v1/notes?page=&limit=`
+
+Paginated list. `page` >= 1 (default 1), `limit` 1-100 (default 20). Out-of-range values
+return the 400 validation envelope.
+
+```json
+{ "data": { "items": [], "page": 1, "limit": 20, "total": 0 } }
+```
+
+### `GET /api/v1/notes/:id`
+
+Single note, or `404` with the stable code `NOTE_NOT_FOUND`.
+
+### `POST /api/v1/notes`
+
+Body `{ "title": string (1-200), "body"?: string (<=2000) }`. Returns `201` with the
+created note, or `400` with code `VALIDATION_ERROR`.
+
+```json
+{ "data": { "id": "…", "title": "…", "body": "", "createdAt": "…" } }
+```
+
+---
+
 ## Consistency Rules
 
 - Resource names plural, lowercase: `/users`, `/orders`.

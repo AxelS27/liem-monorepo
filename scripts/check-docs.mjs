@@ -1,4 +1,4 @@
-import { readFileSync, statSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 
 const root = process.cwd();
@@ -38,7 +38,13 @@ const goldenPathFiles = [
   'apps/web/src/app/page.tsx',
   'packages/utils/src/index.test.ts',
 ];
-const requiredFiles = [...rootDocs, ...guideDocs, ...coreDocs, ...supabaseFiles, ...goldenPathFiles];
+const requiredFiles = [
+  ...rootDocs,
+  ...guideDocs,
+  ...coreDocs,
+  ...supabaseFiles,
+  ...goldenPathFiles,
+];
 const failures = [];
 const warnings = [];
 
@@ -124,7 +130,9 @@ for (const doc of [
   'docs/engineering/QUALITY.md',
 ]) {
   if (progress && !progress.includes(doc)) {
-    warnings.push(`docs/engineering/PROGRESS.md does not mention ${doc}; confirm this is intentional.`);
+    warnings.push(
+      `docs/engineering/PROGRESS.md does not mention ${doc}; confirm this is intentional.`,
+    );
   }
 }
 
@@ -205,7 +213,7 @@ for (const [label, content] of [
   }
 }
 
-for (const command of ['pnpm docs:check', 'pnpm format:check', 'pnpm verify']) {
+for (const command of ['pnpm docs:check', 'pnpm format:check', 'pnpm run verify']) {
   if (ciWorkflow && !ciWorkflow.includes(command)) {
     failures.push(`.github/workflows/ci.yml does not run ${command}.`);
   }
@@ -220,8 +228,45 @@ try {
 
 for (const phrase of ['merchant of record', 'seller payout', 'webhook retries', 'refund']) {
   if (paymentsDoc && !paymentsDoc.toLowerCase().includes(phrase)) {
-    warnings.push(`docs/engineering/PAYMENTS.md may be missing payment readiness coverage for "${phrase}".`);
+    warnings.push(
+      `docs/engineering/PAYMENTS.md may be missing payment readiness coverage for "${phrase}".`,
+    );
   }
+}
+
+// Skills live in two places by design: .claude/skills (read by Claude Code) and
+// .agents/skills (the cross-tool location read by other agents). They are manual
+// copies, so drift is the failure mode - enforce that both directories hold the
+// same skills with byte-identical SKILL.md files.
+const skillRoots = ['.claude/skills', '.agents/skills'];
+const [claudeSkillsDir, agentsSkillsDir] = skillRoots.map((dir) => filePath(dir));
+if (existsSync(claudeSkillsDir) && existsSync(agentsSkillsDir)) {
+  const listSkills = (dir) =>
+    readdirSync(dir, { withFileTypes: true })
+      .filter((entry) => entry.isDirectory())
+      .map((entry) => entry.name)
+      .sort();
+  const claudeSkills = listSkills(claudeSkillsDir);
+  const agentsSkills = listSkills(agentsSkillsDir);
+  for (const skill of claudeSkills.filter((name) => !agentsSkills.includes(name))) {
+    failures.push(`.agents/skills is missing "${skill}" (present in .claude/skills).`);
+  }
+  for (const skill of agentsSkills.filter((name) => !claudeSkills.includes(name))) {
+    failures.push(`.claude/skills is missing "${skill}" (present in .agents/skills).`);
+  }
+  for (const skill of claudeSkills.filter((name) => agentsSkills.includes(name))) {
+    const claudeFile = join(claudeSkillsDir, skill, 'SKILL.md');
+    const agentsFile = join(agentsSkillsDir, skill, 'SKILL.md');
+    if (!existsSync(claudeFile) || !existsSync(agentsFile)) {
+      failures.push(`Skill "${skill}" is missing a SKILL.md in one of ${skillRoots.join(' / ')}.`);
+    } else if (readFileSync(claudeFile, 'utf8') !== readFileSync(agentsFile, 'utf8')) {
+      failures.push(
+        `Skill "${skill}" has drifted: .claude/skills and .agents/skills copies differ. Edit one, copy it over the other.`,
+      );
+    }
+  }
+} else {
+  failures.push('Both .claude/skills and .agents/skills must exist (they are mirrors).');
 }
 
 if (failures.length > 0) {

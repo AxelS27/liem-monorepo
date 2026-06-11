@@ -137,7 +137,7 @@
 □ Production environment variables are set in the deployment platform
 □ Database migrations have run against the production Supabase project
 □ pnpm build succeeds with no errors
-□ pnpm verify passes
+□ pnpm run verify passes
 □ A rollback path is documented (previous deploy or git ref)
 □ Post-deployment smoke test completed on the live URL
 ```

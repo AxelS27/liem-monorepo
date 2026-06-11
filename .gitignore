@@ -39,16 +39,10 @@ coverage/
 # want it to read as a normal, human-made project, uncomment the lines below so
 # the agent folders and internal docs stop being tracked. They are already
 # tracked, so also run once:
-#   git rm -r --cached .claude .codex .cursor .windsurf AGENTS.md CLAUDE.md \
-#     .cursorrules .windsurfrules HOW_TO_USE_THIS_TEMPLATE.md docs
+#   git rm -r --cached .claude .agents AGENTS.md CLAUDE.md docs
 #
 # /.claude/
-# /.codex/
-# /.cursor/
-# /.windsurf/
-# /.cursorrules
-# /.windsurfrules
+# /.agents/
 # /AGENTS.md
 # /CLAUDE.md
-# /HOW_TO_USE_THIS_TEMPLATE.md
 # /docs/

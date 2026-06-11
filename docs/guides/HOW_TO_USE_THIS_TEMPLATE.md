@@ -53,7 +53,7 @@ any UI work; it is the short rules file that keeps every product on the same qua
 
 During implementation, update `PROGRESS.md` before starting work, while items are in progress, and when they are done. A feature is not done just because the code exists: the checklist should also cover tests, lint/typecheck, API contract checks, doc updates, and the code-based UI self-review (the `docs/engineering/DESIGN_DNA.md` double-check, no rendering) when `apps/web` changes.
 
-Use `pnpm docs:check` after documentation changes and `pnpm verify` before calling work done.
+Use `pnpm docs:check` after documentation changes and `pnpm run verify` before calling work done.
 
 ## First-Run Agent Prompt
 
@@ -96,7 +96,7 @@ Do not read every domain doc for every task. Read the root instructions and the 
 ## Verification Commands
 
 - `pnpm docs:check` - verifies the documentation system is wired together. It fails on missing docs or missing references in this guide, and warns on starter placeholders.
-- `pnpm verify` - final code gate: lint, typecheck, and tests.
+- `pnpm run verify` - final code gate: lint, typecheck, and tests.
 
 ## Supabase Workflow
 

@@ -8,7 +8,7 @@
 - No dead code, no commented-out blocks, no `console.log` in committed code.
 - Backend work follows `docs/engineering/BACKEND.md`; database work follows `docs/engineering/DATABASE.md` and keeps
   the data model catalog current; payment work follows `docs/engineering/PAYMENTS.md`.
-- Use `pnpm verify` as the default final gate. It runs lint, typecheck, and tests.
+- Use `pnpm run verify` as the default final gate. It runs lint, typecheck, and tests.
 
 ## Docs Sync Audit
 
@@ -82,7 +82,7 @@ A task is done when:
 
 - [ ] Works as specified in PRD / task
 - [ ] Tests written and passing (logic + edge cases)
-- [ ] `pnpm verify` passes
+- [ ] `pnpm run verify` passes
 - [ ] `pnpm docs:check` passes when docs changed or project docs were initialized
 - [ ] UI work: self-reviewed against the code-based double-check in `docs/engineering/DESIGN_DNA.md` (Part A greps + Part B file reading), with anything that missed fixed. No rendering required.
 - [ ] Route navigation is present and the current page/section is visibly active in

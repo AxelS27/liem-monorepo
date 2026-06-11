@@ -1,0 +1,25 @@
+creating:
+1.
+create or refactor
+- agents
+- subagents
+- command or skill?
+so intinya bisa pakai @... /... atau secara otomatis agentnya terpanggil
+
+@agent = siapa yang mikir
+/command = proses apa yang dijalankan
+skill = pengetahuan/playbook yang dipakai saat relevan
+AGENTS.md = hukum dasar repo
+
+mending docsny diganti seperti sistem agent? atau gimana
+
+2.
+create context session?
+
+
+3. 
+
+apakah bisa megabungkan ide dari 
+D:\Experiments\forge-rules
+D:\Experiments\ecc
+D:\Experiments\liem-monorepo-template

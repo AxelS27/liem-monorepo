@@ -14,20 +14,25 @@ This file explains how backend code should be structured and verified.
 
 ## Server Structure
 
-Use feature-based modules as the app grows:
+Use feature-based modules. The starter ships a working reference feature -
+`src/features/notes` - that demonstrates the whole pattern: shared Zod contracts from
+`packages/types`, boundary validation, thin routes, a service that owns the logic, the
+standard envelopes, and contract tests. Copy its shape for real resources, then delete it
+once the product has a real feature.
 
 ```text
 apps/server/src/
-  index.ts
+  index.ts            # starts the Node server, stays thin
+  app.ts              # Hono instance + route registration
   features/
-    orders/
-      orders.routes.ts
-      orders.service.ts
-      orders.test.ts
+    notes/            # reference feature - copy this shape
+      notes.routes.ts
+      notes.service.ts
+      notes.test.ts
   lib/
-    env.ts
-    errors.ts
-    supabase.ts
+    errors.ts         # error envelope helpers (shipped)
+    env.ts            # add as needed
+    supabase.ts       # add as needed
 ```
 
 Keep files focused:

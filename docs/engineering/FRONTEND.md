@@ -8,13 +8,14 @@
 > navigation model, page UX, layout choices, and copy tone live in `docs/product/UI_UX.md`.
 > `docs/product/UI_UX.md` must follow this file, not override it.
 >
-> The starter UI in `apps/web` is a design-quality reference and wiring example, not a
-> layout template. Preserve its discipline: clean composition, restrained surfaces,
+> The starter UI in `apps/web` is the design foundation: build on it, do not regenerate
+> from scratch (see `docs/engineering/DESIGN_DNA.md`). Swap the copy (`src/i18n/locales/en.json`),
+> accent palette, preview assets, and routes per product, and reshape or add sections as the
+> product needs - the composition is a starting point you are free to adjust, not a frozen
+> layout. What carries over is its discipline: clean composition, restrained surfaces,
 > non-boxy hierarchy, real navigation and footer treatment, deliberate typography, and
-> small purposeful interactions. Do not copy its exact layout, section order, spacing
-> values, copy, or starter brand as the default for real products. Build the actual UI from
-> the user's brief, `docs/product/UI_UX.md`, and selected references, while obeying the guardrails
-> in this file.
+> small purposeful interactions. Direct the actual UI from the user's brief,
+> `docs/product/UI_UX.md`, and selected references, while obeying the guardrails in this file.
 >
 > For products in a known vertical, read the matching `docs/verticals/*.md` playbook before
 > finalizing `docs/product/UI_UX.md`. The playbook gives genre-specific instincts, while this file
@@ -36,13 +37,13 @@ No product type is an excuse to ship a busy, messy page.
 
 **Target vibe:** a real product company website designed by experienced frontend engineers and product designers. It should feel structured, editorial, balanced, calm, professional, trustworthy, scalable, and production-ready.
 
-**Starter design DNA:** the default `apps/web` screen shows the intended level of taste,
-not the required page structure. Carry forward the feel: open sections instead of card soup,
-hierarchy from spacing and type before borders, a sticky navbar with a real surface,
-route-aware links, a complete footer endcap, one strong visual/media moment when useful,
-and a restrained closing CTA. Replace the product content, routes, palette, layout model,
-and density for each project. The starter is successful when it teaches "clean, mature,
-not AI-generic", not when every product looks like the starter.
+**Starter design DNA:** the default `apps/web` screen is both the foundation you extend and
+the level of taste to hold. Keep the feel: open sections instead of card soup, hierarchy from
+spacing and type before borders, a sticky navbar with a real surface, route-aware links, a
+complete footer endcap, one strong visual/media moment when useful, and a restrained closing
+CTA. Per product, replace the copy, routes, palette, assets, and density, and reshape sections
+where the product calls for it. The starter is successful when every product stays "clean,
+mature, not AI-generic" - similar bones are fine, identical pages are lazy.
 
 **Further reading:** the fastest way to build this judgment is _Refactoring UI_ (Adam Wathan and Steve Schoger). Its tactical rules - hierarchy through spacing and weight, restraint with borders, one clear focal point per screen - are exactly what separates a human-made UI from AI slop. Before designing for a specific product type, study the real references in `docs/product/REFERENCES.md`, then record the chosen direction in `docs/product/UI_UX.md`.
 
@@ -533,36 +534,26 @@ All color lives in **one file**: `apps/web/src/styles/globals.css`. It is the si
 - Components reference **tokens only** (`bg-background`, `text-foreground`, `border-border`). Never hardcode hex, and never use raw palette classes like `bg-zinc-900`.
 - One `--radius` knob controls roundness across the UI.
 
-Typography is wired the same way: a `next/font` family in the root layout sets the
-`--font-sans` token, which `tailwind.config.ts` maps to `font-sans` and `globals.css` applies
-to `body`. To change the product's typeface, swap the font family in the root layout and keep
-the token. Never leave it unset, that falls back to the default serif/system font.
+Typography is wired the same way: a `next/font` family in the root layout exposes a CSS
+variable (`--font-jakarta` in the starter), which `globals.css` feeds into the `--font-sans`
+theme token and applies to `body`. To change the product's typeface, swap the font family in
+the root layout, rename its variable to match, and update the two `var()` references in
+`globals.css`. Never leave it unset, that falls back to the default serif/system font.
 
-Wiring (done once, when the app is scaffolded):
+Wiring (Tailwind v4 is CSS-first; there is no `tailwind.config.ts` - `globals.css` IS the
+config, done once when the app is scaffolded):
 
-1. Import `globals.css` in the root layout.
-2. In `tailwind.config.ts`, set `darkMode: 'class'` and map the tokens to Tailwind colors:
-
-   ```ts
-   theme: {
-     extend: {
-       colors: {
-         background: 'hsl(var(--background))',
-         foreground: 'hsl(var(--foreground))',
-         border: 'hsl(var(--border))',
-         primary: { DEFAULT: 'hsl(var(--primary))', foreground: 'hsl(var(--primary-foreground))' },
-         // same pattern for secondary, muted, accent, destructive, card, popover
-       },
-       borderRadius: {
-         lg: 'var(--radius)',
-         md: 'calc(var(--radius) - 2px)',
-         sm: 'calc(var(--radius) - 4px)',
-       },
-     },
-   }
-   ```
-
-3. **Only when you add a second theme:** uncomment the `.dark` block in `globals.css`, then toggle by adding or removing `class="dark"` on `<html>`. Use `next-themes` (`<ThemeProvider attribute="class">`) for system plus manual switching. A single-theme app skips this step entirely, do not add `next-themes` for one theme.
+1. Import `globals.css` in the root layout. It starts with `@import 'tailwindcss'` and a
+   `@source` pointing at `packages/ui/src` so the shared package's classes are scanned.
+2. Tokens live in `:root` as full color values; a `@theme inline` block maps them to utility
+   names (`--color-background: var(--background)`, radius steps from `--radius`, `--font-sans`),
+   and a `@theme` block holds the house type scale. Utilities reference the vars directly, so
+   editing `:root` re-colors everything.
+3. **Only when you add a second theme:** uncomment the `.dark` block AND the
+   `@custom-variant dark (&:is(.dark *));` line in `globals.css`, then toggle by adding or
+   removing `class="dark"` on `<html>`. Use `next-themes` (`<ThemeProvider attribute="class">`)
+   for system plus manual switching. A single-theme app skips this step entirely, do not add
+   `next-themes` for one theme.
 
 To rebrand: edit the token values in `:root` in `globals.css`. That is the only file you touch.
 
@@ -614,6 +605,8 @@ Avoid:
   }
   ```
 
+- **The starter is already wired this way.** `page.tsx`, the stub routes, the footer, and metadata read from `en.json` via `getDictionary`; the header is a client island, so the root layout resolves its strings and passes them down as props. Follow those patterns for new pages: server components await the dictionary themselves, client islands receive strings as props.
+- **Scope:** all rendered copy and metadata goes through the dictionary. The one allowed exception is a client component's internal accessibility strings (e.g. the carousel's `aria-label`s for prev/next/pause): those may live next to their markup, and move into the dictionary when a second locale is added.
 - **Format, don't concatenate.** Numbers, currency, and dates come from `Intl`, never string building. IDR has no decimal places, so `Rp 1.294,5` is a bug: `new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(1294.5)` gives the correct `Rp 1.295`. Same for dates via `Intl.DateTimeFormat`.
 - Keep each full phrase as one key. Do not build sentences by concatenating translated fragments, since other languages order words differently.
 
@@ -669,6 +662,7 @@ Design every state, not just the happy path. A screen that only handles "data lo
 **Loading states.** Use `loading.tsx` with designed **skeletons** that mirror the real layout, not bare spinners. Transitions stay subtle and fast.
 
 Skeleton rules:
+
 - The skeleton must match the **exact shape** of the loaded content — same height, same proportions, same grid. A generic rectangle where a product card goes is not a skeleton.
 - Use a **shimmer animation** (background gradient sweeping left-to-right) rather than opacity pulse. The motion direction matches reading direction.
 - Skeletons must appear within **100ms** of navigation. A blank white flash before the skeleton is a fail.
@@ -682,13 +676,13 @@ durations short, easing natural, and every animated surface useful. Always respe
 
 **Animation timing — use only these durations, never invent new ones:**
 
-| Token | Duration | Use for |
-| ----- | -------- | ------- |
-| instant | 80ms | Button press, checkbox, micro feedback |
-| fast | 150ms | Hover states, small element transitions |
-| normal | 250ms | Standard UI transitions, dropdowns |
-| slow | 400ms | Modals, drawers, page content fade |
-| slower | 600ms | Charts, counters, complex reveals |
+| Token   | Duration | Use for                                 |
+| ------- | -------- | --------------------------------------- |
+| instant | 80ms     | Button press, checkbox, micro feedback  |
+| fast    | 150ms    | Hover states, small element transitions |
+| normal  | 250ms    | Standard UI transitions, dropdowns      |
+| slow    | 400ms    | Modals, drawers, page content fade      |
+| slower  | 600ms    | Charts, counters, complex reveals       |
 
 Never exceed 800ms on any interaction — it breaks the "instant" contract and feels laggy.
 
@@ -698,6 +692,7 @@ frames. Use `transform: translate()` instead of `top`/`left`. Use the CSS grid t
 (`grid-template-rows: 0fr → 1fr`) instead of animating height for accordion/collapse.
 
 **Easing guide:**
+
 - Elements entering the screen → ease-decelerate `cubic-bezier(0, 0, 0.2, 1)` (starts fast, slows to rest)
 - Elements leaving → ease-accelerate `cubic-bezier(0.4, 0, 1, 1)` (ends quickly)
 - Toggles, notifications, likes → spring `cubic-bezier(0.34, 1.56, 0.64, 1)` (bouncy, tactile)
@@ -707,16 +702,16 @@ frames. Use `transform: translate()` instead of `top`/`left`. Use the CSS grid t
 
 **Interactive component states.** Every interactive component must implement all of these states before it is considered done:
 
-| State | Requirement |
-| ----- | ----------- |
-| Default | How the element looks at rest |
-| Hover | Visible color/shadow/border shift within 150ms |
-| Focus | `focus-visible` ring: 2px accent ring + 2px offset. Never `outline: none` without a replacement |
-| Active/Pressed | `scale(0.98)` + background darkens within 80ms — tactile press feel |
-| Loading | Spinner replaces text; element width locked to prevent layout shift; `aria-busy="true"` |
-| Disabled | `opacity: 50%`; `cursor: not-allowed`; no hover or click response |
-| Error | Red border + error message below field; shake animation on submit; `role="alert"` |
-| Empty | Icon + title + description + CTA. Never just blank space or "No data" |
+| State          | Requirement                                                                                     |
+| -------------- | ----------------------------------------------------------------------------------------------- |
+| Default        | How the element looks at rest                                                                   |
+| Hover          | Visible color/shadow/border shift within 150ms                                                  |
+| Focus          | `focus-visible` ring: 2px accent ring + 2px offset. Never `outline: none` without a replacement |
+| Active/Pressed | `scale(0.98)` + background darkens within 80ms — tactile press feel                             |
+| Loading        | Spinner replaces text; element width locked to prevent layout shift; `aria-busy="true"`         |
+| Disabled       | `opacity: 50%`; `cursor: not-allowed`; no hover or click response                               |
+| Error          | Red border + error message below field; shake animation on submit; `role="alert"`               |
+| Empty          | Icon + title + description + CTA. Never just blank space or "No data"                           |
 
 Do not ship a component missing any state that its domain needs. A button without a loading state, a form without inline errors, or a table without an empty state is half-built.
 

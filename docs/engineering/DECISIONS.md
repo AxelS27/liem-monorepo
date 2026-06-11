@@ -145,3 +145,11 @@
 - Rejected: One giant architecture/spec doc (too much to read every turn); putting backend/database/payment rules only in AGENTS.md (too long for daily workflow); making every domain doc mandatory for every task (wastes context and encourages stale reading).
 - Status: Accepted
 - Date: 2026-05-31
+
+## ADR-017: Stack refresh - Tailwind v4 (CSS-first), Next 16, Zod 4, TypeScript 6, ESLint 10, Vitest 4, pnpm 11, Node 24
+
+- Decision: Track current majors across the toolchain. Tailwind v4 replaces `tailwind.config.ts` with CSS-first config: `globals.css` now holds `@import 'tailwindcss'`, a `@source` for `packages/ui`, `:root` tokens as full color values, a `@theme inline` utility mapping, and the house type scale in `@theme`. Next 16 (Turbopack dev/build), Zod 4, TypeScript 6 (`baseUrl` removed, explicit `rootDir` for emit), ESLint 10, Vitest 4 (Vite is now an explicit devDependency), pnpm 11 (`packageManager` field; build-script approvals via `allowBuilds` in `pnpm-workspace.yaml`), Node 24 LTS (`.nvmrc`, `engines`). Because pnpm 11 ships a built-in `pnpm verify` command, the repo's verify script must be invoked as `pnpm run verify`.
+- Reason: A starter template that pins last-generation majors bakes outdated patterns into every product built from it; the v3-style token wiring in particular would have taught agents a config-file pattern Tailwind has abandoned. Refreshing once at the template level is cheaper than migrating every spawned product later.
+- Rejected: Staying on Tailwind v3 / Next 15 (teaches dead patterns); partial bumps (mixed-generation toolchain causes peer conflicts, e.g. Vitest 4 requires Vite 6+).
+- Status: Accepted. Supersedes the `tailwind.config.ts` mechanics described in ADR-014 (the rest of ADR-014 - pre-wired shadcn, lint-enforced tells, the skill - stands).
+- Date: 2026-06-11

@@ -110,7 +110,7 @@ Auth is Supabase Auth (ADR-005, ADR-013). Keep the flows standard, no custom aut
 
 Only relevant when a project takes payments. Decision: ADR-012.
 
-- Integration lives in `apps/server/src/services`. The web app calls the server; the **server** creates the Midtrans transaction with the **server key** and returns a Snap token. The browser opens Snap with the public client key (`NEXT_PUBLIC_MIDTRANS_CLIENT_KEY`).
+- Integration lives in a server feature module (e.g. `apps/server/src/features/payments`). The web app calls the server; the **server** creates the Midtrans transaction with the **server key** and returns a Snap token. The browser opens Snap with the public client key (`NEXT_PUBLIC_MIDTRANS_CLIENT_KEY`).
 - Confirmation comes from Midtrans's **HTTP notification (webhook)** to a server route. That route is public but **verified by signature hash** (SHA512 of `order_id + status_code + gross_amount + server_key`), not the Bearer token. Treat the webhook as the source of truth for order status, never the browser redirect.
 - The Midtrans **server key is server-only**; never expose it to `apps/web` or any `NEXT_PUBLIC_*` var.
 
@@ -119,5 +119,5 @@ Only relevant when a project takes payments. Decision: ADR-012.
 Only relevant when a project actually uses large models.
 
 - Models run on **Hugging Face** (Inference API for shared models, Inference Endpoints for dedicated/private ones) - **never** loaded into the Node process or shipped to the browser.
-- The integration lives in `apps/server/src/services`; the web app calls the server, the server calls Hugging Face. Auth via `HUGGINGFACE_API_KEY` (server-only).
+- The integration lives in a server feature module (e.g. `apps/server/src/features/inference`); the web app calls the server, the server calls Hugging Face. Auth via `HUGGINGFACE_API_KEY` (server-only).
 - Custom model handoff lives in root `huggingface/`. See `huggingface/README.md` for upload notes and artifact handling.

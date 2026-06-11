@@ -23,26 +23,26 @@ Never override a higher source with a lower one without flagging it.
 
 ## When to Open Each Doc (don't read preemptively - saves tokens)
 
-| Open this            | Only when the task involves                                                            |
-| -------------------- | -------------------------------------------------------------------------------------- |
-| docs/product/PRD.md          | Scope/feature questions, "should we build X"                                           |
-| docs/product/FEATURES.md     | Building or scoping a specific feature module                                          |
-| docs/engineering/PROGRESS.md     | Building product features; tracking what's done, in progress, and how features connect |
-| docs/engineering/ARCHITECTURE.md | Adding folders, cross-package imports, new module                                      |
-| docs/engineering/DESIGN_DNA.md   | **Any apps/web UI work — read this first.** Short rules: palette, composition, nav, spacing |
-| docs/engineering/FRONTEND.md     | Detailed UI rules — open only when DESIGN_DNA.md doesn't cover the specific question   |
-| docs/product/UI_UX.md        | Product-specific visual identity, UX direction, navigation model, page UX map          |
-| docs/verticals/*.md  | Starting a product in a known vertical (ecommerce, SaaS, fintech, marketplace, etc.)   |
-| docs/engineering/BACKEND.md      | Any apps/server work - routes, middleware, services, validation, backend tests         |
-| docs/engineering/DATABASE.md     | Supabase/Postgres schema, RLS, Storage, indexes, migrations, data lifecycle            |
-| docs/engineering/PAYMENTS.md     | Payments, checkout, refunds, settlement, payouts, marketplace money flow               |
-| docs/product/REFERENCES.md   | Starting visual design; need non-generic reference sites for a product vertical        |
-| docs/engineering/DECISIONS.md    | Choosing a lib, DB, pattern (check if already decided)                                 |
-| docs/engineering/API.md          | Any endpoint work                                                                      |
-| docs/engineering/QUALITY.md      | Before marking a task done                                                             |
-| docs/checklists/new-product.md | Initializing a new product from this template — fill docs and setup env first |
-| docs/checklists/code-review.md | Before approving a PR or calling a task done — multi-axis quality check       |
-| docs/checklists/launch-readiness.md | Before going live — functionality, perf, security, UI, a11y, deployment  |
+| Open this                           | Only when the task involves                                                                                                                            |
+| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| docs/product/PRD.md                 | Scope/feature questions, "should we build X"                                                                                                           |
+| docs/product/FEATURES.md            | Building or scoping a specific feature module                                                                                                          |
+| docs/engineering/PROGRESS.md        | Building product features; tracking what's done, in progress, and how features connect                                                                 |
+| docs/engineering/ARCHITECTURE.md    | Adding folders, cross-package imports, new module                                                                                                      |
+| docs/engineering/DESIGN_DNA.md      | **Any apps/web UI work — read this first.** Short rules: palette, composition, nav, spacing                                                            |
+| docs/engineering/FRONTEND.md        | Detailed UI rules — open only when DESIGN_DNA.md doesn't cover the specific question                                                                   |
+| docs/product/UI_UX.md               | Product-specific visual identity, UX direction, navigation model, page UX map                                                                          |
+| docs/verticals/\*.md                | Starting a product in a vertical that has a playbook (currently only ECOMMERCE.md — check the folder; write a new playbook before assuming one exists) |
+| docs/engineering/BACKEND.md         | Any apps/server work - routes, middleware, services, validation, backend tests                                                                         |
+| docs/engineering/DATABASE.md        | Supabase/Postgres schema, RLS, Storage, indexes, migrations, data lifecycle                                                                            |
+| docs/engineering/PAYMENTS.md        | Payments, checkout, refunds, settlement, payouts, marketplace money flow                                                                               |
+| docs/product/REFERENCES.md          | Starting visual design; need non-generic reference sites for a product vertical                                                                        |
+| docs/engineering/DECISIONS.md       | Choosing a lib, DB, pattern (check if already decided)                                                                                                 |
+| docs/engineering/API.md             | Any endpoint work                                                                                                                                      |
+| docs/engineering/QUALITY.md         | Before marking a task done                                                                                                                             |
+| docs/checklists/new-product.md      | Initializing a new product from this template — fill docs and setup env first                                                                          |
+| docs/checklists/code-review.md      | Before approving a PR or calling a task done — multi-axis quality check                                                                                |
+| docs/checklists/launch-readiness.md | Before going live — functionality, perf, security, UI, a11y, deployment                                                                                |
 
 ## UI Critical Rules
 
@@ -75,7 +75,7 @@ Rationale lives in `docs/engineering/DECISIONS.md`. Don't introduce an alternati
 | Auth            | Supabase Auth                                                  |
 | Storage         | Supabase Storage                                               |
 | Payments        | Midtrans - **only** when the project takes payments            |
-| Deploy          | See `docs/engineering/DECISIONS.md` ADR-007                                |
+| Deploy          | See `docs/engineering/DECISIONS.md` ADR-007                    |
 | Large AI models | Hugging Face - **only** when the project involves large models |
 
 Stack rules:
@@ -109,14 +109,14 @@ Stack rules:
 | Typecheck   | `pnpm typecheck`                                                 |
 | Test        | `pnpm test`                                                      |
 | Docs check  | `pnpm docs:check`                                                |
-| Verify      | `pnpm verify`                                                    |
+| Verify      | `pnpm run verify`                                                |
 | DB diff     | `pnpm db:diff -- -f <migration_name>`                            |
 | DB reset    | `pnpm db:reset`                                                  |
 | DB types    | `pnpm db:types`                                                  |
 | DB push     | `pnpm db:push`                                                   |
 | Format      | `pnpm format`                                                    |
 
-Before marking a task done, run `pnpm verify` and check the Definition of Done in `docs/engineering/QUALITY.md`. Run `pnpm docs:check` when docs changed or when initializing product docs. For `apps/web` UI work: read `docs/engineering/DESIGN_DNA.md` first (short), run the code-based double-check at the bottom of that file (Part A greps + Part B file reading, no rendering), then open `docs/engineering/FRONTEND.md` only if you need more detail. For a thorough multi-axis check, run the **`ui-audit` skill**. Green lint/typecheck does not catch an AI-generic layout — the grep + markup review is the real gate.
+Before marking a task done, run `pnpm run verify` and check the Definition of Done in `docs/engineering/QUALITY.md`. Run `pnpm docs:check` when docs changed or when initializing product docs. For `apps/web` UI work: read `docs/engineering/DESIGN_DNA.md` first (short), run the code-based double-check at the bottom of that file (Part A greps + Part B file reading, no rendering), then open `docs/engineering/FRONTEND.md` only if you need more detail. For a thorough multi-axis check, run the **`ui-audit` skill**. Green lint/typecheck does not catch an AI-generic layout — the grep + markup review is the real gate.
 
 ## Git & Tooling Hygiene
 
@@ -126,6 +126,7 @@ Keep the public repo looking human-authored.
 - **No AI references** in commits, PR text, or history. Never mention Claude/Codex/agents, `.claude`, `.codex`, "generated with", or co-author trailers.
 - **Git ignore strategy:** `.gitignore` is active from the first clone - universal entries (`node_modules`, `.env`, build output, model weights) are always ignored. The agent tooling and internal docs (`.claude/`, `AGENTS.md`, `docs/`, ...) are listed but **commented out**, so the full starter kit stays tracked in this template.
 - **Keep local tooling out of product repos.** In a real product repo, uncomment the "Product-repo cleanup" block at the bottom of `.gitignore`, then run `git rm -r --cached` on those paths once so the agent folders and internal docs stop being tracked.
+- **Skills are mirrored:** `.claude/skills/` (read by Claude Code) and `.agents/skills/` (read by other agents) must hold the same skills with byte-identical `SKILL.md` files. When you edit a skill, copy it over the other location; `pnpm docs:check` fails on drift.
 - **Python:** use **`uv`** for deps / venv / running scripts, never `pip` or raw `venv`.
 
 ## Iron Laws

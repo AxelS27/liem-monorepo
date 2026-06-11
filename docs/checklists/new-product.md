@@ -49,9 +49,9 @@
       dark-purple SaaS, teal-on-near-black, flat beige). See docs/engineering/FRONTEND.md.
     □ One accent color. Semantic colors (success, warning, destructive) are separate.
 □ Typeface wired in apps/web/src/app/layout.tsx via next/font
-    □ Font variable bound to --font-sans in the html className
-    □ tailwind.config.ts maps font-sans to var(--font-sans)
-    □ globals.css body has font-family: var(--font-sans)
+    □ Font variable (e.g. --font-jakarta) set in the html className
+    □ globals.css @theme inline feeds that variable into the --font-sans token
+    □ globals.css body font-family uses the same variable
 □ --radius token set in globals.css to match product's roundness feel
 □ prefers-reduced-motion rule exists in globals.css:
     @media (prefers-reduced-motion: reduce) {
@@ -123,13 +123,14 @@ Before building any feature, verify the shared primitives in packages/ui work fo
 □ pnpm dev runs without errors
 □ pnpm lint passes
 □ pnpm typecheck passes
-□ Landing page (/) is a real product landing page, not the starter wiring example
+□ Landing page (/) carries the product's own copy, brand, and palette (the starter layout is the foundation; its placeholder content is not)
 □ Landing page hero is not card-wrapped and has no min-h-screen/oversized top padding that would push it below the fold
 □ No hard mid-screen section dividers (read page.tsx: no border-t/border-b band with large blank padding sitting between sections)
 □ Footer has visible treatment (border-t, surface, brand, links, copyright)
 □ Every route listed in docs/product/UI_UX.md compiles and loads without error (pnpm build)
-□ No page shows the starter "WIRING EXAMPLE" content
-□ pnpm verify passes
+□ No page still shows starter placeholder content (the "Liem" brand, starter hero copy, or the stub "goes here" pages); src/i18n/locales/en.json is rewritten for the product
+□ The reference notes feature (apps/server/src/features/notes + its packages/types contracts + its API.md section) is deleted or replaced once a real backend feature exists
+□ pnpm run verify passes
 ```
 
 ---

@@ -14,8 +14,7 @@ This file is the **procedure**. `docs/engineering/FRONTEND.md` is the full **spe
 The deterministic setup already exists. Do not re-run `shadcn init`, do not regenerate these, do not "accept defaults":
 
 - `apps/web/components.json` - shadcn writes components into `@repo/ui` (packages/ui).
-- `apps/web/tailwind.config.ts` - maps the `globals.css` tokens to Tailwind + the house type scale; `darkMode: 'class'`.
-- `apps/web/src/styles/globals.css` - the **one** source of color. Semantic tokens only.
+- `apps/web/src/styles/globals.css` - the **one** source of color AND the Tailwind config (v4 is CSS-first, there is no `tailwind.config.ts`): `:root` tokens, `@theme inline` utility mapping, the house type scale, and the `@source` that scans `packages/ui`. Semantic tokens only.
 - `packages/ui/src/lib/cn.ts` - the `cn()` helper.
 - `packages/ui/src/components/ui/button.tsx` - the **reference primitive**. Match its house style.
 
@@ -25,7 +24,7 @@ The highest-leverage anti-generic move. Do it before building UI. First, skim `d
 
 1. Commit to a real palette for _this_ product. **No default violet/indigo, no glassmorphism/glow - and no other safe trendy default** (whatever look is in heavy AI rotation now, e.g. forest + cream, muted sage, dark-purple SaaS gradient, reads as a template). Pick a deliberate brand hue and neutrals with a slight temperature; check contrast.
 2. Replace the neutral placeholder values in `:root` in `globals.css` (`--brand`, `--primary`, `--background`, `--muted`, ...). Shipping the placeholder neutral _is_ shipping the AI look.
-3. Set one modern type family via `--font-sans` (next/font in the root layout). The template ships this wired; swap the family for a product-appropriate modern sans, keep the token, never fall back to the default serif/system font. One or two families total, no decorative serif-italic.
+3. Set one modern type family via next/font in the root layout; its variable (e.g. `--font-jakarta`) feeds the `--font-sans` token in `globals.css` `@theme inline`. The template ships this wired; swap the family for a product-appropriate modern sans, rename the variable and update the two `var()` references in `globals.css`, never fall back to the default serif/system font. One or two families total, no decorative serif-italic.
 4. Tune `--radius` once to a deliberate value; the whole UI follows.
 
 Retheming is this file only. If you are setting color anywhere else, you are doing it wrong.

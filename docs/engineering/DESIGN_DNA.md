@@ -11,13 +11,17 @@ wiring, and nav/footer shell are already correct — they are the starting point
 reference to look at and then ignore.
 
 What you change per product:
+
 - `globals.css` — swap the accent/brand color. Keep background white.
-- `app/page.tsx` — replace content, sections, and copy to fit the product. Keep the
+- `src/i18n/locales/en.json` — all rendered copy lives here (ADR-010), including the brand
+  name, nav labels, hero, sections, and footer. Rewriting the copy = editing this file.
+- `app/page.tsx` — replace sections and structure to fit the product. Keep the
   open-band composition unless `docs/product/UI_UX.md` explicitly calls for a different layout.
-- `components/shared/site-header.tsx` — update nav links and logo to match the product.
-- `components/shared/site-footer.tsx` — update links and brand name.
+- `components/shared/site-header.tsx` — update nav routes and logo to match the product.
+- `components/shared/site-footer.tsx` — update link routes.
 
 What you do not change without a clear reason from `docs/product/UI_UX.md`:
+
 - The white background and neutral surface tokens
 - The sticky nav with surface treatment
 - The open-band section pattern (hero, features, CTA band, footer)
@@ -57,13 +61,14 @@ If it could be from any AI demo site, it is not done.
 
 The starter uses **open sections as the default**. Cards earn their place.
 
-| Context | Use |
-|---|---|
-| Hero, marketing sections, feature grids, promo bands | Open bands — no card wrapper |
-| Product listings, data panels, dialogs, repeated items | Cards are appropriate |
-| Stats / KPI strips on public pages | Only if they help the user's decision |
+| Context                                                | Use                                   |
+| ------------------------------------------------------ | ------------------------------------- |
+| Hero, marketing sections, feature grids, promo bands   | Open bands — no card wrapper          |
+| Product listings, data panels, dialogs, repeated items | Cards are appropriate                 |
+| Stats / KPI strips on public pages                     | Only if they help the user's decision |
 
 **Hard stops:**
+
 - Hero content must not be wrapped in a card or panel
 - Every section boxed in `bg-card border border-border rounded-lg` = card soup = fail
 - Pale bordered rectangles are not a design system
@@ -166,7 +171,7 @@ Run from `apps/web/src`:
       → arbitrary values like p-[10px], gap-[14px] are FAILs.
 
 [ ] pnpm lint passes (catches min-h-screen, and the patterns lint is wired to block)
-[ ] pnpm verify passes
+[ ] pnpm run verify passes
 ```
 
 ### Part B — Read three files and reason (no render)

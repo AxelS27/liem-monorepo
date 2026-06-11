@@ -40,7 +40,7 @@ updated whatever changed:
 - `docs/engineering/PROGRESS.md` — mark what is now done and what is in progress
 - `docs/engineering/DECISIONS.md` — append any real technical or product decision
 - `docs/product/UI_UX.md` — record any product design change
-- Run `pnpm docs:check` if docs changed, and `pnpm verify` before calling work done
+- Run `pnpm docs:check` if docs changed, and `pnpm run verify` before calling work done
 
 If these are kept current, the next fresh chat reads PROGRESS and is immediately in sync.
 If they are stale, the next agent will not know what was done and may repeat or break work.

@@ -135,7 +135,7 @@
 ## Final Gate
 
 ```
-□ pnpm verify passes (lint + typecheck + tests)
+□ pnpm run verify passes (lint + typecheck + tests)
 □ UI work self-reviewed via the code-based double-check in docs/engineering/DESIGN_DNA.md (Part A greps + Part B file reading) — no rendering required
 □ No route is a dead end — public ↔ auth ↔ app contexts all cross-link
 □ The Definition of Done in docs/engineering/QUALITY.md is satisfied

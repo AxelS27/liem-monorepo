@@ -2,9 +2,13 @@
 
 Internal guide for starting a new project from this monorepo template. The public `README.md` is a non-technical overview of whatever you build.
 
-> **Quick start:** `INIT.md` is the copy-paste flow for setting up a new product (clone +
-> the first-run prompt with your PRD attached). `CONTINUE.md` is the kickoff prompt for
-> resuming work in a fresh chat. This file is the full reference behind both.
+> **Quick start (Claude Code):** the workflows are commands - `/init-product` (set up a
+> new product from a brief), `/new-feature` (build a feature slice), `/ship-check` (launch
+> audit), `/handoff` (end-of-session doc sync). A `SessionStart` hook orients every fresh
+> chat automatically.
+> **Quick start (other tools):** `INIT.md` is the copy-paste flow for setting up a new
+> product; `CONTINUE.md` is the kickoff prompt for resuming work in a fresh chat.
+> This file is the full reference behind all of them.
 
 ## What this is
 
@@ -26,6 +30,11 @@ for a different composition. See `docs/engineering/DESIGN_DNA.md` for the short 
 1. Copy this folder to the new project location, or create a new repo from the GitHub template.
 2. `pnpm install`
 3. Copy `.env.example` to `.env` and fill in the values.
+
+In Claude Code, steps 4-9 below are one command: give your product brief and run
+`/init-product`. The manual steps remain the reference for what it does (and the flow for
+other tools).
+
 4. Fill `docs/product/PRD.md` with the product scope: what this is, who it is for, goals, non-goals, and product principles.
 5. Fill `docs/product/FEATURES.md` with concrete modules and capabilities, tagged `P0`, `P1`, or `P2`.
 6. Give the agent your design direction, short or detailed, and ask it to fill `docs/product/UI_UX.md` from that brief plus `docs/engineering/DESIGN_DNA.md` and `docs/product/REFERENCES.md`. The starter UI is the foundation — `UI_UX.md` records what changes per product (accent palette, layout deviations, content direction), not a full redesign from scratch.
@@ -38,6 +47,13 @@ for a different composition. See `docs/engineering/DESIGN_DNA.md` for the short 
 ## How AI agents work here
 
 Read `AGENTS.md` first. It is the daily workflow source of truth and points to the right `docs/*` file when a task needs deeper detail.
+
+In Claude Code, sector work routes to dedicated subagents (see AGENTS.md "Agent Routing"):
+`web-builder` owns `apps/web` and `packages/ui`, `api-builder` owns `apps/server` and
+`packages/types`, `db-engineer` owns `supabase/`, and `design-reviewer` audits every UI
+change before it counts as done. Each agent loads its sector docs into a fresh context, so
+the rules below apply at full strength regardless of session length. Other tools read the
+same sector docs directly.
 
 When building a product, the agent reads this file first, then reads only the docs needed for the current domain. During project initialization it should synthesize the user's PRD, features, and design direction into the docs. During implementation it should open domain docs only when that domain is touched: frontend work opens `FRONTEND.md` + `UI_UX.md`, backend work opens `BACKEND.md` + `API.md`, database work opens `DATABASE.md`, and payments work opens `PAYMENTS.md`.
 
@@ -57,7 +73,8 @@ Use `pnpm docs:check` after documentation changes and `pnpm run verify` before c
 
 ## First-Run Agent Prompt
 
-After you fill the PRD or describe the product in chat, give the agent a prompt like this:
+In Claude Code: describe the product (or attach the PRD) and run `/init-product` - it
+executes this exact flow. For other tools, give the agent a prompt like this:
 
 ```text
 Read docs/guides/HOW_TO_USE_THIS_TEMPLATE.md and AGENTS.md first.

@@ -9,6 +9,12 @@ Hugging Face token only if it uses large models).
 
 ---
 
+## Claude Code shortcut
+
+Describe the product (or paste the PRD) in a fresh chat and run `/init-product` - it
+executes this whole flow and stops for your review before any code. The prompt below is
+for other tools, and the reference for what the command does.
+
 ## 1. Give the agent this prompt
 
 Paste your PRD / product brief where marked, then send the whole block in a fresh chat:

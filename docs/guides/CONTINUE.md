@@ -15,7 +15,13 @@ old conversation; it lives in the repo docs. The agent gets context by reading t
 - Project state (what is built, what is next, how features connect) lives in
   `docs/engineering/PROGRESS.md`. The agent reads it on request.
 
-## Kickoff prompt
+## Claude Code: no kickoff paste needed
+
+A `SessionStart` hook injects the project context (AGENTS.md pointer + PROGRESS.md state)
+into every fresh chat automatically. Just state your task - or run `/new-feature` to build
+the next feature slice through the sector agents. The prompt below is for other tools.
+
+## Kickoff prompt (other tools)
 
 Paste this at the start of the new chat:
 
@@ -34,8 +40,9 @@ reading everything wastes tokens.
 
 ## End every session (the part that makes the next chat work)
 
-The next chat is only as accurate as the docs. Before you close this one, confirm the agent
-updated whatever changed:
+In Claude Code, run `/handoff` before closing - it does the sync below in one command.
+Either way, the next chat is only as accurate as the docs. Before you close this one,
+confirm the agent updated whatever changed:
 
 - `docs/engineering/PROGRESS.md` — mark what is now done and what is in progress
 - `docs/engineering/DECISIONS.md` — append any real technical or product decision

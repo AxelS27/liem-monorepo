@@ -151,6 +151,22 @@ for (const doc of [
   }
 }
 
+// The entry-point guide must stay aware of the command layer, or new users get the
+// pre-agent manual flow only.
+{
+  let howTo = '';
+  try {
+    howTo = read('docs/guides/HOW_TO_USE_THIS_TEMPLATE.md');
+  } catch {
+    // Missing file is already reported above.
+  }
+  for (const command of ['/init-product', '/new-feature', '/ship-check', '/handoff']) {
+    if (howTo && !howTo.includes(command)) {
+      failures.push(`docs/guides/HOW_TO_USE_THIS_TEMPLATE.md does not mention ${command}.`);
+    }
+  }
+}
+
 const placeholderChecks = [
   'docs/product/PRD.md',
   'docs/product/FEATURES.md',

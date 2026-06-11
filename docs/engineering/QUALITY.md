@@ -85,6 +85,7 @@ A task is done when:
 - [ ] `pnpm run verify` passes
 - [ ] `pnpm docs:check` passes when docs changed or project docs were initialized
 - [ ] UI work: self-reviewed against the code-based double-check in `docs/engineering/DESIGN_DNA.md` (Part A greps + Part B file reading), with anything that missed fixed. No rendering required.
+- [ ] UI work (Claude Code): the `design-reviewer` agent returned PASS on the changes (see AGENTS.md Agent Routing). Other tools run the double-check above manually.
 - [ ] Route navigation is present and the current page/section is visibly active in
       desktop and mobile nav (`aria-current="page"`)
 - [ ] Navbar/sidebar/bottom nav has a visible surface/background treatment on every route,

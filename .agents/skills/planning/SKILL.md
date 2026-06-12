@@ -15,10 +15,9 @@ Do not write any code or initialize any documents during the Q&A and strategy ph
 
 1. **Be Critical (Challenge the Idea)**: Do not always agree with the user. Provide honest, direct strategic feedback. If a market is highly competitive or a feature is bloated, call it out: *"This market is highly saturated. The biggest challenge isn't building the product; it's convincing users to pay."*
 2. **Provide Curated Options with a Clear Highlight**: For every question during the Q&A phase, present exactly 4 options structured as follows:
-   - **Option 1 (Recommended)**: Propose the best default strategic path, prefixed with **"(Recommended)"**, along with its trade-offs (pros/cons) and reasoning.
+   - **Option 1 (Recommended)**: Propose the best default strategic path, prefixed with **"(Recommended)"**, along with its trade-offs (pros/cons) and reasoning. For design-related questions, this **must always be the option to use the Default Template** (relying on the pre-wired theme and styles from the project scaffold).
    - **Option 2 & Option 3**: Alternative paths with balanced trade-offs.
    - **Option 4**: A write-in option for the user's custom input or defaults.
-   - For design-related questions, **always include an explicit option to use the Default Template** (relying on the pre-wired theme and styles from the project scaffold) as one of the pre-defined options (Option 1, 2, or 3).
 3. **Separate Business Planning from Technical Design**: Always separate the product strategy from the technical details. Do not discuss technical architecture until the business goals, competitors, risks, and success metrics are approved.
 4. **Competitor & Market Analysis**: Research or list competitors. Summarize their strengths and weaknesses to define a clear Opportunity Gap and Unique Selling Proposition (USP).
 5. **Risk Assessment**: Proactively evaluate product, technical, and business risks (e.g., high churn, expensive API costs, customer acquisition difficulty) before writing a single line of code.

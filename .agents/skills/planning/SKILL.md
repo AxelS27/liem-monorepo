@@ -30,6 +30,9 @@ Do not write any code or initialize any documents during the Q&A and strategy ph
 
 ## Detailed Planning Flow
 
+### Phase 0 — Research Summary (Connection to `/research`)
+Before asking questions, perform a brief, evidence-based research using the `/research` workflow (e.g. searching for real competitors, market demand, API pricing). Summarize these findings briefly for the user and use them to dynamically tailor the multiple-choice options in the subsequent discovery steps.
+
 ### Phase 1 — Product Discovery (Q&A)
 Ask one question per turn to discover:
 * **Product Vision**: What is the core product? What problem does it solve? (Challenge the viability of the market/idea immediately if it is highly saturated).
@@ -85,9 +88,10 @@ Following Phase 6 approval, present the **Execution Roadmap**:
 ## Steps to Execute
 
 1. **Interview (Q&A)**: Go through Phase 1 to Phase 4, asking exactly **one question per turn**. For every question, present exactly 4 options: Option 1 as recommended (prefixed with **"(Recommended)"**), Options 2 & 3 as alternatives with balanced trade-offs, and Option 4 as a custom write-in.
-   - **Mandatory Document Reading**:
+   - **Mandatory Document Reading & Research Integration**:
      - Before asking any design/aesthetic questions, you **must read `docs/engineering/DESIGN_DNA.md` and `docs/product/REFERENCES.md`** to align with the allowed theme rules and avoid generic AI visual patterns.
      - Before compiling the Technical Design blueprint (Phase 6), you **must read `docs/engineering/ARCHITECTURE.md`, `docs/engineering/API.md`, `docs/engineering/BACKEND.md`, `docs/engineering/DATABASE.md`, and `docs/engineering/PAYMENTS.md`** to verify default stack rules (such as Midtrans as payment default, Hono as server, etc.).
+     - **Integrate with `/research`**: Link the planning process directly to the `/research` playbook. When asking about competitors (Phase 2), risks (Phase 3), or technical feasibility (Phase 6), perform quick searches/research to populate your multiple-choice options with real-world facts, real competitor names, and real pricing instead of inventing hypothetical examples.
 2. **Present Business Proposal**: Compile and present the **Strategic Business Proposal** (Phase 5). Do not show technical details or roadmap yet.
 3. **Strategic Approval**: Ask the user for a Go/No-Go decision.
 4. **Technical & Roadmap Projections (Phases 6 & 7)**: Once approved, present the Technical Design and Execution Roadmap.

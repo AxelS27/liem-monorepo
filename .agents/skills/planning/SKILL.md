@@ -22,7 +22,7 @@ Do not write any code or initialize any documents during this phase. Focus entir
 7. **Agent Decides Tech Defaults**: The agent owns the technical choices (Next.js, Hono, Supabase, Stripe, Hugging Face). The user only overrides if necessary.
 8. **Handle "Bebas" Proactively**: When the user says "bebas" (up to you), make the best default decision, explain why, record the assumption, and proceed immediately. Never ask follow-up questions on it.
 9. **Conversation Style (One Question at a Time)**: Keep the interview conversational. Ask only **one question per turn**. Never dump a checklist or ask multiple unrelated questions at once.
-10. **Dynamic Multiple-Choice Options**: Start by asking the user to describe the core product and tell a short story or brief about it. Use their response to dynamically tailor the 1-3 multiple-choice options for subsequent questions (such as target market, monetization, pricing, competitors, success metrics, and design/tech overrides), prefixing the best choice with **(Recommended)**. Always add a 4th option for the user's custom input or defaults.
+10. **Multiple-Choice Options**: For every question during the Q&A phase, present 1 to 3 options, prefixing the best choice with **(Recommended)**. Always add a 4th option for the user's custom input or defaults. For design-related questions, **always include an explicit option to use the Default Template** (relying on the pre-wired theme and styles from the project scaffold) as one of the choices.
 
 ---
 

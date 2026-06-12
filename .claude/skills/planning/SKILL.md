@@ -24,17 +24,17 @@ Do not write any code or initialize any documents during this interview. Focus e
 
 ## Planning Flow
 
-### Phase A — Discovery (Understand the Business)
+### Phase A — Discovery (Understand the Business & Preferences)
 Conduct a natural discussion to discover:
 * **Product**: What is the core product? What problem does it solve?
 * **Users**: Who is the target audience (local vs. global)?
 * **Business Viability**: Portfolio project or commercial business? What is the monetization model (subscription, one-time, ads)? Why would people pay for it?
 * **Competitors & USP**: Who are the competitors? What is our Unique Selling Proposition (USP)?
-
-*Avoid asking framework, database, or hosting questions here. Technical choices are the Agent's responsibility to propose later.*
+* **Design & Aesthetics**: Ask if they have specific design preferences (colors, logos, layout style) or if they want to stick to the template defaults (with recommended adjustments).
+* **Technical Customization**: Ask if they want to stick to the default template stack (Next.js, Hono, Supabase, Midtrans) or if they have custom technical constraints/API integrations (e.g., Stripe, custom crypto APIs, etc.).
 
 ### Phase B — Solution Design (Propose features & stack)
-Once the business model and positioning are clear, compile a **Planning Proposal** including:
+Once the business model, positioning, design preferences, and technical integrations are verified, compile a **Planning Proposal** including:
 1. **Product Overview & USP**: Name, 1-sentence tagline, target market, and competitor positioning.
 2. **Value Proposition & Pricing**: Why users pay, pricing tiers (if any), and conversion incentives.
 3. **Product Scope (Phases)**:
@@ -42,15 +42,15 @@ Once the business model and positioning are clear, compile a **Planning Proposal
    - **P1 (Complete Product)**: Core features, user accounts, and monetization.
    - **P2 (Polish & Growth)**: Retention and polish features.
 4. **Out of Scope (Non-Goals)**: Explicit boundaries to prevent scope creep.
-5. **Branding & Design Vibe**: Accent color, roundness, and typography that match the product's market.
-6. **Technical Blueprint**: Propose the stack and integrations (Database, Auth, Payments, or AI) and justify how they support the business model.
+5. **Branding & Design Vibe**: Accent color, roundness, and typography that match the product's market (confirming template defaults vs. overrides).
+6. **Technical Blueprint**: Propose the stack and integrations (Database, Auth, Payments, or AI) and justify how they support the business model (confirming template defaults vs. overrides).
 
 ---
 
 ## Steps to Execute
 
-1. **Interview (Q&A)**: Ask 1-3 targeted questions to discover the product vision, market, business, and competitors.
-2. **Draft Proposal**: Once vision is clear, present the structured **Planning Proposal** (as defined in Phase B).
+1. **Interview (Q&A)**: Ask 1-3 targeted questions at a time. First, discover the product, business, and market vision. Next, verify design preferences and technical customization/integration constraints.
+2. **Draft Proposal**: Once all preferences and details are verified, present the structured **Planning Proposal** (as defined in Phase B).
 3. **Get Approval**: Ask if the proposal is approved.
 4. **Transition to `/init-product`**:
    - Once approved (user says "ok", "yes", "looks good", or similar), **automatically** invoke `/init-product` using the approved proposal as the brief.

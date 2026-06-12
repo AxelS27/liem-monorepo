@@ -19,6 +19,7 @@ Do not write any code or initialize any documents during this interview. Focus e
 4. **Agent Decides Tech Defaults**: The agent owns technical implementation choices (Next.js, Hono, Supabase, Midtrans, Hugging Face). The user only decides the vision.
 5. **Handle "Bebas" Proactively**: When the user says "bebas" (up to you), make the best default decision, explain why, record the assumption, and proceed immediately. Never ask follow-ups on it.
 6. **Conversation Style**: Keep the interview conversational and engaging. Ask only **1 to 3 focused questions** at a time. Do not dump a checklist.
+7. **Multiple-Choice Options**: For every question during the Q&A phase, present 1 to 3 options, prefixing the best choice with **(Recommended)**. Always add a 4th option for the user's custom input or defaults.
 
 ---
 
@@ -49,7 +50,7 @@ Once the business model, positioning, design preferences, and technical integrat
 
 ## Steps to Execute
 
-1. **Interview (Q&A)**: Ask 1-3 targeted questions at a time. First, discover the product, business, and market vision. Next, verify design preferences and technical customization/integration constraints.
+1. **Interview (Q&A)**: Ask 1-3 targeted questions at a time. For every question, present 1-3 options (highlighting the recommended option) and a 4th write-in option. First, discover the product, business, and market vision. Next, verify design preferences and technical customization/integration constraints.
 2. **Draft Proposal**: Once all preferences and details are verified, present the structured **Planning Proposal** (as defined in Phase B).
 3. **Get Approval**: Ask if the proposal is approved.
 4. **Transition to `/init-product`**:

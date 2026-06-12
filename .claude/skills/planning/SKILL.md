@@ -22,7 +22,7 @@ Do not write any code or initialize any documents during the Q&A and strategy ph
 4. **Competitor & Market Analysis**: Research or list competitors. Summarize their strengths and weaknesses to define a clear Opportunity Gap and Unique Selling Proposition (USP).
 5. **Risk Assessment**: Proactively evaluate product, technical, and business risks (e.g., high churn, expensive API costs, customer acquisition difficulty) before writing a single line of code.
 6. **Success Metrics**: Guide the roadmap based on concrete business goals (e.g. target MRR, active users, conversion rates).
-7. **Agent Decides Tech Defaults**: The agent owns the technical choices (Next.js, Hono, Supabase, Stripe, Hugging Face). The user only overrides if necessary.
+7. **Agent Decides Tech Defaults**: The agent owns the technical choices (Next.js, Hono, Supabase, Midtrans, Hugging Face). The user only overrides if necessary.
 8. **Handle "Bebas" Proactively**: When the user says "bebas" (up to you), make the best default decision, explain why, record the assumption, and proceed immediately. Never ask follow-up questions on it.
 9. **Conversation Style (One Question at a Time)**: Keep the interview conversational. Ask only **one question per turn**. Never dump a checklist or ask multiple unrelated questions at once.
 
@@ -69,14 +69,14 @@ Compile and present the **Strategic Summary & Recommendation** for approval. It 
 
 ### Phase 6 — Technical Design (User Gate 2)
 Once Phase 5 is approved, compile the **Technical & Security Blueprint**:
-1. **Architecture & Stack**: Next.js, Hono, Supabase Auth/DB, Stripe/Midtrans, Hugging Face, etc.
+1. **Architecture & Stack**: Next.js, Hono, Supabase Auth/DB, Midtrans (Stripe only as override), Hugging Face, etc.
 2. **Database Schema & APIs**: Identify needed tables, public/private APIs, security/RLS rules.
 3. **User Action/Approval**: Present the blueprint and verify if the user has overrides.
 
 ### Phase 7 — Roadmap
 Following Phase 6 approval, present the **Execution Roadmap**:
 * **P0 (Validation MVP)**: Core loop to validate the USP.
-* **P1 (Monetization)**: Stripe/payment checkout, user accounts.
+* **P1 (Monetization)**: Midtrans/payment checkout, user accounts.
 * **P2 (Growth)**: Features to drive retention and viral loops.
 * **P3 (Scale)**: Advanced features and optimization.
 

@@ -1,6 +1,6 @@
 ---
 name: design-reviewer
-description: Audits apps/web UI changes against the design rules and returns a PASS/FAIL verdict. Use after any frontend work, before calling it done. MUST BE USED when apps/web or packages/ui visuals changed in this session.
+description: Audits apps/web UI changes against the design rules and returns a PASS/FAIL verdict. Use after major frontend work (e.g., creating/modifying pages or layouts), before calling it done. MUST BE USED when major apps/web or packages/ui visuals changed in this session.
 tools: Read, Grep, Glob, Bash
 ---
 

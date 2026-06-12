@@ -40,6 +40,114 @@ The agent may make recommendations, but every recommendation must be supported b
 - Evidence
 - Reasoning
 - Confidence level
+- Decision Traceability
+
+---
+
+# Research Cost Control & Depth Modes
+
+Match research depth to project complexity:
+
+### Quick Research
+Use when:
+- Simple projects
+- Portfolio projects
+- Internal tools
+- Small MVPs
+
+Characteristics:
+- Minimal searches
+- Fast validation
+- 5–10 minute equivalent effort
+
+### Standard Research (Default)
+Use when:
+- Commercial SaaS
+- Startups
+- Market-facing products
+
+Characteristics:
+- Competitor analysis
+- User research
+- Validation research
+- Distribution research
+
+### Deep Research
+Use when:
+- High-risk industries
+- Expensive projects
+- Investor-backed startups
+- Regulated industries
+
+Characteristics:
+- Extensive competitor mapping
+- Sentiment analysis
+- Pricing benchmarks
+- Market trend analysis
+- Multi-source validation
+
+---
+
+# Research Stop Condition
+
+To prevent endless research loops and analysis paralysis, research must stop when ALL of the following conditions are met:
+
+1. Problem has been validated.
+2. Main competitors have been identified.
+3. Major risks are known.
+4. Key assumptions are listed.
+5. Initial recommendation can be made.
+
+If these conditions are met, proceed immediately to the **Strategic Recommendation**. Do not continue gathering low-value or redundant information.
+
+---
+
+# Confidence Scoring Formula
+
+Confidence must be calculated objectively using four metrics: Source Quality, Number of Sources, Source Agreement, and Data Recency.
+
+### High
+Requires ALL of the following:
+- 3+ independent sources
+- Tier 1 (Highly Reliable) sources
+- Strong agreement across sources
+- Data updated within the last 12 months
+
+### Medium
+Requires ALL of the following:
+- 2+ independent sources
+- Tier 2 (Generally Reliable) sources
+- General agreement across sources
+- Data updated within the last 24 months
+
+### Low
+Occurs if ANY of the following are true:
+- Single source only
+- Tier 3 (User Sentiment) or Tier 4 (Weak) sources
+- Conflicting evidence between sources
+- Outdated data (older than 24 months)
+
+---
+
+# Decision Traceability
+
+Every strategic decision or recommendation must be traceable back to research findings.
+
+### Format
+
+Decision:
+...
+
+Based On:
+* Finding #[Number]
+* Competitor Analysis #[Number]
+* Validation Research #[Number]
+
+Reasoning:
+...
+
+Confidence:
+...
 
 ---
 
@@ -152,47 +260,35 @@ The agent must:
 
 ---
 
-# Evidence Format
+# Evidence & Source Format
 
 Every important research finding must use this format:
 
-## Finding
-
-Claim:
-...
+Finding:
+[Claim statement]
 
 Evidence:
-...
+[Supporting data/quotes/facts]
 
 Source:
-- Source name
-- Link / citation
-- Date accessed or publication date
+- [Source Name] ([URL/Citation]) [Publication/Access Date]
 
 Source Quality:
-Tier 1 / Tier 2 / Tier 3 / Tier 4
+Tier 1 / Tier 2 / Tier 3
 
 Confidence:
-Low / Medium / High
-
-Notes:
-...
+Low / Medium / High (derived using the Confidence Scoring Formula)
 
 ---
 
 # Explicit Assumption Format
 
-If data is incomplete or unavailable:
-
-## Assumption
+If data is incomplete or unavailable, use this format to ensure assumptions are never disguised as facts:
 
 Assumption:
 ...
 
 Reasoning:
-...
-
-Why It Matters:
 ...
 
 Confidence:
@@ -201,7 +297,19 @@ Low / Medium / High
 Validation Needed:
 ...
 
-Do not present assumptions as facts.
+---
+
+# Contrarian Evidence & Reducing Confirmation Bias
+
+To reduce confirmation bias, the agent must actively look for and present reasons why an idea might fail, user objections, or counter-evidence.
+
+Structure:
+
+### Supporting Evidence
+[Evidence that supports the product idea, value proposition, or assumption]
+
+### Contrarian Evidence
+[Evidence that challenges the product idea, alternative options user already uses, or reasons why it could fail]
 
 ---
 
@@ -335,19 +443,19 @@ Output:
 Competitor:
 ...
 
-Positioning:
-...
-
 Strengths:
 ...
 
 Weaknesses:
 ...
 
+User Complaints:
+...
+
 Pricing:
 ...
 
-User Complaints:
+Opportunity:
 ...
 
 Sources:
@@ -543,12 +651,6 @@ Primary Channels:
 Evidence:
 ...
 
-Risks:
-...
-
-Sources:
-...
-
 Confidence:
 ...
 
@@ -601,33 +703,14 @@ Format:
 
 ### Critical Assumption
 
-Assumption:
+Critical Assumption:
 ...
 
-Why It Matters:
+Suggested Validation:
 ...
 
-Evidence So Far:
+Success Criteria:
 ...
-
-Confidence:
-...
-
-Validation Needed:
-...
-
-Suggested Experiment:
-...
-
-Examples of experiments:
-
-- Interview 10 target users
-- Landing page test
-- Waitlist
-- Fake-door payment button
-- Manual concierge MVP
-- Survey with pricing test
-- Private beta
 
 ---
 
@@ -720,7 +803,7 @@ Decision:
 Proceed / Proceed With Caution / Pivot / Reject
 
 Confidence:
-1-10
+[1-10 based on Confidence Scoring Formula]
 
 Top Opportunities:
 ...
@@ -728,14 +811,16 @@ Top Opportunities:
 Top Risks:
 ...
 
-Key Evidence:
-...
+Unknowns:
+- [Critical Unknown #1]
+- [Critical Unknown #2]
 
-Key Assumptions:
-...
+Critical Assumptions:
+- [Assumption #1] (Validation Needed: [Validation experiment])
 
-Validation Needed:
-...
+Decision Trace:
+* Finding #[Number] (Source: [Source name], Confidence: [Low/Medium/High])
+* Competitor Analysis #[Number] (Source: [Source name], Confidence: [Low/Medium/High])
 
 What I Would Do:
 ...
@@ -754,9 +839,24 @@ Decision:
 Proceed / Proceed With Caution / Pivot / Reject
 
 Confidence:
-1-10
+...
 
-Short Summary:
+Top Opportunities:
+...
+
+Top Risks:
+...
+
+Unknowns:
+...
+
+Critical Assumptions:
+...
+
+Decision Trace:
+...
+
+What I Would Do:
 ...
 
 ---
@@ -764,14 +864,13 @@ Short Summary:
 ## 2. Key Findings
 
 ### Finding 1
-
-Claim:
+Finding:
 ...
 
 Evidence:
 ...
 
-Sources:
+Source:
 ...
 
 Source Quality:
@@ -784,7 +883,13 @@ Confidence:
 
 ## 3. Problem Research
 
+### Supporting Evidence
 ...
+
+### Contrarian Evidence
+...
+
+---
 
 ## 4. User Research
 
@@ -792,7 +897,25 @@ Confidence:
 
 ## 5. Competitor Research
 
+Competitor:
 ...
+
+Strengths:
+...
+
+Weaknesses:
+...
+
+User Complaints:
+...
+
+Pricing:
+...
+
+Opportunity:
+...
+
+---
 
 ## 6. Market Gap
 
@@ -808,7 +931,16 @@ Confidence:
 
 ## 9. Distribution Research
 
+Primary Channels:
 ...
+
+Evidence:
+...
+
+Confidence:
+...
+
+---
 
 ## 10. Founder Fit
 
@@ -816,7 +948,16 @@ Confidence:
 
 ## 11. Validation Plan
 
+Critical Assumption:
 ...
+
+Suggested Validation:
+...
+
+Success Criteria:
+...
+
+---
 
 ## 12. Economic Assessment
 
@@ -824,6 +965,18 @@ Confidence:
 
 ## 13. Final Recommendation
 
+Decision:
+...
+
+Based On:
+* Finding #[Number]
+* Competitor Analysis #[Number]
+* Validation Research #[Number]
+
+Reasoning:
+...
+
+Confidence:
 ...
 
 ---
@@ -873,13 +1026,14 @@ Before finalizing research, confirm:
 - Every major claim has a source.
 - Source quality is labeled.
 - Facts and assumptions are separated.
-- Competitors are mentioned.
-- Risks are included.
-- Validation steps are included.
+- Competitors are profiled with strengths, weaknesses, user complaints, pricing, and opportunity.
+- Risks and Contrarian Evidence are included to challenge assumptions.
+- Validation steps are included with clear success criteria.
 - No unsourced numbers are presented as facts.
-- No low-quality source is treated as high-confidence.
-- Recency is checked for fast-changing topics.
-- Recommendation includes confidence score.
+- Confidence levels strictly follow the 4-part scoring formula (Source Quality, Quantity, Agreement, Recency).
+- Every recommendation contains a clear Decision Trace.
+- Unknowns and critical assumptions are explicitly listed.
+- Research stop conditions were checked and met before finishing.
 
 ---
 
@@ -893,6 +1047,6 @@ Then provide:
 
 - Best assumption
 - Confidence level
-- How to validate it
+- How to validate it (Suggested Validation + Success Criteria)
 
 Never fake certainty.

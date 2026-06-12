@@ -25,13 +25,15 @@ Do not write any code or initialize any documents during the Q&A and strategy ph
 7. **Agent Decides Tech Defaults**: The agent owns the technical choices (Next.js, Hono, Supabase, Midtrans, Hugging Face). The user only overrides if necessary.
 8. **Handle "Bebas" Proactively**: When the user says "bebas" (up to you), make the best default decision, explain why, record the assumption, and proceed immediately. Never ask follow-up questions on it.
 9. **Conversation Style (One Question at a Time)**: Keep the interview conversational. Ask only **one question per turn**. Never dump a checklist or ask multiple unrelated questions at once.
+10. **Evidence-Based Recommendations**: All recommendations generated during planning MUST include Evidence, Source, Confidence, and Decision Trace. No recommendation should appear without supporting research.
 
 ---
 
 ## Detailed Planning Flow
 
 ### Phase 0 — Research Summary (Connection to `/research`)
-Before asking questions, perform a brief, evidence-based research using the `/research` workflow (e.g. searching for real competitors, market demand, API pricing). Summarize these findings briefly for the user and use them to dynamically tailor the multiple-choice options in the subsequent discovery steps.
+Before asking questions, automatically determine the required research mode based on complexity, risk, regulations, or user instruction, and state it explicitly (e.g. "Research Mode: Standard | Reason: Commercial SaaS...").
+Perform research using the `/research` workflow. Stop research immediately if stop conditions are met to avoid analysis paralysis. Summarize findings using the evidence-based format and tailor options dynamically.
 
 ### Phase 1 — Product Discovery (Q&A)
 Ask one question per turn to discover:
@@ -43,7 +45,7 @@ Ask one question per turn to discover:
 
 ### Phase 2 — Competitor Analysis (Q&A)
 List main competitors. Present options summarizing:
-* Competitors' Strengths & Weaknesses.
+* Competitor profiles (Strengths, Weaknesses, User Complaints, Pricing, Opportunity).
 * The opportunity / market gap we can target.
 * The resulting USP (Unique Selling Proposition).
 
@@ -52,6 +54,7 @@ Identify:
 * **Product Risks**: e.g., hard to get first users, difficult to prove value.
 * **Technical Risks**: e.g., expensive APIs, real-time scalability.
 * **Business Risks**: e.g., low conversion, high churn.
+* **Contrarian Evidence, Unknowns & Explicit Assumptions**: Identify what is not yet known or what challenges the core idea.
 * Outline mitigation strategies.
 
 ### Phase 4 — Success Metrics (Q&A)
@@ -60,13 +63,16 @@ Establish:
 * **Success Criteria**: e.g., 100 paying users, $1,000 MRR, 10k MAU.
 
 ### Phase 5 — Strategic Recommendation (User Gate 1)
-Compile and present the **Strategic Summary & Recommendation** for approval. It must contain:
-1. **Strategic Recommendation**: Proceed / Pivot / Stop (with detailed reasoning).
-2. **Confidence Score**: 1 to 10 (with justification).
-3. **Top Risks**: The 3 biggest risks and their mitigations.
-4. **USP & Opportunity Gap**: Summary of the competitive edge.
-5. **Success Criteria**: Defined goals.
-6. **Design & Branding Direction**: Default template style vs. overrides (always include an option to use the Default Template).
+Compile and present the upgraded **Strategic Summary & Recommendation** for approval. It must contain:
+1. **Decision**: Proceed / Proceed With Caution / Pivot / Reject
+2. **Confidence**: [1-10 based on Confidence Scoring Formula]
+3. **Top Opportunities**: ...
+4. **Top Risks**: ...
+5. **Unknowns**: [List of critical unknowns]
+6. **Critical Assumptions**: [Key assumptions with validation experiments]
+7. **Decision Trace**: [Specific links back to Findings/Competitors/Validation findings]
+8. **What I Would Do**: [Founder action steps]
+9. **Design & Branding Direction**: Default template style vs. overrides (always include an option to use the Default Template).
 
 *Stop here. Ask the user for explicit approval on this Go/No-Go decision before proceeding to technical blueprint.*
 
@@ -96,6 +102,7 @@ Following Phase 6 approval, present the **Execution Roadmap**:
      - Before compiling the Technical Design blueprint (Phase 6), you **must read `docs/engineering/ARCHITECTURE.md`, `docs/engineering/API.md`, `docs/engineering/BACKEND.md`, `docs/engineering/DATABASE.md`, and `docs/engineering/PAYMENTS.md`** to verify default stack rules (such as Midtrans as payment default, Hono as server, etc.).
      - **Always Run Real Searches Before Formulating Options**: You **must perform actual web searches** using research tools for every single question in the Q&A phase before writing the multiple-choice options. Do not make up options.
      - **Cumulative Context-Aware Research**: You must build the research context cumulatively. Incorporate the user's previous selections (e.g. chosen target market, monetization, branding) directly into subsequent search queries and option descriptions. For instance, if the user chooses a local Indonesian market using Midtrans in Step 2, your competitor analysis and USP options in Step 3 **MUST** be based on research about Indonesian crypto exchanges (Indodax, Tokocrypto), local Telegram signals, local pricing, and Indonesian payment dynamics.
+     - **Evidence-Based Recommendations**: All recommendations generated during planning MUST include Evidence, Source, Confidence, and Decision Trace. No recommendation should appear without supporting research.
 2. **Present Business Proposal**: Compile and present the **Strategic Business Proposal** (Phase 5). Do not show technical details or roadmap yet.
 3. **Strategic Approval**: Ask the user for a Go/No-Go decision.
 4. **Technical & Roadmap Projections (Phases 6 & 7)**: Once approved, present the Technical Design and Execution Roadmap.

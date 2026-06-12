@@ -104,12 +104,11 @@ the main thread orchestrates, reviews reports, and handles small cross-cutting e
 | `web-builder`     | `apps/web`, `packages/ui` - screens, styling, copy  | Any frontend or UI/UX build work            |
 | `api-builder`     | `apps/server`, `packages/types` - routes, contracts | Any backend or endpoint work                |
 | `db-engineer`     | `supabase/` - schema, migrations, RLS, types        | Any database change                         |
-| `design-reviewer` | Audit only - DESIGN_DNA verdict, PASS/FAIL          | After ANY `apps/web` UI change, before done |
+| `design-reviewer` | Audit only - DESIGN_DNA verdict, PASS/FAIL          | After major `apps/web` UI changes (e.g., creating/modifying pages or layouts), before done |
 
 Rules:
 
-- **UI work is not done until `design-reviewer` returns PASS.** This applies whether the
-  change was made by `web-builder` or inline by the main thread.
+- **Major UI changes (such as new pages or layout refactoring) are not done until `design-reviewer` returns PASS.** Minor tweaks (e.g., text/icon rearrangement, minor styling adjustments) do not require triggering the subagent.
 - A hook (`scripts/hooks/ui-rules-reminder.mjs`) injects the critical UI rules when a file
   under `apps/web/src` or `packages/ui/src` is edited - mechanical backup, not a substitute
   for the reviewer gate.

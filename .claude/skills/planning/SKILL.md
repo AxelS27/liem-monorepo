@@ -21,7 +21,8 @@ Do not write any code or initialize any documents during this phase. Focus entir
 6. **Success Metrics**: Guide the roadmap based on concrete business goals (e.g. target MRR, active users, conversion rates).
 7. **Agent Decides Tech Defaults**: The agent owns the technical choices (Next.js, Hono, Supabase, Stripe, Hugging Face). The user only overrides if necessary.
 8. **Handle "Bebas" Proactively**: When the user says "bebas" (up to you), make the best default decision, explain why, record the assumption, and proceed immediately. Never ask follow-up questions on it.
-9. **Conversation Style**: Keep the interview conversational. Ask only **1 to 3 focused questions** at a time. For every question, present 1-3 options (highlighting the recommended option) and a 4th write-in option.
+9. **Conversation Style (One Question at a Time)**: Keep the interview conversational. Ask only **one question per turn**. Never dump a checklist or ask multiple unrelated questions at once.
+10. **Dynamic Multiple-Choice Options**: Start by asking the user to describe the core product and tell a short story or brief about it. Use their response to dynamically tailor the 1-3 multiple-choice options for subsequent questions (such as target market, monetization, pricing, competitors, success metrics, and design/tech overrides), prefixing the best choice with **(Recommended)**. Always add a 4th option for the user's custom input or defaults.
 
 ---
 
@@ -61,7 +62,7 @@ Once Phase B is approved, compile the **Technical & Execution Blueprint**:
 
 ## Steps to Execute
 
-1. **Interview (Q&A)**: Ask 1-3 targeted questions at a time using the multiple-choice option pattern (1-3 options with recommended highlighted, 4th custom).
+1. **Interview (Q&A)**: Ask exactly **one question per turn**. Start by asking the user to describe the core product and tell a short story or brief about it. For all subsequent questions (target audience, monetization, competitors, success metrics, and design/tech overrides), present 1-3 dynamically tailored multiple-choice options (highlighting the recommended option) based on their previous answers, plus a 4th custom option.
 2. **Present Business Proposal**: Compile and present the **Strategic Business Proposal** (Phase B).
 3. **Obtain Business Approval**: Ask if this business strategy looks good.
 4. **Present Technical Blueprint**: Once business is approved, compile and present the **Technical & Execution Blueprint** (Phase C).

@@ -9,7 +9,7 @@ Turn the user's brief into synchronized product docs. **Do not write product cod
 flow** - docs first, review, then building starts from PROGRESS.md.
 
 If the user gave no brief (what it is, who it is for, goals, main features, design
-direction), ask for one before touching any doc. Do not invent scope.
+direction), recommend running `/planning` first to align on the scope via Q&A, or ask for a brief before touching any doc. If an approved planning proposal from `/planning` is already available in the chat context, use it directly as the brief. Do not invent scope.
 
 ## Steps
 

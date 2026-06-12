@@ -175,6 +175,13 @@ Keep the public repo looking human-authored.
 - **Skills are mirrored:** `.claude/skills/` (read by Claude Code) and `.agents/skills/` (read by other agents) must hold the same skills with byte-identical `SKILL.md` files. When you edit a skill, copy it over the other location; `pnpm docs:check` fails on drift.
 - **Python:** use **`uv`** for deps / venv / running scripts, never `pip` or raw `venv`.
 
+## AI Tooling (Mandatory)
+
+All AI agents working on this repository MUST use the following tools:
+
+- **RTK (Rust Token Killer)**: To compress context size and save token limits, prefix all terminal commands that have potentially large output (such as `git diff`, `git log`, `pnpm run verify`, `git status`, test runners, and directory listings) with `rtk` (e.g. `rtk git diff`, `rtk pnpm test`).
+- **MarkItDown (Microsoft)**: Whenever reading or processing non-markdown documents (PDF, Word `.docx`, Excel `.xlsx`, PowerPoint `.pptx`, HTML, etc.), first convert them to markdown using `markitdown <input_file> > <output_file.md>` and then read the resulting markdown file. Do not read binary files or raw text extractions directly.
+
 ## Iron Laws
 
 These five rules are supreme. They override all other decisions. If anything conflicts with an Iron Law, the Iron Law wins.

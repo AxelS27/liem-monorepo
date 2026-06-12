@@ -5,12 +5,22 @@
 
 ---
 
-## Step 0 — Clean Git History (if cloned directly)
+## Step 0 — Setup Environment Primitives (Git, RTK, MarkItDown)
 
 ```
 □ Reset git history (if template's history is present):
   Run `rm -rf .git && git init -b main && git add . && git commit -m "Initial commit"`
   (Use `Remove-Item -Recurse -Force .git` in PowerShell on Windows)
+
+□ Check and install RTK (Rust Token Killer) for token compression:
+  - Check: `rtk --version` or `rtk gain`
+  - Install macOS: `brew install rtk`
+  - Install Linux/macOS: `curl -fsSL https://raw.githubusercontent.com/rtk-ai/rtk/refs/heads/master/install.sh | sh`
+  - Install Windows (via Cargo): `cargo install --git https://github.com/rtk-ai/rtk`
+
+□ Check and install MarkItDown (Microsoft MarkItDown) for document processing:
+  - Check: `markitdown --version` or verify with Python: `python -c "import markitdown"`
+  - Install: `pip install markitdown` or `uv tool install markitdown`
 ```
 
 ---

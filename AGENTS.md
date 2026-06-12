@@ -126,10 +126,11 @@ existing docs and checklists, it does not duplicate them.
 | Command         | Does                                                                               |
 | --------------- | ---------------------------------------------------------------------------------- |
 | `/axel`         | Chief of staff: translates a plain user instruction into the right flow below      |
+| `/research`     | Perform evidence-based product/market research & compile a structured report       |
 | `/planning`     | Interactive Q&A to define product scope/design, then auto-trigger `/init-product`  |
 | `/init-product` | Fill the product docs from a brief, stop for review before code (new-product flow) |
 | `/new-feature`  | Build one feature slice through the sector agents, gates included                  |
-| `/ship-check`   | Launch-readiness audit ending in a GO/NO-GO verdict                                |
+| `/ship-check`   | Launch-readiness audit ending in a GO/NO-GO verdict |
 | `/handoff`      | End-of-session doc sync so the next chat starts oriented                           |
 
 Session hooks (wired in `.claude/settings.json`): `SessionStart` injects the project state

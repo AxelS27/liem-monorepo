@@ -37,6 +37,7 @@ These are slash commands. Type them in chat, optionally with context after them.
 
 | Command         | What it does                                                                                                                                    | When you use it                                                              |
 | --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `/research`     | Perform evidence-based product/market research & compile a structured report                                                                    | Before planning/building, to search for facts and validate market demand     |
 | `/planning`     | Interactive Q&A (interview) to define product scope/design, then auto-triggers `/init-product` upon approval                                    | When starting a new project from scratch and you want help defining it       |
 | `/init-product` | Turns your product brief into filled docs (PRD, FEATURES, UI_UX, domain docs, PROGRESS checklist), then **stops for your review** - no code yet | Once, at the start of a new product. Describe the product first, then run it |
 | `/new-feature`  | Builds one feature end to end: schema → API → UI, delegated through the sector agents, with the gates included                                  | Every time you want the next feature built                                   |

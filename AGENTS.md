@@ -208,14 +208,6 @@ These five rules are supreme. They override all other decisions. If anything con
 - **Feature-based**: group by feature, not by file type. A feature owns its components, hooks, services, and types.
 - **Import boundaries**: apps import from `packages/*`. Packages NEVER import from apps. Features never import from sibling features directly - go through a shared layer.
 
-## Anti-Overengineering Rules
-
-- Don't add abstraction until used **3+ times**. Two usages = copy-paste is fine.
-- No barrel `index.ts` re-exports unless it removes real import noise.
-- No new dependency if stdlib / existing dep covers it. If you add one, log it in DECISIONS.md.
-- No premature generics, no "future-proof" config nobody asked for.
-- Delete dead code immediately. Don't comment it out.
-
 ## Consistency Rules
 
 - Naming: `kebab-case` files, `PascalCase` components, `camelCase` functions/vars, `SCREAMING_SNAKE_CASE` constants.

@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
 import logo from '@/app/icon.png';
-import { LanguageSwitcher, ThemeSwitcher } from '@/components/shared/header-controls';
+import { LanguageSwitcher, SocialLinks, ThemeSwitcher } from '@/components/shared/header-controls';
 import type { Dictionary } from '@/i18n/dictionaries';
 
 /**
@@ -35,7 +35,9 @@ export function SiteHeader({ brand, labels }: { brand: string; labels: Dictionar
       {/* Utility tier: universal controls, isolated from the primary nav. */}
       <div className="border-b border-border bg-secondary/30">
         <div className="mx-auto flex h-10 w-full max-w-6xl items-center justify-between px-6 text-xs">
-          <nav aria-label="Support navigation" className="flex items-center gap-4">
+          <nav aria-label="Support navigation" className="flex items-center gap-1">
+            <SocialLinks />
+            <span aria-hidden="true" className="mx-2 hidden h-4 w-px bg-border sm:block" />
             <a
               href="/contact"
               aria-current={isActive('/contact') ? 'page' : undefined}
@@ -46,7 +48,6 @@ export function SiteHeader({ brand, labels }: { brand: string; labels: Dictionar
             >
               {labels.support}
             </a>
-            {/* Per product: add socials, seller/help, or download links here. */}
           </nav>
           <div className="flex items-center gap-1">
             <LanguageSwitcher />

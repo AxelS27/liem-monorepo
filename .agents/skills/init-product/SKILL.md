@@ -13,20 +13,23 @@ direction), ask for one before touching any doc. Do not invent scope.
 
 ## Steps
 
-1. Read `docs/guides/HOW_TO_USE_THIS_TEMPLATE.md` and `AGENTS.md`.
-2. Fill `docs/product/PRD.md` and `docs/product/FEATURES.md` from the brief
+1. **Clean Git History**: If the repository still contains the template's original commit history (e.g., commits by the template author `AxelS27`), reset it immediately before any development by running:
+   `rm -rf .git && git init -b main && git add . && git commit -m "Initialize monorepo template"`
+   (Note: Use appropriate shell commands for removing `.git` depending on the OS, e.g., `Remove-Item -Recururse -Force .git` in PowerShell or `rm -rf .git` in bash/zsh).
+2. Read `docs/guides/HOW_TO_USE_THIS_TEMPLATE.md` and `AGENTS.md`.
+3. Fill `docs/product/PRD.md` and `docs/product/FEATURES.md` from the brief
    (features tagged P0/P1/P2).
-3. Read `docs/engineering/DESIGN_DNA.md`, then fill `docs/product/UI_UX.md` from the
+4. Read `docs/engineering/DESIGN_DNA.md`, then fill `docs/product/UI_UX.md` from the
    user's design direction plus `docs/product/REFERENCES.md`. The starter UI in `apps/web`
    is the foundation: record what changes per product (accent color, content, routes,
    any layout deviations) - not a redesign from scratch. If the product matches a
    `docs/verticals/*.md` playbook, use it.
-4. Initialize only the domain docs that apply: `docs/engineering/API.md`, `BACKEND.md`,
+5. Initialize only the domain docs that apply: `docs/engineering/API.md`, `BACKEND.md`,
    `DATABASE.md`, and `PAYMENTS.md` (payments only if the product takes money).
-5. Generate `docs/engineering/PROGRESS.md` as the live build checklist - pointer-based
+6. Generate `docs/engineering/PROGRESS.md` as the live build checklist - pointer-based
    tasks that cite their source doc, not a duplicate spec.
-6. Run `pnpm docs:check`; report warnings separately from failures.
-7. Walk `docs/checklists/new-product.md` for anything the steps above missed.
+7. Run `pnpm docs:check`; report warnings separately from failures.
+8. Walk `docs/checklists/new-product.md` for anything the steps above missed.
 
 ## Done means
 

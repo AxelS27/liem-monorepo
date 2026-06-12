@@ -14,8 +14,8 @@ direction), ask for one before touching any doc. Do not invent scope.
 ## Steps
 
 1. **Clean Git History**: If the repository still contains the template's original commit history (e.g., commits by the template author `AxelS27`), reset it immediately before any development by running:
-   `rm -rf .git && git init -b main && git add . && git commit -m "Initialize monorepo template"`
-   (Note: Use appropriate shell commands for removing `.git` depending on the OS, e.g., `Remove-Item -Recururse -Force .git` in PowerShell or `rm -rf .git` in bash/zsh).
+   `rm -rf .git && git init -b main && git add . && git commit -m "Initial commit"`
+   (Note: Use appropriate shell commands for removing `.git` depending on the OS, e.g., `Remove-Item -Recurse -Force .git` in PowerShell or `rm -rf .git` in bash/zsh).
 2. Read `docs/guides/HOW_TO_USE_THIS_TEMPLATE.md` and `AGENTS.md`.
 3. Fill `docs/product/PRD.md` and `docs/product/FEATURES.md` from the brief
    (features tagged P0/P1/P2).

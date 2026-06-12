@@ -9,7 +9,7 @@
 
 ```
 □ Reset git history (if template's history is present):
-  Run `rm -rf .git && git init -b main && git add . && git commit -m "Initialize monorepo template"`
+  Run `rm -rf .git && git init -b main && git add . && git commit -m "Initial commit"`
   (Use `Remove-Item -Recurse -Force .git` in PowerShell on Windows)
 ```
 

@@ -88,6 +88,9 @@ Following Phase 6 approval, present the **Execution Roadmap**:
 ## Steps to Execute
 
 1. **Interview (Q&A)**: Go through Phase 1 to Phase 4, asking exactly **one question per turn**. For every question, present exactly 4 options: Option 1 as recommended (prefixed with **"(Recommended)"**), Options 2 & 3 as alternatives with balanced trade-offs, and Option 4 as a custom write-in.
+   - **Strict Execution Order**:
+     - **Langkah 1 (Product Vision)**: Always start the Q&A by asking the user to describe their product idea/vision in their own words. **Do not perform research or present multiple-choice options for subsequent steps before the user has provided this description.**
+     - **Subsequent Steps (Langkah 2 to 6)**: Once the user provides the product description, perform the `/research` workflow on that product, and use the findings to dynamically populate the multiple-choice options for target market, monetization, competitors, and risks with real-world facts.
    - **Mandatory Document Reading & Research Integration**:
      - Before asking any design/aesthetic questions, you **must read `docs/engineering/DESIGN_DNA.md` and `docs/product/REFERENCES.md`** to align with the allowed theme rules and avoid generic AI visual patterns.
      - Before compiling the Technical Design blueprint (Phase 6), you **must read `docs/engineering/ARCHITECTURE.md`, `docs/engineering/API.md`, `docs/engineering/BACKEND.md`, `docs/engineering/DATABASE.md`, and `docs/engineering/PAYMENTS.md`** to verify default stack rules (such as Midtrans as payment default, Hono as server, etc.).

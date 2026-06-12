@@ -37,6 +37,9 @@ conversation history to soften them.
      empty slot, invented stats strips
    - the language/theme placeholder controls missing from the header
      (`components/shared/header-controls.tsx` ships in every product)
+   - the two-tier header broken: utility controls (language, theme, auth entry, support)
+     placed inline in the primary nav, where locale-dependent label widths reflow the
+     main links on language change
 
 ## Verdict format (always end with this)
 

@@ -185,3 +185,11 @@
 - Rejected: Fixing only the product repo (the template would keep teaching the mistakes); wiring real next-themes/i18n switching now (the controls are placeholders by design - ship one theme and one language first, per FRONTEND.md); banning dark CTA bands outright (some brands genuinely want one - opt-in keeps the option without making it a default).
 - Status: Accepted
 - Date: 2026-06-12
+
+## ADR-022: Two-tier header - utility tier isolates locale-variable controls
+
+- Decision: The foundation header becomes two tiers, Shopee/Tokopedia anatomy. A slim utility tier on top (`bg-secondary/30`, text-xs) holds the universal controls every product keeps: support/help link, the language and theme switchers, and the auth entry (Sign in moved up from the primary nav); per-product socials, seller, or download links also belong there. The main tier holds brand, primary routes, and the one CTA - nothing with a locale-dependent width. design-reviewer fails utility controls placed inline in the primary nav.
+- Reason: Locale labels are variable-width ("Bahasa Indonesia" is roughly twice "English"), so any switcher sitting inline with the primary nav reflows every link beside it on language change. The utility tier contains that reflow in a strip users don't visually track, keeping the primary nav stable. It also gives every future product a permanent, predictable home for universal chrome instead of each build inventing one.
+- Rejected: Fixed-width slots for the switchers in the main nav (wastes space in one locale, truncates in another); icon-only controls to dodge the width problem (hurts discoverability, contradicts the icon+label control style); keeping single-tier and accepting the reflow (visible jank on a core interaction).
+- Status: Accepted
+- Date: 2026-06-12

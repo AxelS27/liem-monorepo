@@ -9,6 +9,7 @@
     "signIn": "Sign in",
     "getStarted": "Get started",
     "menu": "Menu",
+    "support": "Support",
     "themeLight": "Light",
     "themeDark": "Dark"
   },
@@ -113,6 +114,12 @@
       "title": "Create your account",
       "description": "Auth runs through Supabase Auth. Build the real sign-up form here. A product would also give auth routes a focused auth layout instead of the marketing shell (see docs/engineering/FRONTEND.md).",
       "action": "I already have an account"
+    },
+    "contact": {
+      "metaTitle": "Support",
+      "eyebrow": "Support",
+      "title": "How can we help?",
+      "description": "This route is scaffolded so the header support link points somewhere real. Replace it with the product's support or contact page."
     },
     "notFound": {
       "eyebrow": "404",

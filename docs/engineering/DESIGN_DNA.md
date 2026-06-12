@@ -27,7 +27,8 @@ What you do not change without a clear reason from `docs/product/UI_UX.md`:
 - The open-band section pattern (hero, features, CTA band, footer)
 - The `next/font` + `--font-sans` wiring
 - The footer structure
-- The language/theme placeholder controls in the header (restyle, never remove)
+- The two-tier header structure: utility tier (support, language, theme, auth entry) above the main tier (brand, routes, CTA)
+- The language/theme placeholder controls in the utility tier (restyle, never remove)
 
 If it could be from any AI demo site, it is not done.
 
@@ -89,6 +90,18 @@ The starter uses **open sections as the default**. Cards earn their place.
 
 ## Navigation
 
+- **The header is two tiers** (Shopee/Tokopedia anatomy, shipped as the foundation
+  default):
+  - **Utility tier** (slim strip on top, `bg-secondary/30 border-b`): the universal
+    controls every product keeps - support/help, the language and theme switchers, and
+    the auth entry. Per product, socials, seller, or download links also live here.
+  - **Main tier**: brand, primary routes, and the one CTA - nothing with a
+    locale-dependent width.
+  - The reason is mechanical: switching language changes label widths ("Bahasa
+    Indonesia" is twice "English"), and variable-width controls in the primary nav
+    reflow every link beside them. Isolating them in the utility tier means the primary
+    nav never shifts when locale or theme changes. Do not move utility controls into the
+    main tier.
 - `sticky top-0` with visible surface: `bg-background/80 border-b border-border backdrop-blur`
 - Route-aware active state + `aria-current="page"` on every nav
 - Mobile and desktop nav must show the same active link

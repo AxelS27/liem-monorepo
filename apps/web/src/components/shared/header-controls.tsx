@@ -60,7 +60,7 @@ export function SocialLinks() {
           href={social.href}
           target="_blank"
           rel="noopener noreferrer"
-          className="hidden h-8 items-center gap-1.5 rounded-md px-2 text-muted-foreground transition hover:bg-secondary hover:text-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.98] sm:flex"
+          className="text-muted-foreground hover:bg-secondary hover:text-foreground focus-visible:ring-ring focus-visible:ring-offset-background hidden h-8 items-center gap-1.5 rounded-md px-2 transition focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden active:scale-[0.98] sm:flex"
         >
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="h-3.5 w-3.5">
             <path d={social.path} />
@@ -118,23 +118,23 @@ export function LanguageSwitcher() {
     <div className="group/lang relative">
       <button
         type="button"
-        className="flex h-8 items-center gap-1.5 rounded-md px-2 text-xs text-muted-foreground transition hover:bg-secondary hover:text-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.98]"
+        className="text-muted-foreground hover:bg-secondary hover:text-foreground focus-visible:ring-ring focus-visible:ring-offset-background flex h-8 items-center gap-1.5 rounded-md px-2 text-xs transition focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden active:scale-[0.98]"
       >
         <GlobeIcon />
         <span className="hidden md:inline">{active?.label}</span>
         <ChevronIcon />
       </button>
-      <div className="absolute right-0 top-full z-20 hidden pt-2 group-hover/lang:block group-focus-within/lang:block">
-        <div className="w-44 rounded-md border border-border bg-background p-1 shadow-xs">
+      <div className="absolute top-full right-0 z-20 hidden pt-2 group-focus-within/lang:block group-hover/lang:block">
+        <div className="border-border bg-background w-44 rounded-md border p-1 shadow-xs">
           {languages.map((language) => (
             <button
               key={language.code}
               type="button"
               onClick={() => setActive(language)}
               className={cn(
-                'flex w-full items-center rounded-sm px-3 py-2 text-left text-xs transition focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring active:scale-[0.98]',
+                'focus-visible:ring-ring flex w-full items-center rounded-sm px-3 py-2 text-left text-xs transition focus-visible:ring-2 focus-visible:outline-hidden active:scale-[0.98]',
                 active?.code === language.code
-                  ? 'bg-secondary font-medium text-foreground'
+                  ? 'bg-secondary text-foreground font-medium'
                   : 'text-muted-foreground hover:bg-secondary hover:text-foreground',
               )}
             >
@@ -196,7 +196,7 @@ export function ThemeSwitcher({ labels }: { labels: { light: string; dark: strin
       <button
         type="button"
         disabled
-        className="flex h-8 items-center gap-1.5 rounded-md px-2 text-xs text-muted-foreground opacity-50 cursor-not-allowed"
+        className="text-muted-foreground flex h-8 cursor-not-allowed items-center gap-1.5 rounded-md px-2 text-xs opacity-50"
       >
         <SunIcon />
         <span className="hidden md:inline">{labels.light}</span>
@@ -212,7 +212,7 @@ export function ThemeSwitcher({ labels }: { labels: { light: string; dark: strin
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
       aria-label={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
       title="Theme"
-      className="flex h-8 items-center gap-1.5 rounded-md px-2 text-xs text-muted-foreground transition hover:bg-secondary hover:text-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.98]"
+      className="text-muted-foreground hover:bg-secondary hover:text-foreground focus-visible:ring-ring focus-visible:ring-offset-background flex h-8 items-center gap-1.5 rounded-md px-2 text-xs transition focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden active:scale-[0.98]"
     >
       {isDark ? <MoonIcon /> : <SunIcon />}
       <span className="hidden md:inline">{isDark ? labels.dark : labels.light}</span>

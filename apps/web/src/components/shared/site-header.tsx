@@ -31,19 +31,19 @@ export function SiteHeader({ brand, labels }: { brand: string; labels: Dictionar
   const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur">
+    <header className="border-border bg-background/80 sticky top-0 z-50 border-b backdrop-blur">
       {/* Utility tier: universal controls, isolated from the primary nav. */}
-      <div className="border-b border-border bg-secondary/30">
+      <div className="border-border bg-secondary/30 border-b">
         <div className="mx-auto flex h-10 w-full max-w-6xl items-center justify-between px-6 text-xs">
           <nav aria-label="Support navigation" className="flex items-center gap-1">
             <SocialLinks />
-            <span aria-hidden="true" className="mx-2 hidden h-4 w-px bg-border sm:block" />
+            <span aria-hidden="true" className="bg-border mx-2 hidden h-4 w-px sm:block" />
             <a
               href="/contact"
               aria-current={isActive('/contact') ? 'page' : undefined}
               className={cn(
-                'rounded-md px-2 py-1.5 transition hover:bg-secondary hover:text-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.98]',
-                isActive('/contact') ? 'font-medium text-foreground' : 'text-muted-foreground',
+                'hover:bg-secondary hover:text-foreground focus-visible:ring-ring focus-visible:ring-offset-background rounded-md px-2 py-1.5 transition focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden active:scale-[0.98]',
+                isActive('/contact') ? 'text-foreground font-medium' : 'text-muted-foreground',
               )}
             >
               {labels.support}
@@ -52,13 +52,13 @@ export function SiteHeader({ brand, labels }: { brand: string; labels: Dictionar
           <div className="flex items-center gap-1">
             <LanguageSwitcher />
             <ThemeSwitcher labels={{ light: labels.themeLight, dark: labels.themeDark }} />
-            <span aria-hidden="true" className="mx-2 h-4 w-px bg-border" />
+            <span aria-hidden="true" className="bg-border mx-2 h-4 w-px" />
             <a
               href="/signin"
               aria-current={isActive('/signin') ? 'page' : undefined}
               className={cn(
-                'rounded-md px-2 py-1.5 transition hover:bg-secondary hover:text-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.98]',
-                isActive('/signin') ? 'font-medium text-foreground' : 'text-muted-foreground',
+                'hover:bg-secondary hover:text-foreground focus-visible:ring-ring focus-visible:ring-offset-background rounded-md px-2 py-1.5 transition focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden active:scale-[0.98]',
+                isActive('/signin') ? 'text-foreground font-medium' : 'text-muted-foreground',
               )}
             >
               {labels.signIn}
@@ -83,7 +83,7 @@ export function SiteHeader({ brand, labels }: { brand: string; labels: Dictionar
               className={cn(
                 'transition-colors',
                 isActive(item.href)
-                  ? 'font-medium text-foreground'
+                  ? 'text-foreground font-medium'
                   : 'text-muted-foreground hover:text-foreground',
               )}
             >
@@ -96,12 +96,12 @@ export function SiteHeader({ brand, labels }: { brand: string; labels: Dictionar
         </nav>
 
         <details className="group relative md:hidden">
-          <summary className="flex h-10 cursor-pointer list-none items-center rounded-md border border-border px-3 text-sm font-medium transition hover:bg-secondary focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.98] marker:hidden [&::-webkit-details-marker]:hidden">
+          <summary className="border-border hover:bg-secondary focus-visible:ring-ring focus-visible:ring-offset-background flex h-10 cursor-pointer list-none items-center rounded-md border px-3 text-sm font-medium transition marker:hidden focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden active:scale-[0.98] [&::-webkit-details-marker]:hidden">
             {labels.menu}
           </summary>
           <nav
             aria-label="Mobile navigation"
-            className="absolute right-0 z-10 mt-3 w-52 rounded-md border border-border bg-background p-2 shadow-xs"
+            className="border-border bg-background absolute right-0 z-10 mt-3 w-52 rounded-md border p-2 shadow-xs"
           >
             {navItems.map((item) => (
               <a
@@ -111,7 +111,7 @@ export function SiteHeader({ brand, labels }: { brand: string; labels: Dictionar
                 className={cn(
                   'block rounded-sm px-3 py-2 text-sm transition-colors',
                   isActive(item.href)
-                    ? 'bg-secondary font-medium text-foreground'
+                    ? 'bg-secondary text-foreground font-medium'
                     : 'text-muted-foreground hover:bg-secondary hover:text-foreground',
                 )}
               >

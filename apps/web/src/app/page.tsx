@@ -21,8 +21,6 @@ export async function generateMetadata(): Promise<Metadata> {
  * regenerate from scratch. See docs/engineering/DESIGN_DNA.md.
  */
 
-
-
 // Icons pair by index with the feature copy in src/i18n/locales/en.json (home.features.items).
 // Keep the two lists the same length and order.
 const featureIcons: ReactNode[] = [
@@ -73,17 +71,20 @@ export default async function HomePage() {
        * above the fold to invite scrolling.
        */}
       <section className="mx-auto w-full max-w-6xl px-6 pt-20 text-center sm:pt-28">
-        <p className="text-sm font-medium text-muted-foreground animate-fade-slide-up animation-delay-0">
+        <p className="text-muted-foreground animate-fade-slide-up animation-delay-0 text-sm font-medium">
           {t.home.eyebrow}
         </p>
-        <h1 className="mx-auto mt-4 max-w-3xl text-4xl font-semibold tracking-tight text-foreground sm:text-5xl animate-fade-slide-up animation-delay-100">
+        <h1 className="text-foreground animate-fade-slide-up animation-delay-100 mx-auto mt-4 max-w-3xl text-4xl font-semibold tracking-tight sm:text-5xl">
           {t.home.headline}
         </h1>
-        <p className="mx-auto mt-5 max-w-2xl text-base text-muted-foreground sm:text-lg animate-fade-slide-up animation-delay-200">
+        <p className="text-muted-foreground animate-fade-slide-up animation-delay-200 mx-auto mt-5 max-w-2xl text-base sm:text-lg">
           {t.home.subhead}
         </p>
-        <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row animate-fade-slide-up animation-delay-300">
-          <a href="/features" className={cn(buttonVariants({ size: 'lg' }), 'group w-full sm:w-auto')}>
+        <div className="animate-fade-slide-up animation-delay-300 mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+          <a
+            href="/features"
+            className={cn(buttonVariants({ size: 'lg' }), 'group w-full sm:w-auto')}
+          >
             <span>{t.home.exploreFeatures}</span>
             <svg
               viewBox="0 0 24 24"
@@ -109,7 +110,7 @@ export default async function HomePage() {
       </section>
 
       {/* Product preview carousel: rotating screenshots in a contained 16:9 frame. */}
-      <section className="mx-auto w-full max-w-5xl px-6 pt-16 sm:pt-20 animate-fade-slide-up animation-delay-400">
+      <section className="animate-fade-slide-up animation-delay-400 mx-auto w-full max-w-5xl px-6 pt-16 sm:pt-20">
         <PreviewCarousel />
       </section>
 
@@ -121,38 +122,38 @@ export default async function HomePage() {
       {/* Features: an open grid, hierarchy from spacing and type, not bordered cards. */}
       <section className="mx-auto w-full max-w-6xl px-6 py-20 sm:py-28">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+          <h2 className="text-foreground text-2xl font-semibold tracking-tight sm:text-3xl">
             {t.home.features.heading}
           </h2>
-          <p className="mt-4 text-base text-muted-foreground">{t.home.features.subheading}</p>
+          <p className="text-muted-foreground mt-4 text-base">{t.home.features.subheading}</p>
         </div>
         <div className="mt-14 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
           {t.home.features.items.map((feature, i) => (
             <div key={feature.title}>
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-secondary text-foreground">
+              <div className="bg-secondary text-foreground flex h-10 w-10 items-center justify-center rounded-lg">
                 <FeatureIcon>{featureIcons[i]}</FeatureIcon>
               </div>
-              <h3 className="mt-5 font-medium text-foreground">{feature.title}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">{feature.detail}</p>
+              <h3 className="text-foreground mt-5 font-medium">{feature.title}</h3>
+              <p className="text-muted-foreground mt-2 text-sm">{feature.detail}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* Principles: a banded section for rhythm, the page is not one flat white scroll. */}
-      <section className="border-y border-border bg-secondary/30">
+      <section className="border-border bg-secondary/30 border-y">
         <div className="mx-auto w-full max-w-6xl px-6 py-20 sm:py-28">
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+            <h2 className="text-foreground text-2xl font-semibold tracking-tight sm:text-3xl">
               {t.home.foundations.heading}
             </h2>
-            <p className="mt-4 text-base text-muted-foreground">{t.home.foundations.subheading}</p>
+            <p className="text-muted-foreground mt-4 text-base">{t.home.foundations.subheading}</p>
           </div>
           <dl className="mt-14 grid gap-10 text-left sm:grid-cols-3">
             {t.home.foundations.items.map((item) => (
               <div key={item.title}>
-                <dt className="font-medium text-foreground">{item.title}</dt>
-                <dd className="mt-2 text-sm text-muted-foreground">{item.detail}</dd>
+                <dt className="text-foreground font-medium">{item.title}</dt>
+                <dd className="text-muted-foreground mt-2 text-sm">{item.detail}</dd>
               </div>
             ))}
           </dl>
@@ -166,15 +167,18 @@ export default async function HomePage() {
        * for that case).
        */}
       <section className="mx-auto w-full max-w-6xl px-6 py-20 sm:py-28">
-        <div className="rounded-2xl border border-border bg-secondary/40 px-8 py-14 text-center sm:px-16">
-          <h2 className="mx-auto max-w-2xl text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+        <div className="border-border bg-secondary/40 rounded-2xl border px-8 py-14 text-center sm:px-16">
+          <h2 className="text-foreground mx-auto max-w-2xl text-2xl font-semibold tracking-tight sm:text-3xl">
             {t.home.cta.heading}
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-base text-muted-foreground">
+          <p className="text-muted-foreground mx-auto mt-4 max-w-xl text-base">
             {t.home.cta.subheading}
           </p>
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-            <a href="/signup" className={cn(buttonVariants({ size: 'lg' }), 'group w-full sm:w-auto')}>
+            <a
+              href="/signup"
+              className={cn(buttonVariants({ size: 'lg' }), 'group w-full sm:w-auto')}
+            >
               <span>{t.home.cta.getStarted}</span>
               <svg
                 viewBox="0 0 24 24"

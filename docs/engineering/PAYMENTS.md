@@ -11,6 +11,7 @@ Midtrans is the default payment gateway for Indonesian payment needs (QRIS, bank
 Integrate it from `apps/server`, not `apps/web`.
 
 Use Midtrans for normal merchant checkout:
+
 - The server creates the transaction using the Midtrans server key.
 - The browser uses the public client key only when needed by Snap.
 - The webhook/HTTP notification is the source of truth for payment status.
@@ -18,6 +19,7 @@ Use Midtrans for normal merchant checkout:
 - Store orders, payment attempts, and provider transaction ids in Postgres.
 
 Official references:
+
 - Midtrans payment overview: <https://docs.midtrans.com/docs/payment-overview?id=next-step>
 - Receiving funds/payout: <https://docs.midtrans.com/docs/receive-your-fund>
 - Midtrans payout product page: <https://stg.midtrans.com/product/payouts>
@@ -28,6 +30,7 @@ Stripe is the recommended default payment gateway for international cards, SaaS 
 Integrate it from `apps/server`, not `apps/web`.
 
 Use Stripe for global checkout and subscriptions:
+
 - The server creates checkout sessions and subscriptions using the Stripe secret key.
 - Use **Stripe Checkout** or **Stripe Customer Portal** to handle payment collection and billing management.
 - Webhooks/HTTP notifications are the source of truth for subscription lifecycles.
@@ -35,6 +38,7 @@ Use Stripe for global checkout and subscriptions:
 - Store Stripe Customer IDs (`cus_*`) and Subscription IDs (`sub_*`) in Postgres, linked to the user accounts.
 
 Official references:
+
 - Stripe Checkout: <https://stripe.com/docs/payments/checkout>
 - Stripe Billing & Subscriptions: <https://stripe.com/docs/billing/subscriptions/overview>
 - Stripe Webhook handling: <https://stripe.com/docs/webhooks>

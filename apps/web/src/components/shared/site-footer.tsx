@@ -43,7 +43,7 @@ export async function SiteFooter() {
   ];
 
   return (
-    <footer className="border-t border-border bg-secondary/30">
+    <footer className="border-border bg-secondary/30 border-t">
       <FooterScrollHandler>
         <div className="mx-auto w-full max-w-6xl px-6 py-14">
           <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr_1fr]">
@@ -52,17 +52,17 @@ export async function SiteFooter() {
                 <Image src={logo} alt="" width={28} height={28} className="h-7 w-7 rounded-md" />
                 <span>{t.app.name}</span>
               </a>
-              <p className="mt-4 text-sm text-muted-foreground">{t.footer.description}</p>
+              <p className="text-muted-foreground mt-4 text-sm">{t.footer.description}</p>
             </div>
             {footerSections.map((section) => (
               <div key={section.title}>
-                <h3 className="text-sm font-semibold text-foreground">{section.title}</h3>
+                <h3 className="text-foreground text-sm font-semibold">{section.title}</h3>
                 <ul className="mt-4 space-y-3 text-sm">
                   {section.links.map((link) => (
                     <li key={link.href}>
                       <a
                         href={link.href}
-                        className="text-muted-foreground transition-colors hover:text-foreground"
+                        className="text-muted-foreground hover:text-foreground transition-colors"
                       >
                         {link.label}
                       </a>
@@ -73,15 +73,15 @@ export async function SiteFooter() {
             ))}
           </div>
 
-          <div className="mt-12 flex flex-col gap-3 border-t border-border pt-6 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+          <div className="border-border text-muted-foreground mt-12 flex flex-col gap-3 border-t pt-6 text-sm sm:flex-row sm:items-center sm:justify-between">
             <span>
               © {new Date().getFullYear()} {t.app.name}. {t.footer.rights}
             </span>
             <nav aria-label="Legal" className="flex gap-6">
-              <a href="/privacy" className="transition-colors hover:text-foreground">
+              <a href="/privacy" className="hover:text-foreground transition-colors">
                 {t.footer.privacy}
               </a>
-              <a href="/terms" className="transition-colors hover:text-foreground">
+              <a href="/terms" className="hover:text-foreground transition-colors">
                 {t.footer.terms}
               </a>
             </nav>

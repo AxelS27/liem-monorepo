@@ -24,7 +24,8 @@ export function FooterScrollHandler({ children }: { children: ReactNode }) {
       const targetUrl = new URL(href, window.location.href);
 
       // Only intercept if same-origin, same pathname, and does not target a specific hash
-      const isSamePage = targetUrl.origin === window.location.origin && targetUrl.pathname === pathname;
+      const isSamePage =
+        targetUrl.origin === window.location.origin && targetUrl.pathname === pathname;
       const isScrollToTop = !targetUrl.hash || targetUrl.hash === '#top' || targetUrl.hash === '#';
 
       if (isSamePage && isScrollToTop) {

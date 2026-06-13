@@ -22,11 +22,11 @@ export default function Error({
   return (
     <section className="flex flex-1 items-center justify-center px-6 py-24">
       <div className="mx-auto w-full max-w-xl text-center">
-        <p className="text-sm font-medium text-destructive">Something went wrong</p>
-        <h1 className="mt-3 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+        <p className="text-destructive text-sm font-medium">Something went wrong</p>
+        <h1 className="text-foreground mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
           An unexpected error occurred
         </h1>
-        <p className="mt-4 text-base text-muted-foreground">
+        <p className="text-muted-foreground mt-4 text-base">
           {error.message || 'We encountered an error while loading this page.'}
         </p>
         <div className="mt-8 flex justify-center gap-4">

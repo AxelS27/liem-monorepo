@@ -47,8 +47,8 @@ export function TechTicker({ heading }: { heading: string }) {
   if (!shouldAnimate) {
     return (
       <div className="mx-auto w-full max-w-6xl px-6">
-        <p className="text-center text-sm text-muted-foreground">{heading}</p>
-        <ul className="mt-6 flex flex-wrap items-center justify-center gap-x-7 gap-y-3 text-sm font-medium text-foreground/70">
+        <p className="text-muted-foreground text-center text-sm">{heading}</p>
+        <ul className="text-foreground/70 mt-6 flex flex-wrap items-center justify-center gap-x-7 gap-y-3 text-sm font-medium">
           {stack.map((tool) => (
             <li key={tool.name} className="flex items-center gap-2">
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="h-4 w-4">
@@ -64,17 +64,25 @@ export function TechTicker({ heading }: { heading: string }) {
 
   return (
     <div className="w-full">
-      <p className="text-center text-sm text-muted-foreground px-6">{heading}</p>
+      <p className="text-muted-foreground px-6 text-center text-sm">{heading}</p>
       {/* 
         Container with faded gradient effect on edges using CSS mask-image.
       */}
       <div className="relative mt-6 w-full overflow-x-hidden [mask-image:linear-gradient(to_right,transparent,white_15%,white_85%,transparent)]">
-        <div className="flex w-max animate-ticker hover:[animation-play-state:paused]">
+        <div className="animate-ticker flex w-max hover:[animation-play-state:paused]">
           {/* First set of tools */}
           <div className="flex shrink-0 items-center">
             {stack.map((tool) => (
-              <div key={tool.name} className="flex items-center gap-2.5 text-sm font-medium text-foreground/70 pr-12">
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="h-4 w-4 shrink-0">
+              <div
+                key={tool.name}
+                className="text-foreground/70 flex items-center gap-2.5 pr-12 text-sm font-medium"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                  className="h-4 w-4 shrink-0"
+                >
                   <path d={tool.path} />
                 </svg>
                 <span>{tool.name}</span>
@@ -84,8 +92,16 @@ export function TechTicker({ heading }: { heading: string }) {
           {/* Duplicate set for seamless looping */}
           <div className="flex shrink-0 items-center" aria-hidden="true">
             {stack.map((tool) => (
-              <div key={`${tool.name}-dup`} className="flex items-center gap-2.5 text-sm font-medium text-foreground/70 pr-12">
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="h-4 w-4 shrink-0">
+              <div
+                key={`${tool.name}-dup`}
+                className="text-foreground/70 flex items-center gap-2.5 pr-12 text-sm font-medium"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                  className="h-4 w-4 shrink-0"
+                >
                   <path d={tool.path} />
                 </svg>
                 <span>{tool.name}</span>

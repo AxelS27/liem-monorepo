@@ -25,11 +25,11 @@ export function PlaceholderPage({
   return (
     <section className="flex flex-1 items-center justify-center px-6 py-24">
       <div className="mx-auto w-full max-w-xl text-center">
-        {eyebrow ? <p className="text-sm font-medium text-muted-foreground">{eyebrow}</p> : null}
-        <h1 className="mt-3 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+        {eyebrow ? <p className="text-muted-foreground text-sm font-medium">{eyebrow}</p> : null}
+        <h1 className="text-foreground mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
           {title}
         </h1>
-        <p className="mt-4 text-base text-muted-foreground">{description}</p>
+        <p className="text-muted-foreground mt-4 text-base">{description}</p>
         <div className="mt-8 flex justify-center">
           {action ?? (
             <a href="/" className={cn(buttonVariants({ variant: 'outline' }))}>

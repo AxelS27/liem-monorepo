@@ -38,7 +38,7 @@ export function PreviewCarousel() {
 
   return (
     <div
-      className="group relative overflow-hidden rounded-xl border border-border shadow-2xl"
+      className="group border-border relative overflow-hidden rounded-xl border shadow-2xl"
       aria-roledescription="carousel"
       aria-label="Product preview"
       onMouseEnter={() => setPaused(true)}
@@ -75,7 +75,7 @@ export function PreviewCarousel() {
         type="button"
         aria-label="Previous slide"
         onClick={() => go(index - 1)}
-        className="absolute left-3 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-background/70 text-foreground opacity-0 shadow-xs backdrop-blur transition hover:bg-background focus-visible:opacity-100 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background group-hover:opacity-100"
+        className="border-border bg-background/70 text-foreground hover:bg-background focus-visible:ring-ring focus-visible:ring-offset-background absolute top-1/2 left-3 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border opacity-0 shadow-xs backdrop-blur transition group-hover:opacity-100 focus-visible:opacity-100 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden"
       >
         <svg
           viewBox="0 0 24 24"
@@ -94,7 +94,7 @@ export function PreviewCarousel() {
         type="button"
         aria-label="Next slide"
         onClick={() => go(index + 1)}
-        className="absolute right-3 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-background/70 text-foreground opacity-0 shadow-xs backdrop-blur transition hover:bg-background focus-visible:opacity-100 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background group-hover:opacity-100"
+        className="border-border bg-background/70 text-foreground hover:bg-background focus-visible:ring-ring focus-visible:ring-offset-background absolute top-1/2 right-3 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border opacity-0 shadow-xs backdrop-blur transition group-hover:opacity-100 focus-visible:opacity-100 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden"
       >
         <svg
           viewBox="0 0 24 24"
@@ -110,13 +110,13 @@ export function PreviewCarousel() {
         </svg>
       </button>
 
-      <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 items-center gap-2 rounded-full border border-border bg-background/70 py-2 pl-2 pr-3 shadow-xs backdrop-blur">
+      <div className="border-border bg-background/70 absolute bottom-4 left-1/2 flex -translate-x-1/2 items-center gap-2 rounded-full border py-2 pr-3 pl-2 shadow-xs backdrop-blur">
         <button
           type="button"
           aria-label={playing ? 'Pause automatic slideshow' : 'Play automatic slideshow'}
           aria-pressed={!playing}
           onClick={() => setPlaying((p) => !p)}
-          className="mr-0.5 flex h-5 w-5 items-center justify-center rounded-full text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
+          className="text-muted-foreground hover:text-foreground focus-visible:ring-ring mr-0.5 flex h-5 w-5 items-center justify-center rounded-full transition-colors focus-visible:ring-2 focus-visible:outline-hidden"
         >
           {playing ? (
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="h-3 w-3">
@@ -137,10 +137,10 @@ export function PreviewCarousel() {
             aria-current={i === index}
             onClick={() => go(i)}
             className={cn(
-              'h-1.5 rounded-full transition-all focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring',
+              'focus-visible:ring-ring h-1.5 rounded-full transition-all focus-visible:ring-2 focus-visible:outline-hidden',
               i === index
-                ? 'w-5 bg-foreground'
-                : 'w-1.5 bg-muted-foreground/40 hover:bg-muted-foreground',
+                ? 'bg-foreground w-5'
+                : 'bg-muted-foreground/40 hover:bg-muted-foreground w-1.5',
             )}
           />
         ))}

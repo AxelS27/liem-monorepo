@@ -13,7 +13,7 @@ Do not write any code or initialize any documents during the Q&A and strategy ph
 
 ## Core Principles
 
-1. **Be Critical (Challenge the Idea)**: Do not always agree with the user. Provide honest, direct strategic feedback. If a market is highly competitive or a feature is bloated, call it out: *"This market is highly saturated. The biggest challenge isn't building the product; it's convincing users to pay."*
+1. **Be Critical (Challenge the Idea)**: Do not always agree with the user. Provide honest, direct strategic feedback. If a market is highly competitive or a feature is bloated, call it out: _"This market is highly saturated. The biggest challenge isn't building the product; it's convincing users to pay."_
 2. **Provide Curated Options with a Clear Highlight**: For every question during the Q&A phase, present exactly 4 options structured as follows:
    - **Option 1 (Recommended)**: Propose the best default strategic path, prefixed with **"(Recommended)"**, along with its trade-offs (pros/cons) and reasoning. For design-related questions, this **must always be the option to use the Default Template** (relying on the pre-wired neutral dark/zinc `--primary` and white `--background` palette).
    - **Option 2 & Option 3**: Alternative paths with balanced trade-offs. You **must avoid proposing forbidden "AI starter" looks** (such as violet/indigo gradients, forest green + cream, warm orange + cream, muted sage, dark-purple SaaS gradients, or teal on near-black) as options.
@@ -32,38 +32,49 @@ Do not write any code or initialize any documents during the Q&A and strategy ph
 ## Detailed Planning Flow
 
 ### Phase 0 — Research Summary (Connection to `/research`)
+
 Before asking questions, automatically determine the required research mode based on complexity, risk, regulations, or user instruction, and state it explicitly (e.g. "Research Mode: Standard | Reason: Commercial SaaS...").
 Perform research using the `/research` workflow. Stop research immediately if stop conditions are met to avoid analysis paralysis. Summarize findings using the evidence-based format and tailor options dynamically.
 
 ### Phase 1 — Product Discovery (Q&A)
-Ask one question per turn to discover:
-* **Product Vision**: What is the core product? What problem does it solve? (Challenge the viability of the market/idea immediately if it is highly saturated).
-* **Target Audience**: Who is the target audience (local vs. global)?
-* **Monetization & Pricing**: Portfolio or commercial business? What is the model? Why would people pay for it?
 
-*Avoid asking framework, database, or hosting questions here.*
+Ask one question per turn to discover:
+
+- **Product Vision**: What is the core product? What problem does it solve? (Challenge the viability of the market/idea immediately if it is highly saturated).
+- **Target Audience**: Who is the target audience (local vs. global)?
+- **Monetization & Pricing**: Portfolio or commercial business? What is the model? Why would people pay for it?
+
+_Avoid asking framework, database, or hosting questions here._
 
 ### Phase 2 — Competitor Analysis (Q&A)
+
 List main competitors. Present options summarizing:
-* Competitor profiles (Strengths, Weaknesses, User Complaints, Pricing, Opportunity).
-* The opportunity / market gap we can target.
-* The resulting USP (Unique Selling Proposition).
+
+- Competitor profiles (Strengths, Weaknesses, User Complaints, Pricing, Opportunity).
+- The opportunity / market gap we can target.
+- The resulting USP (Unique Selling Proposition).
 
 ### Phase 3 — Risk Assessment (Q&A)
+
 Identify:
-* **Product Risks**: e.g., hard to get first users, difficult to prove value.
-* **Technical Risks**: e.g., expensive APIs, real-time scalability.
-* **Business Risks**: e.g., low conversion, high churn.
-* **Contrarian Evidence, Unknowns & Explicit Assumptions**: Identify what is not yet known or what challenges the core idea.
-* Outline mitigation strategies.
+
+- **Product Risks**: e.g., hard to get first users, difficult to prove value.
+- **Technical Risks**: e.g., expensive APIs, real-time scalability.
+- **Business Risks**: e.g., low conversion, high churn.
+- **Contrarian Evidence, Unknowns & Explicit Assumptions**: Identify what is not yet known or what challenges the core idea.
+- Outline mitigation strategies.
 
 ### Phase 4 — Success Metrics (Q&A)
+
 Establish:
-* **North Star Metric**: The key metric that tracks product value.
-* **Success Criteria**: e.g., 100 paying users, $1,000 MRR, 10k MAU.
+
+- **North Star Metric**: The key metric that tracks product value.
+- **Success Criteria**: e.g., 100 paying users, $1,000 MRR, 10k MAU.
 
 ### Phase 5 — Strategic Recommendation (User Gate 1)
+
 Compile and present the upgraded **Strategic Summary & Recommendation** for approval. It must contain:
+
 1. **Decision**: Proceed / Proceed With Caution / Pivot / Reject
 2. **Confidence**: [1-10 based on Confidence Scoring Formula]
 3. **Top Opportunities**: ...
@@ -74,20 +85,24 @@ Compile and present the upgraded **Strategic Summary & Recommendation** for appr
 8. **What I Would Do**: [Founder action steps]
 9. **Design & Branding Direction**: Default template style vs. overrides (always include an option to use the Default Template).
 
-*Stop here. Ask the user for explicit approval on this Go/No-Go decision before proceeding to technical blueprint.*
+_Stop here. Ask the user for explicit approval on this Go/No-Go decision before proceeding to technical blueprint._
 
 ### Phase 6 — Technical Design (User Gate 2)
+
 Once Phase 5 is approved, compile the **Technical & Security Blueprint**:
+
 1. **Architecture & Stack**: Next.js, Hono, Supabase Auth/DB, Midtrans (Stripe only as override), Hugging Face, etc.
 2. **Database Schema & APIs**: Identify needed tables, public/private APIs, security/RLS rules.
 3. **User Action/Approval**: Present the blueprint and verify if the user has overrides.
 
 ### Phase 7 — Roadmap
+
 Following Phase 6 approval, present the **Execution Roadmap**:
-* **P0 (Validation MVP)**: Core loop to validate the USP.
-* **P1 (Monetization)**: Midtrans/payment checkout, user accounts.
-* **P2 (Growth)**: Features to drive retention and viral loops.
-* **P3 (Scale)**: Advanced features and optimization.
+
+- **P0 (Validation MVP)**: Core loop to validate the USP.
+- **P1 (Monetization)**: Midtrans/payment checkout, user accounts.
+- **P2 (Growth)**: Features to drive retention and viral loops.
+- **P3 (Scale)**: Advanced features and optimization.
 
 ---
 

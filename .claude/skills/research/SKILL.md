@@ -49,37 +49,46 @@ The agent may make recommendations, but every recommendation must be supported b
 Match research depth to project complexity:
 
 ### Quick Research
+
 Use when:
+
 - Simple projects
 - Portfolio projects
 - Internal tools
 - Small MVPs
 
 Characteristics:
+
 - Minimal searches
 - Fast validation
 - 5–10 minute equivalent effort
 
 ### Standard Research (Default)
+
 Use when:
+
 - Commercial SaaS
 - Startups
 - Market-facing products
 
 Characteristics:
+
 - Competitor analysis
 - User research
 - Validation research
 - Distribution research
 
 ### Deep Research
+
 Use when:
+
 - High-risk industries
 - Expensive projects
 - Investor-backed startups
 - Regulated industries
 
 Characteristics:
+
 - Extensive competitor mapping
 - Sentiment analysis
 - Pricing benchmarks
@@ -107,21 +116,27 @@ If these conditions are met, proceed immediately to the **Strategic Recommendati
 Confidence must be calculated objectively using four metrics: Source Quality, Number of Sources, Source Agreement, and Data Recency.
 
 ### High
+
 Requires ALL of the following:
+
 - 3+ independent sources
 - Tier 1 (Highly Reliable) sources
 - Strong agreement across sources
 - Data updated within the last 12 months
 
 ### Medium
+
 Requires ALL of the following:
+
 - 2+ independent sources
 - Tier 2 (Generally Reliable) sources
 - General agreement across sources
 - Data updated within the last 24 months
 
 ### Low
+
 Occurs if ANY of the following are true:
+
 - Single source only
 - Tier 3 (User Sentiment) or Tier 4 (Weak) sources
 - Conflicting evidence between sources
@@ -139,9 +154,10 @@ Decision:
 ...
 
 Based On:
-* Finding #[Number]
-* Competitor Analysis #[Number]
-* Validation Research #[Number]
+
+- Finding #[Number]
+- Competitor Analysis #[Number]
+- Validation Research #[Number]
 
 Reasoning:
 ...
@@ -271,6 +287,7 @@ Evidence:
 [Supporting data/quotes/facts]
 
 Source:
+
 - [Source Name] ([URL/Citation]) [Publication/Access Date]
 
 Source Quality:
@@ -306,9 +323,11 @@ To reduce confirmation bias, the agent must actively look for and present reason
 Structure:
 
 ### Supporting Evidence
+
 [Evidence that supports the product idea, value proposition, or assumption]
 
 ### Contrarian Evidence
+
 [Evidence that challenges the product idea, alternative options user already uses, or reasons why it could fail]
 
 ---
@@ -812,15 +831,18 @@ Top Risks:
 ...
 
 Unknowns:
+
 - [Critical Unknown #1]
 - [Critical Unknown #2]
 
 Critical Assumptions:
+
 - [Assumption #1] (Validation Needed: [Validation experiment])
 
 Decision Trace:
-* Finding #[Number] (Source: [Source name], Confidence: [Low/Medium/High])
-* Competitor Analysis #[Number] (Source: [Source name], Confidence: [Low/Medium/High])
+
+- Finding #[Number] (Source: [Source name], Confidence: [Low/Medium/High])
+- Competitor Analysis #[Number] (Source: [Source name], Confidence: [Low/Medium/High])
 
 What I Would Do:
 ...
@@ -864,6 +886,7 @@ What I Would Do:
 ## 2. Key Findings
 
 ### Finding 1
+
 Finding:
 ...
 
@@ -884,9 +907,11 @@ Confidence:
 ## 3. Problem Research
 
 ### Supporting Evidence
+
 ...
 
 ### Contrarian Evidence
+
 ...
 
 ---
@@ -969,9 +994,10 @@ Decision:
 ...
 
 Based On:
-* Finding #[Number]
-* Competitor Analysis #[Number]
-* Validation Research #[Number]
+
+- Finding #[Number]
+- Competitor Analysis #[Number]
+- Validation Research #[Number]
 
 Reasoning:
 ...

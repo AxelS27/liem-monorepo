@@ -529,8 +529,8 @@ actions, filtering, empty/loading/error states, and responsive behavior.
 All color lives in **one file**: `apps/web/src/styles/globals.css`. It is the single source of truth, so retheming or adding a brand is a one file change.
 
 - Colors are **semantic CSS custom properties** (`--background`, `--primary`, `--muted`, ...), not raw values scattered through components.
-- **Ship one theme first.** The active theme is defined in `:root` (light by default). A dark theme (`.dark`) is provided commented out in `globals.css`; enable it only when the product actually needs dark mode. Do not generate both on day one.
-- Because every theme uses the **same token names** with different values, adding a second theme later never touches a component.
+- **Two themes (light & dark) are supported and pre-configured by default.** The active theme is toggled via `class="dark"` on `<html>`, using `next-themes` with a system preference fallback.
+- Because every theme uses the **same token names** with different values, switching/adding themes never touches component files.
 - Components reference **tokens only** (`bg-background`, `text-foreground`, `border-border`). Never hardcode hex, and never use raw palette classes like `bg-zinc-900`.
 - One `--radius` knob controls roundness across the UI.
 
@@ -549,11 +549,7 @@ config, done once when the app is scaffolded):
    names (`--color-background: var(--background)`, radius steps from `--radius`, `--font-sans`),
    and a `@theme` block holds the house type scale. Utilities reference the vars directly, so
    editing `:root` re-colors everything.
-3. **Only when you add a second theme:** uncomment the `.dark` block AND the
-   `@custom-variant dark (&:is(.dark *));` line in `globals.css`, then toggle by adding or
-   removing `class="dark"` on `<html>`. Use `next-themes` (`<ThemeProvider attribute="class">`)
-   for system plus manual switching. A single-theme app skips this step entirely, do not add
-   `next-themes` for one theme.
+3. **Theme switcher integration:** The template pre-configures `next-themes` via `<ThemeProvider attribute="class">` in the root layout. The `ThemeSwitcher` in `header-controls.tsx` is fully wired to use the `useTheme()` hook. To customize colors or add additional themes, modify `globals.css` (`:root` and `.dark` blocks).
 
 To rebrand: edit the token values in `:root` in `globals.css`. That is the only file you touch.
 
@@ -667,6 +663,16 @@ Skeleton rules:
 - Use a **shimmer animation** (background gradient sweeping left-to-right) rather than opacity pulse. The motion direction matches reading direction.
 - Skeletons must appear within **100ms** of navigation. A blank white flash before the skeleton is a fail.
 - Skeleton → content transition: the skeleton fades out while the real content fades in. No layout shift. No position jump.
+- The shared `<Skeleton>` component is exported from `@repo/ui` ([skeleton.tsx](file:///d:/Experiments/liem-monorepo-template/packages/ui/src/components/ui/skeleton.tsx)). Use this component to build skeletons that match your UI elements.
+
+**Toast notifications.** Toast notifications are powered by `sonner`. The `<Toaster>` provider is already registered globally in the root layout. Components can trigger notifications by importing and calling the `toast` function from `sonner`:
+
+```tsx
+import { toast } from 'sonner';
+
+toast.success('Successfully saved changes.');
+toast.error('Failed to save changes.');
+```
 
 **Motion.** The rule is not "no motion." The rule is no noisy motion. Add motion when it
 communicates state, confirms interaction, or makes a transition feel polished. Prefer CSS

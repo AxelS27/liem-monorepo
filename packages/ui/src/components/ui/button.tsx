@@ -20,7 +20,7 @@ const buttonVariants = cva(
         primary: 'bg-primary text-primary-foreground hover:bg-primary/90',
         secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
         outline:
-          'border border-border bg-background hover:bg-secondary hover:text-secondary-foreground',
+          'border border-border bg-background text-foreground hover:bg-secondary hover:text-secondary-foreground',
         ghost: 'hover:bg-secondary hover:text-secondary-foreground',
         destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90',
         // For use on a dark/foreground-colored band (e.g. a closing CTA), where the normal

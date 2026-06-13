@@ -90,8 +90,8 @@
     --destructive: hsl(0 62% 45%);
     --destructive-foreground: hsl(0 0% 98%);
 
-    --border: hsl(240 5% 15%);
-    --input: hsl(240 5% 15%);
+    --border: hsl(240 5% 26%);
+    --input: hsl(240 5% 26%);
     --ring: hsl(240 5% 65%);
   }
 }

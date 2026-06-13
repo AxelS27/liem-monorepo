@@ -1,6 +1,7 @@
 import Image from 'next/image';
 
 import logo from '@/app/icon.png';
+import { FooterScrollHandler } from '@/components/shared/footer-scroll-handler';
 import { defaultLocale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/dictionaries';
 
@@ -43,48 +44,50 @@ export async function SiteFooter() {
 
   return (
     <footer className="border-t border-border bg-secondary/30">
-      <div className="mx-auto w-full max-w-6xl px-6 py-14">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr_1fr]">
-          <div className="max-w-sm">
-            <a href="/" className="flex items-center gap-2.5 font-semibold tracking-tight">
-              <Image src={logo} alt="" width={28} height={28} className="h-7 w-7 rounded-md" />
-              <span>{t.app.name}</span>
-            </a>
-            <p className="mt-4 text-sm text-muted-foreground">{t.footer.description}</p>
-          </div>
-          {footerSections.map((section) => (
-            <div key={section.title}>
-              <h3 className="text-sm font-semibold text-foreground">{section.title}</h3>
-              <ul className="mt-4 space-y-3 text-sm">
-                {section.links.map((link) => (
-                  <li key={link.href}>
-                    <a
-                      href={link.href}
-                      className="text-muted-foreground transition-colors hover:text-foreground"
-                    >
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+      <FooterScrollHandler>
+        <div className="mx-auto w-full max-w-6xl px-6 py-14">
+          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr_1fr]">
+            <div className="max-w-sm">
+              <a href="/" className="flex items-center gap-2.5 font-semibold tracking-tight">
+                <Image src={logo} alt="" width={28} height={28} className="h-7 w-7 rounded-md" />
+                <span>{t.app.name}</span>
+              </a>
+              <p className="mt-4 text-sm text-muted-foreground">{t.footer.description}</p>
             </div>
-          ))}
-        </div>
+            {footerSections.map((section) => (
+              <div key={section.title}>
+                <h3 className="text-sm font-semibold text-foreground">{section.title}</h3>
+                <ul className="mt-4 space-y-3 text-sm">
+                  {section.links.map((link) => (
+                    <li key={link.href}>
+                      <a
+                        href={link.href}
+                        className="text-muted-foreground transition-colors hover:text-foreground"
+                      >
+                        {link.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
 
-        <div className="mt-12 flex flex-col gap-3 border-t border-border pt-6 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
-          <span>
-            © {new Date().getFullYear()} {t.app.name}. {t.footer.rights}
-          </span>
-          <nav aria-label="Legal" className="flex gap-6">
-            <a href="/privacy" className="transition-colors hover:text-foreground">
-              {t.footer.privacy}
-            </a>
-            <a href="/terms" className="transition-colors hover:text-foreground">
-              {t.footer.terms}
-            </a>
-          </nav>
+          <div className="mt-12 flex flex-col gap-3 border-t border-border pt-6 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+            <span>
+              © {new Date().getFullYear()} {t.app.name}. {t.footer.rights}
+            </span>
+            <nav aria-label="Legal" className="flex gap-6">
+              <a href="/privacy" className="transition-colors hover:text-foreground">
+                {t.footer.privacy}
+              </a>
+              <a href="/terms" className="transition-colors hover:text-foreground">
+                {t.footer.terms}
+              </a>
+            </nav>
+          </div>
         </div>
-      </div>
+      </FooterScrollHandler>
     </footer>
   );
 }

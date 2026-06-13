@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Plus_Jakarta_Sans } from 'next/font/google';
 import type { ReactNode } from 'react';
+import { Toaster } from 'sonner';
 
 import { ThemeProvider } from '@/components/theme-provider';
 import { SiteFooter } from '@/components/shared/site-footer';
@@ -54,11 +55,12 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
     <html lang={defaultLocale} className={fontSans.variable} suppressHydrationWarning>
       <body className="font-sans antialiased">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <div className="flex min-h-dvh flex-col bg-background text-foreground">
+          <div className="bg-background text-foreground flex min-h-dvh flex-col">
             <SiteHeader brand={t.app.name} labels={t.nav} />
             <main className="flex flex-1 flex-col">{children}</main>
             <SiteFooter />
           </div>
+          <Toaster closeButton richColors position="top-right" />
         </ThemeProvider>
       </body>
     </html>

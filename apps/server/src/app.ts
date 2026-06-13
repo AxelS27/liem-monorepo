@@ -2,11 +2,13 @@ import { healthResponseSchema } from '@repo/types';
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 import { secureHeaders } from 'hono/secure-headers';
+import { swaggerUI } from '@hono/swagger-ui';
 
 import { notesRoutes } from './features/notes/notes.routes';
 import { errorBody } from './lib/errors';
 import { rateLimiter } from './middleware/rate-limiter';
 import { structuredLogger } from './middleware/logger';
+import openapiSpec from './openapi.json';
 
 // app.ts owns the Hono instance and route registration; features register here.
 export const app = new Hono().basePath('/api/v1');
@@ -44,6 +46,12 @@ app.onError((err, c) => {
     500,
   );
 });
+
+// Serve the OpenAPI specification
+app.get('/openapi.json', (c) => c.json(openapiSpec));
+
+// Serve interactive Swagger UI documentation
+app.get('/docs', swaggerUI({ url: '/api/v1/openapi.json' }));
 
 app.get('/health', (c) => c.json(healthResponseSchema.parse({ data: { status: 'ok' } })));
 

@@ -99,12 +99,13 @@ sector's docs into a fresh context, so the rules apply at full strength regardle
 long the main conversation has been running. Delegate instead of doing sector work inline;
 the main thread orchestrates, reviews reports, and handles small cross-cutting edits.
 
-| Agent             | Owns                                                | Delegate when                               |
-| ----------------- | --------------------------------------------------- | ------------------------------------------- |
-| `web-builder`     | `apps/web`, `packages/ui` - screens, styling, copy  | Any frontend or UI/UX build work            |
-| `api-builder`     | `apps/server`, `packages/types` - routes, contracts | Any backend or endpoint work                |
-| `db-engineer`     | `supabase/` - schema, migrations, RLS, types        | Any database change                         |
-| `design-reviewer` | Audit only - DESIGN_DNA verdict, PASS/FAIL          | After major `apps/web` UI changes (e.g., creating/modifying pages or layouts), before done |
+| Agent              | Owns                                                    | Delegate when                                                                                                                                         |
+| ------------------ | ------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `web-builder`      | `apps/web`, `packages/ui` - screens, styling, copy      | Any frontend or UI/UX build work                                                                                                                      |
+| `api-builder`      | `apps/server`, `packages/types` - routes, contracts     | Any backend or endpoint work                                                                                                                          |
+| `db-engineer`      | `supabase/` - schema, migrations, RLS, types            | Any database change                                                                                                                                   |
+| `design-reviewer`  | Audit only - DESIGN_DNA verdict, PASS/FAIL              | After major `apps/web` UI changes (e.g., creating/modifying pages or layouts), before done                                                            |
+| `security-officer` | `docs/engineering/SECURITY.md`, codebase security audit | Auditing database schema migrations (RLS), API router validation, secret key isolation, webhook signatures, or checking for security vulnerabilities. |
 
 Rules:
 
@@ -129,7 +130,7 @@ existing docs and checklists, it does not duplicate them.
 | `/planning`     | Interactive Q&A to define product scope/design, then auto-trigger `/init-product`  |
 | `/init-product` | Fill the product docs from a brief, stop for review before code (new-product flow) |
 | `/new-feature`  | Build one feature slice through the sector agents, gates included                  |
-| `/ship-check`   | Launch-readiness audit ending in a GO/NO-GO verdict |
+| `/ship-check`   | Launch-readiness audit ending in a GO/NO-GO verdict                                |
 | `/handoff`      | End-of-session doc sync so the next chat starts oriented                           |
 
 Session hooks (wired in `.claude/settings.json`): `SessionStart` injects the project state

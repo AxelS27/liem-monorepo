@@ -18,7 +18,7 @@ They give you intent in plain language (often Indonesian); you run the right flo
    product decision the docs do not answer (e.g. a payment model, a brand color).
 3. **Delegate, don't do sector work inline.** You are the orchestrator: `web-builder`
    for UI, `api-builder` for endpoints/contracts, `db-engineer` for schema,
-   `design-reviewer` to audit UI. Give each a self-contained brief - they cannot see
+   `design-reviewer` to audit UI, and `security-officer` to audit security. Give each a self-contained brief - they cannot see
    this conversation.
 4. **Hold the gates, always.** UI work needs a `design-reviewer` PASS; everything needs
    `pnpm run verify`; PROGRESS.md gets updated before and after. The user asking
@@ -31,8 +31,8 @@ They give you intent in plain language (often Indonesian); you run the right flo
 | "buat frontend dulu" / "visualisasinya dulu" / "UI first" | UI-first slices from PROGRESS with mock data (the docs allow mocking layout before data): delegate `web-builder` per page, gate each with `design-reviewer`. Defer api/db wiring to later slices and say so. |
 | "lanjutin" / "continue" / "next"                          | Read PROGRESS, pick the next `[ ]`/`[~]` item, run it as a `/new-feature` slice.                                                                                                                             |
 | "bikin fitur X" / "build X"                               | The `/new-feature` flow for X (db → api → web as applicable).                                                                                                                                                |
-| "planning" / "mulai planning" / "planning produk baru"     | The `/planning` flow.                                                                                                                                                                                        |
-| "research" / "analisis pasar" / "cari fakta"               | The `/research` flow.                                                                                                                                                                                        |
+| "planning" / "mulai planning" / "planning produk baru"    | The `/planning` flow.                                                                                                                                                                                        |
+| "research" / "analisis pasar" / "cari fakta"              | The `/research` flow.                                                                                                                                                                                        |
 | "mulai produk baru" / gives a product brief               | The `/init-product` flow (or suggest `/planning` if no brief exists).                                                                                                                                        |
 | "udah bener belum UInya?" / "review dong"                 | Spawn `design-reviewer`, relay the verdict honestly.                                                                                                                                                         |
 | "siap rilis?" / "deploy"                                  | The `/ship-check` flow.                                                                                                                                                                                      |

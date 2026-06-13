@@ -52,12 +52,13 @@ The commands just guarantee the full flow runs instead of a shortcut.
 You can mention them by name ("use web-builder to...") but normally you don't have to:
 the main assistant delegates to them automatically based on what you ask.
 
-| Agent             | Owns                                                   | What it guarantees                                                                                                            |
-| ----------------- | ------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------- |
-| `web-builder`     | `apps/web`, `packages/ui` - screens, styling, copy     | Reads DESIGN_DNA + UI_UX before working; builds on the starter foundation; runs the design double-check before reporting done |
-| `api-builder`     | `apps/server`, `packages/types` - endpoints, contracts | Follows the notes reference pattern: Zod contract first, thin routes, envelopes, tests                                        |
-| `db-engineer`     | `supabase/` - schema, migrations, RLS, types           | Every change is a migration, RLS on every table, types regenerated, DATABASE.md catalog updated                               |
-| `design-reviewer` | Nothing - audit only                                   | Independent PASS/FAIL verdict on UI changes against the design rules, with file:line for every failure                        |
+| Agent              | Owns                                                    | What it guarantees                                                                                                            |
+| ------------------ | ------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `web-builder`      | `apps/web`, `packages/ui` - screens, styling, copy      | Reads DESIGN_DNA + UI_UX before working; builds on the starter foundation; runs the design double-check before reporting done |
+| `api-builder`      | `apps/server`, `packages/types` - endpoints, contracts  | Follows the notes reference pattern: Zod contract first, thin routes, envelopes, tests                                        |
+| `db-engineer`      | `supabase/` - schema, migrations, RLS, types            | Every change is a migration, RLS on every table, types regenerated, DATABASE.md catalog updated                               |
+| `design-reviewer`  | Nothing - audit only                                    | Independent PASS/FAIL verdict on UI changes against the design rules, with file:line for every failure                        |
+| `security-officer` | `docs/engineering/SECURITY.md`, codebase security audit | Independent PASS/FAIL verdict on security checklist (RLS policies, API Zod validation, secret isolation, webhook signatures)  |
 
 The rule that protects you: **UI work does not count as done until `design-reviewer` says
 PASS.** If the assistant reports UI work finished without a reviewer verdict, ask for it.

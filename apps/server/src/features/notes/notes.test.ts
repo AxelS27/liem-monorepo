@@ -1,5 +1,16 @@
 import { errorResponseSchema, noteResponseSchema, notesListResponseSchema } from '@repo/types';
-import { beforeEach, describe, expect, it } from 'vitest';
+import type { User } from '@supabase/supabase-js';
+import type { MiddlewareHandler } from 'hono';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
+// Mock the requireAuth middleware to bypass token verification in tests
+vi.mock('../../middleware/auth', () => {
+  const requireAuth: MiddlewareHandler = async (c, next) => {
+    c.set('user', { id: 'test-user-id', email: 'test@example.com' } as unknown as User);
+    await next();
+  };
+  return { requireAuth };
+});
 
 import { app } from '../../app';
 import { clearNotes } from './notes.service';

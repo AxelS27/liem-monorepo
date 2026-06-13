@@ -18,12 +18,8 @@
 /* The shared UI package lives outside this app, so point Tailwind's scanner at it. */
 @source '../../../../packages/ui/src';
 
-/*
- * Dark mode is class-based. Uncomment together with the .dark block below when
- * the product needs dark mode:
- *
- * @custom-variant dark (&:is(.dark *));
- */
+/* Dark mode is class-based. */
+@custom-variant dark (&:is(.dark *));
 
 @layer base {
   :root {
@@ -70,39 +66,34 @@
     --radius: 0.625rem;
   }
 
-  /*
-   * Optional dark theme. Ship one theme first; uncomment this block (and the
-   * @custom-variant above) only when the product needs dark mode, then wire
-   * next-themes per docs/engineering/FRONTEND.md.
-   *
-   * .dark {
-   *   --brand: hsl(0 0% 98%);
-   *   --brand-foreground: hsl(240 6% 10%);
-   *
-   *   --background: hsl(240 10% 4%);
-   *   --foreground: hsl(0 0% 98%);
-   *   --card: hsl(240 10% 6%);
-   *   --card-foreground: hsl(0 0% 98%);
-   *   --popover: hsl(240 10% 6%);
-   *   --popover-foreground: hsl(0 0% 98%);
-   *
-   *   --primary: hsl(0 0% 98%);
-   *   --primary-foreground: hsl(240 6% 10%);
-   *   --secondary: hsl(240 4% 16%);
-   *   --secondary-foreground: hsl(0 0% 98%);
-   *   --accent: hsl(240 4% 16%);
-   *   --accent-foreground: hsl(0 0% 98%);
-   *   --muted: hsl(240 4% 16%);
-   *   --muted-foreground: hsl(240 5% 65%);
-   *
-   *   --destructive: hsl(0 62% 45%);
-   *   --destructive-foreground: hsl(0 0% 98%);
-   *
-   *   --border: hsl(240 4% 16%);
-   *   --input: hsl(240 4% 16%);
-   *   --ring: hsl(240 5% 84%);
-   * }
-   */
+  /* Optional dark theme. */
+  .dark {
+    --brand: hsl(0 0% 98%);
+    --brand-foreground: hsl(240 10% 6%);
+
+    --background: hsl(240 10% 6%);
+    --foreground: hsl(240 5% 84%);
+    --card: hsl(240 10% 9%);
+    --card-foreground: hsl(240 5% 90%);
+    --popover: hsl(240 10% 9%);
+    --popover-foreground: hsl(240 5% 90%);
+
+    --primary: hsl(0 0% 98%);
+    --primary-foreground: hsl(240 10% 6%);
+    --secondary: hsl(240 5% 15%);
+    --secondary-foreground: hsl(240 5% 90%);
+    --accent: hsl(240 5% 15%);
+    --accent-foreground: hsl(0 0% 98%);
+    --muted: hsl(240 5% 12%);
+    --muted-foreground: hsl(240 5% 65%);
+
+    --destructive: hsl(0 62% 45%);
+    --destructive-foreground: hsl(0 0% 98%);
+
+    --border: hsl(240 5% 15%);
+    --input: hsl(240 5% 15%);
+    --ring: hsl(240 5% 65%);
+  }
 }
 
 /*
@@ -246,4 +237,3 @@
     transform: none !important;
   }
 }
-

@@ -7,6 +7,7 @@ import {
 import { Hono } from 'hono';
 
 import { errorBody, validationErrorBody } from '../../lib/errors';
+import { requireAuth, type AuthEnv } from '../../middleware/auth';
 import { createNote, getNote, listNotes } from './notes.service';
 
 /*
@@ -15,7 +16,10 @@ import { createNote, getNote, listNotes } from './notes.service';
  * Zod contract, call the service, shape the envelope. Schemas live in packages/types,
  * never here (docs/engineering/BACKEND.md, docs/engineering/API.md).
  */
-export const notesRoutes = new Hono();
+export const notesRoutes = new Hono<AuthEnv>();
+
+// Apply requireAuth middleware to all notes routes to protect them
+notesRoutes.use('*', requireAuth);
 
 // GET /notes?page=&limit= - paginated list; list endpoints are never unbounded.
 notesRoutes.get('/', (c) => {

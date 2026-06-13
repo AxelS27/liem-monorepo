@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Plus_Jakarta_Sans } from 'next/font/google';
 import type { ReactNode } from 'react';
 
+import { ThemeProvider } from '@/components/theme-provider';
 import { SiteFooter } from '@/components/shared/site-footer';
 import { SiteHeader } from '@/components/shared/site-header';
 import { defaultLocale } from '@/i18n/config';
@@ -50,13 +51,15 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
   const t = await getDictionary(defaultLocale);
 
   return (
-    <html lang={defaultLocale} className={fontSans.variable}>
+    <html lang={defaultLocale} className={fontSans.variable} suppressHydrationWarning>
       <body className="font-sans antialiased">
-        <div className="flex min-h-dvh flex-col bg-background text-foreground">
-          <SiteHeader brand={t.app.name} labels={t.nav} />
-          <main className="flex flex-1 flex-col">{children}</main>
-          <SiteFooter />
-        </div>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <div className="flex min-h-dvh flex-col bg-background text-foreground">
+            <SiteHeader brand={t.app.name} labels={t.nav} />
+            <main className="flex flex-1 flex-col">{children}</main>
+            <SiteFooter />
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );

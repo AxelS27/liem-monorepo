@@ -87,6 +87,7 @@ A task is done when:
 - [ ] `pnpm docs:check` passes when docs changed or project docs were initialized
 - [ ] `pnpm knip` runs without unresolved imports or critical dead code
 - [ ] Playwright E2E tests pass (`pnpm test:e2e`) if UI, auth, or routing changed
+- [ ] Bundle budget size limit check passes (`pnpm --filter @repo/web size-limit`) if frontend bundle or dependencies changed
 - [ ] UI work: self-reviewed against the code-based double-check in `docs/engineering/DESIGN_DNA.md` (Part A greps + Part B file reading), with anything that missed fixed. No rendering required.
 - [ ] UI work (Claude Code): the `design-reviewer` agent returned PASS on the changes (see AGENTS.md Agent Routing). Other tools run the double-check above manually.
 - [ ] Route navigation is present and the current page/section is visibly active in

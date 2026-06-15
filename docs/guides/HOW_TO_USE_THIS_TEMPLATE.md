@@ -122,6 +122,7 @@ Do not read every domain doc for every task. Read the root instructions and the 
 - `pnpm check` - checks linting, formatting, and imports using Biome.
 - `pnpm knip` - scans the monorepo for unused files, dependencies, and exports.
 - `pnpm test:e2e` - runs Playwright E2E browser tests locally.
+- `pnpm --filter @repo/web size-limit` - runs the production bundle size budget check.
 
 ## Supabase Workflow
 
@@ -137,6 +138,28 @@ Use the Supabase CLI (installed as a local devDependency) to manage your databas
 Do not make dashboard-only production changes. Every real schema change should land in
 `supabase/migrations/`, update `docs/engineering/DATABASE.md`, and regenerate database types when
 applicable.
+
+## Advanced Integration Tools
+
+This template includes integrations for production-scale services that are optional but pre-configured:
+
+### 1. Upstash Redis & Rate Limiting (`@upstash/ratelimit`)
+
+- Pre-configured in the API server middleware [rate-limiter.ts](file:///d:/Liem%20Product%20/Liem%20Monorepo/apps/server/src/middleware/rate-limiter.ts).
+- Automatically uses Upstash Redis if the environment variables `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` are set.
+- Gracefully falls back to a local in-memory token bucket if Redis is not configured, meaning it works out-of-the-box for development without any setup.
+
+### 2. Size Limit Bundle Budget Checking (`size-limit`)
+
+- Set up in [package.json](file:///d:/Liem%20Product%20/Liem%20Monorepo/apps/web/package.json) with a 200 KB budget limit for the production Javascript chunks (`.next/static/chunks/**/*.js`).
+- Run `pnpm --filter @repo/web size-limit` to check your current build size. Next.js must be built (`pnpm --filter @repo/web build`) before running the check.
+- Prevents bundle bloat by failing when the bundle size exceeds the specified budget.
+
+### 3. Background Jobs with Trigger.dev (`@trigger.dev/sdk`)
+
+- Integrated into `apps/server` with the configuration file [trigger.config.ts](file:///d:/Liem%20Product%20/Liem%20Monorepo/apps/server/trigger.config.ts).
+- A sample background task/job is available at [example-job.ts](file:///d:/Liem%20Product%20/Liem%20Monorepo/apps/server/src/trigger/example-job.ts) demonstrating trigger definitions, task definitions, and run logs.
+- Useful for running long-running processes (e.g. video processing, bulk notifications, AI generations) asynchronously without blocking HTTP request threads.
 
 ## Default Web Branding
 

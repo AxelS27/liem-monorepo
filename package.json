@@ -23,6 +23,7 @@
     "format:check": "biome format .",
     "knip": "knip",
     "test:e2e": "pnpm --filter @repo/web test:e2e",
+    "size-limit": "pnpm --filter @repo/web size-limit",
     "prepare": "husky"
   },
   "prettier": "@repo/config/prettier",

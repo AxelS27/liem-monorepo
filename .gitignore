@@ -46,3 +46,7 @@ coverage/
 # /AGENTS.md
 # /CLAUDE.md
 # /docs/
+
+# Playwright
+playwright-report/
+test-results/

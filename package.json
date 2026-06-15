@@ -21,6 +21,8 @@
     "db:types": "supabase gen types typescript --local > packages/types/src/database.types.ts",
     "format": "biome format --write .",
     "format:check": "biome format .",
+    "knip": "knip",
+    "test:e2e": "pnpm --filter @repo/web test:e2e",
     "prepare": "husky"
   },
   "prettier": "@repo/config/prettier",
@@ -29,6 +31,7 @@
     "@repo/config": "workspace:*",
     "eslint": "^10.4.1",
     "husky": "^9.1.7",
+    "knip": "^6.16.1",
     "lint-staged": "^17.0.7",
     "prettier": "^3.8.0",
     "prettier-plugin-tailwindcss": "^0.8.0",

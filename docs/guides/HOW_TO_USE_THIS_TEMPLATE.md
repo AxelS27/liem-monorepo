@@ -117,16 +117,20 @@ Do not read every domain doc for every task. Read the root instructions and the 
 ## Verification Commands
 
 - `pnpm docs:check` - verifies the documentation system is wired together. It fails on missing docs or missing references in this guide, and warns on starter placeholders.
-- `pnpm run verify` - final code gate: lint, typecheck, and tests.
+- `pnpm run verify` - final code gate: lint (ESLint + Biome), typecheck, and tests.
+- `pnpm format` - formats all files in the monorepo using Biome.
+- `pnpm check` - checks linting, formatting, and imports using Biome.
+- `pnpm knip` - scans the monorepo for unused files, dependencies, and exports.
+- `pnpm test:e2e` - runs Playwright E2E browser tests locally.
 
 ## Supabase Workflow
 
 The template uses Supabase migrations, but you do not have to hand-write every SQL file.
-Use the Supabase CLI to generate diffs, then review and commit the migration.
+Use the Supabase CLI (installed as a local devDependency) to manage your database workflow.
 
-- `pnpm db:diff -- -f <migration_name>` - generate a migration from schema diff.
+- `pnpm db:diff <migration_name>` - generate a migration from schema diff.
 - `pnpm db:new <migration_name>` - create an empty migration.
-- `pnpm db:reset` - reset local Supabase and apply migrations plus `supabase/seed.sql`.
+- `pnpm db:reset` - reset local Supabase (requires Docker running) and apply migrations plus `supabase/seed.sql`.
 - `pnpm db:types` - regenerate `packages/types/src/database.types.ts` from local Supabase.
 - `pnpm db:push` - apply committed migrations to the linked remote project.
 

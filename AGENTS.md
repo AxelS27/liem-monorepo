@@ -212,13 +212,16 @@ rules and pending gates through context compaction.
 | Lint        | `pnpm lint`                                                      |
 | Typecheck   | `pnpm typecheck`                                                 |
 | Test        | `pnpm test`                                                      |
+| E2E Test    | `pnpm test:e2e`                                                  |
 | Docs check  | `pnpm docs:check`                                                |
 | Verify      | `pnpm run verify`                                                |
-| DB diff     | `pnpm db:diff -- -f <migration_name>`                            |
+| DB diff     | `pnpm db:diff <migration_name>`                                  |
 | DB reset    | `pnpm db:reset`                                                  |
 | DB types    | `pnpm db:types`                                                  |
 | DB push     | `pnpm db:push`                                                   |
 | Format      | `pnpm format`                                                    |
+| Biome Check | `pnpm check`                                                     |
+| Knip Scan   | `pnpm knip`                                                      |
 
 Before marking a task done, run `pnpm run verify` and check the Definition of Done in `docs/engineering/QUALITY.md`. Run `pnpm docs:check` when docs changed or when initializing product docs. For `apps/web` UI work: read `docs/engineering/DESIGN_DNA.md` first (short), run the code-based double-check at the bottom of that file (Part A greps + Part B file reading, no rendering), then open `docs/engineering/FRONTEND.md` only if you need more detail. For a thorough multi-axis check, run the **`ui-audit` skill**. Green lint/typecheck does not catch an AI-generic layout — the grep + markup review is the real gate.
 

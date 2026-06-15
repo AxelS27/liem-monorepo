@@ -231,6 +231,7 @@ Keep the public repo looking human-authored.
 
 - **Commits:** short and concise, one line, imperative mood. No long bodies, no multi-paragraph messages.
 - **No AI references** in commits, PR text, or history. Never mention Claude/Codex/agents, `.claude`, `.codex`, "generated with", or co-author trailers.
+- **No Automatic Pushing:** The agent must **never** automatically push commits to the remote repository (`git push`) unless explicitly commanded by the user. The agent is encouraged to stage (`git add`) and commit (`git commit`) changes periodically/automatically to save progress, but the final push must wait for user permission.
 - **Git ignore strategy:** `.gitignore` is active from the first clone - universal entries (`node_modules`, `.env`, build output, model weights) are always ignored. The agent tooling and internal docs (`.claude/`, `AGENTS.md`, `docs/`, ...) are listed but **commented out**, so the full starter kit stays tracked in this template.
 - **Keep local tooling out of product repos.** In a real product repo, uncomment the "Product-repo cleanup" block at the bottom of `.gitignore`, then run `git rm -r --cached` on those paths once so the agent folders and internal docs stop being tracked.
 - **Skills are mirrored:** `.claude/skills/` (read by Claude Code) and `.agents/skills/` (read by other agents) must hold the same skills with byte-identical `SKILL.md` files. When you edit a skill, copy it over the other location; `pnpm docs:check` fails on drift.

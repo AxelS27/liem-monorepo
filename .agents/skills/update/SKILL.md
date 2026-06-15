@@ -5,13 +5,13 @@ description: Update the template docs (excluding project progress and project-sp
 
 # Upstream Template Updates
 
-This command fetches the latest updates from the official `liem-monorepo` template repository, applies updates to core documentation and configuration/tool settings, and runs verification checks. It avoids overriding project-specific files.
+This command fetches the latest updates from the official `liem-monorepo` template repository (`https://github.com/AxelS27/liem-monorepo.git`), applies updates to core documentation and configuration/tool settings, and runs verification checks. It avoids overriding project-specific files.
 
 ## Steps
 
 1. **Verify or Setup Upstream Remote**:
    - Check if `upstream` exists in `git remote -v`.
-   - If not, ask the user for the URL of the template repository (defaults to the original template repo) and run `git remote add upstream <url>`.
+   - If not, add the default template repository URL: `git remote add upstream https://github.com/AxelS27/liem-monorepo.git`.
 
 2. **Fetch Updates**:
    - Run `git fetch upstream`.

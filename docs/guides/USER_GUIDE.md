@@ -43,6 +43,7 @@ These are slash commands. Type them in chat, optionally with context after them.
 | `/new-feature`  | Builds one feature end to end: schema → API → UI, delegated through the sector agents, with the gates included                                  | Every time you want the next feature built                                   |
 | `/ship-check`   | Full launch audit: verify, build, design review, the launch-readiness checklist - ends in a **GO / NO-GO** verdict                              | Before deploying or calling the product launch-ready                         |
 | `/handoff`      | Syncs PROGRESS, DECISIONS, and UI_UX with what happened this session, runs `docs:check`                                                         | Before closing a chat, so the next chat picks up exactly where you left off  |
+| `/update`       | Updates the template docs (excluding project docs) and ecosystem config files/tools from the template upstream                                  | When you want to pull the latest template updates and sync package tools     |
 
 You do not have to use commands - normal conversation works and routes to the same agents.
 The commands just guarantee the full flow runs instead of a shortcut.

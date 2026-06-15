@@ -187,6 +187,7 @@ existing docs and checklists, it does not duplicate them.
 | `/new-feature`  | Build one feature slice through the sector agents, gates included                  |
 | `/ship-check`   | Launch-readiness audit ending in a GO/NO-GO verdict                                |
 | `/handoff`      | End-of-session doc sync so the next chat starts oriented                           |
+| `/update`       | Update the template docs and configuration files/tools from the template upstream  |
 
 Session hooks (wired in `.claude/settings.json`): `SessionStart` injects the project state
 (AGENTS.md pointer + PROGRESS summary) into every new session; `PreCompact` preserves the

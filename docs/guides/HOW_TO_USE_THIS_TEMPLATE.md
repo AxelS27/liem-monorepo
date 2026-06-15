@@ -4,7 +4,7 @@ Internal guide for starting a new project from this monorepo template. The publi
 
 > **Quick start (Claude Code):** the workflows are commands - `/init-product` (set up a
 > new product from a brief), `/new-feature` (build a feature slice), `/ship-check` (launch
-> audit), `/handoff` (end-of-session doc sync). A `SessionStart` hook orients every fresh
+> audit), `/handoff` (end-of-session doc sync), `/update` (upstream template sync). A `SessionStart` hook orients every fresh
 > chat automatically.
 > **Quick start (other tools):** `INIT.md` is the copy-paste flow for setting up a new
 > product; `CONTINUE.md` is the kickoff prompt for resuming work in a fresh chat.

@@ -46,5 +46,52 @@
     "**/*.{md,css}": [
       "prettier --write"
     ]
+  },
+  "knip": {
+    "workspaces": {
+      "apps/web": {
+        "entry": [
+          "src/app/page.tsx",
+          "src/app/**/page.tsx",
+          "src/app/**/layout.tsx",
+          "src/middleware.ts"
+        ],
+        "project": [
+          "src/**/*.{ts,tsx}"
+        ]
+      },
+      "apps/server": {
+        "entry": [
+          "src/app.ts"
+        ],
+        "project": [
+          "src/**/*.ts"
+        ]
+      },
+      "packages/ui": {
+        "entry": [
+          "src/index.ts"
+        ],
+        "project": [
+          "src/**/*.{ts,tsx}"
+        ]
+      },
+      "packages/types": {
+        "entry": [
+          "src/index.ts"
+        ],
+        "project": [
+          "src/**/*.ts"
+        ]
+      },
+      "packages/utils": {
+        "entry": [
+          "src/index.ts"
+        ],
+        "project": [
+          "src/**/*.ts"
+        ]
+      }
+    }
   }
 }

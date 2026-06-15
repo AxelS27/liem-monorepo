@@ -19,6 +19,7 @@ chat history - this command makes the docs catch up to the session before it clo
      decision made this session. Skip trivia.
    - `docs/product/UI_UX.md` - record any product design change or deviation agreed on.
    - The domain doc of whatever changed (API.md for endpoints, DATABASE.md for schema).
+   - `CHANGELOG.md` & root `package.json` - if this handoff concludes a weekly sprint or completed milestone, compile the updates, increment the version in the root `package.json`, and append a scan-friendly entry to `CHANGELOG.md` matching `docs/engineering/VERSIONING.md`. Avoid per-commit/per-push changes.
 3. **Run the gates**: `pnpm docs:check`, and `pnpm run verify` if code changed.
 4. **Flag the un-finished honestly**: anything half-done goes into PROGRESS.md as
    in-progress with enough detail to resume cold - never leave it only in chat.

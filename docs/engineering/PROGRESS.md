@@ -26,7 +26,8 @@
 - **Read the docs first, then derive this.** Before you build or fill this file, read:
   `docs/product/PRD.md` (scope), `docs/product/FEATURES.md` (features + phases),
   `docs/product/UI_UX.md` (product-specific design direction), `docs/engineering/ARCHITECTURE.md`
-  (structure), `docs/engineering/API.md` (contracts), and `docs/engineering/QUALITY.md` (Definition of Done).
+  (structure), `docs/engineering/API.md` (contracts), `docs/engineering/QUALITY.md` (Definition of Done),
+  and `docs/engineering/VERSIONING.md` (versioning rules).
   Then read only the domain docs that apply: `docs/engineering/FRONTEND.md`, `docs/engineering/BACKEND.md`,
   `docs/engineering/DATABASE.md`, `docs/engineering/PAYMENTS.md`, `docs/product/REFERENCES.md`, and any matching
   `docs/verticals/*.md` playbook. This file is where you synthesize those docs into one

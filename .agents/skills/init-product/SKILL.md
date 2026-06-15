@@ -16,14 +16,9 @@ direction), recommend running `/planning` first to align on the scope via Q&A, o
 1. **Clean Git History**: If the repository still contains the template's original commit history (e.g., commits by the template author `AxelS27`), reset it immediately before any development by running:
    `rm -rf .git && git init -b main && git add . && git commit -m "Initial commit"`
    (Note: Use appropriate shell commands for removing `.git` depending on the OS, e.g., `Remove-Item -Recurse -Force .git` in PowerShell or `rm -rf .git` in bash/zsh).
-2. **Verify and Install RTK & MarkItDown**: Check if `rtk` (Rust Token Killer) and `markitdown` (Microsoft MarkItDown) are installed. If either is missing, automatically install it:
-   - **RTK Check & Install**: Run `rtk --version` or `rtk gain`. If missing, install it based on the OS:
-     - macOS: `brew install rtk`
-     - Linux/macOS (universal): `curl -fsSL https://raw.githubusercontent.com/rtk-ai/rtk/refs/heads/master/install.sh | sh`
-     - Windows (with Cargo): `cargo install --git https://github.com/rtk-ai/rtk`
-   - **MarkItDown Check & Install**: Run `markitdown --version` or verify via python (`python -c "import markitdown"`). If missing, install it:
-     - If `uv` is installed, use `uv tool install markitdown` or `uv pip install markitdown`.
-     - Otherwise, use `pip install markitdown` or `pip3 install markitdown`.
+2. **Verify and Install MarkItDown**: Check if `markitdown` (Microsoft MarkItDown) is installed (verify via python: `python -c "import markitdown"`). If missing, install it:
+   - If `uv` is installed: `uv tool install markitdown` or `uv pip install markitdown`.
+   - Otherwise: `pip install markitdown` or `pip3 install markitdown`.
 3. Read `docs/guides/HOW_TO_USE_THIS_TEMPLATE.md` and `AGENTS.md`.
 4. Fill `docs/product/PRD.md` and `docs/product/FEATURES.md` from the brief
    (features tagged P0/P1/P2).

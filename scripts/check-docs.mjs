@@ -17,6 +17,7 @@ const coreDocs = [
   'docs/engineering/PAYMENTS.md',
   'docs/product/REFERENCES.md',
   'docs/engineering/QUALITY.md',
+  'docs/engineering/VERSIONING.md',
 ];
 
 const rootDocs = ['AGENTS.md', 'README.md', 'CLAUDE.md'];
@@ -25,6 +26,7 @@ const guideDocs = [
   'docs/guides/INIT.md',
   'docs/guides/CONTINUE.md',
   'docs/guides/USER_GUIDE.md',
+  'docs/guides/CONTEXT7.md',
 ];
 const supabaseFiles = [
   'supabase/migrations/.gitkeep',
@@ -145,6 +147,7 @@ for (const doc of [
   'docs/engineering/DATABASE.md',
   'docs/engineering/PAYMENTS.md',
   'docs/engineering/QUALITY.md',
+  'docs/engineering/VERSIONING.md',
 ]) {
   if (progress && !progress.includes(doc)) {
     warnings.push(

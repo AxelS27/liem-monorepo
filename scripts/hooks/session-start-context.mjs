@@ -24,6 +24,7 @@ const lines = [
   `- ${progressSummary()}`,
   '- Open docs/ files on demand per the table in AGENTS.md; do not read everything up front.',
   '- Commands: /init-product (set up a new product), /new-feature (build a feature slice), /ship-check (launch readiness), /handoff (end-of-session doc sync).',
+  '- MCP Setup: Configure the Context7 MCP server to enable live, version-accurate documentation retrieval for AI assistants (see docs/guides/CONTEXT7.md).',
 ];
 
 console.log(

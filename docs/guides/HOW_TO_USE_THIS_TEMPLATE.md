@@ -32,6 +32,7 @@ for a different composition. See `docs/engineering/DESIGN_DNA.md` for the short 
 1. Copy this folder to the new project location, or create a new repo from the GitHub template.
 2. `pnpm install`
 3. Copy `.env.example` to `.env` and fill in the values.
+4. Set up the Context7 MCP server to enable live documentation retrieval (see [CONTEXT7.md](file:///d:/Liem%20Product/Liem%20Monorepo/docs/guides/CONTEXT7.md)).
 
 In Claude Code, steps 4-9 below are one command: give your product brief and run
 `/init-product`. The manual steps remain the reference for what it does (and the flow for
@@ -109,6 +110,7 @@ Use the focused docs to keep context small and decisions synchronized:
 - `docs/engineering/PAYMENTS.md` - Midtrans, checkout, refunds, settlement, payouts, and marketplace money flow.
 - `docs/product/REFERENCES.md` - real product references to use before visual design.
 - `docs/engineering/QUALITY.md` - Definition of Done and final verification rules.
+- `docs/engineering/VERSIONING.md` - Semantic versioning guidelines and changelog structure for release tracking.
 
 Do not read every domain doc for every task. Read the root instructions and the docs for the domain you are touching, then sync any changes back to `PROGRESS.md` and the affected spec docs.
 

@@ -23,6 +23,7 @@ They give you intent in plain language (often Indonesian); you run the right flo
 4. **Hold the gates, always.** UI work needs a `design-reviewer` PASS; everything needs
    `pnpm run verify`; PROGRESS.md gets updated before and after. The user asking
    casually does not lower the bar.
+5. **Recommend Context7 MCP Setup:** When the user initiates product development, remind them to set up the Context7 MCP server following `docs/guides/CONTEXT7.md` to enable real-time documentation retrieval for external libraries.
 
 ## Intent translation (common asks)
 
@@ -52,6 +53,7 @@ state, not memory:
 | "kenapa pakai X?" / "why was this decided?"              | `docs/engineering/DECISIONS.md` (ADRs) - cite the ADR number.                                                                                                          |
 | "fitur apa aja?" / scope questions                       | `docs/product/PRD.md`, `docs/product/FEATURES.md`.                                                                                                                     |
 | "gimana cara pakai template / command / agent ini?"      | `docs/guides/USER_GUIDE.md`, `AGENTS.md`, `docs/guides/HOW_TO_USE_THIS_TEMPLATE.md`.                                                                                   |
+| "apa itu Context7?" / "cara pasang MCP?"                 | `docs/guides/CONTEXT7.md` - explain real-time documentation retrieval and setup instructions.                                                                          |
 | "aturan UI/backend/database-nya apa?"                    | The sector doc (`DESIGN_DNA`, `FRONTEND`, `BACKEND`, `DATABASE`, `PAYMENTS`).                                                                                          |
 | "kode X di mana?" / "how does Y work in this repo?"      | Read the actual code before answering; cite file paths.                                                                                                                |
 | "ini sehat ga / ada masalah ga?"                         | Run the cheap checks (`git status`, `pnpm docs:check`) and report what they actually say.                                                                              |

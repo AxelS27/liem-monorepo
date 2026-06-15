@@ -5,6 +5,7 @@
 - Strict TypeScript (`strict: true`, no implicit `any`).
 - Lint + format must pass before commit (`turbo lint`).
 - One responsibility per file; functions do one thing.
+- For external libraries, frameworks, or APIs (Next.js, Supabase, Hono, Tailwind CSS, etc.), verify exact signatures and syntax via Context7 MCP queries before writing code.
 - No dead code, no commented-out blocks, no `console.log` in committed code.
 - Backend work follows `docs/engineering/BACKEND.md`; database work follows `docs/engineering/DATABASE.md` and keeps
   the data model catalog current; payment work follows `docs/engineering/PAYMENTS.md`.
@@ -119,4 +120,5 @@ A task is done when:
 - [ ] Backend/database/payment work matches the relevant domain doc (`BACKEND.md`,
       `DATABASE.md`, `PAYMENTS.md`)
 - [ ] Database work uses committed migrations, not dashboard-only changes
+- [ ] Version and Changelog: root `package.json` version is incremented and a scan-friendly, user-focused entry is appended to `CHANGELOG.md` matching `docs/engineering/VERSIONING.md`
 - [ ] Relevant doc updated if its domain changed

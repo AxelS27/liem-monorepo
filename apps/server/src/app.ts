@@ -1,13 +1,13 @@
+import { swaggerUI } from '@hono/swagger-ui';
 import { healthResponseSchema } from '@repo/types';
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 import { secureHeaders } from 'hono/secure-headers';
-import { swaggerUI } from '@hono/swagger-ui';
 
 import { notesRoutes } from './features/notes/notes.routes';
 import { errorBody } from './lib/errors';
-import { rateLimiter } from './middleware/rate-limiter';
 import { structuredLogger } from './middleware/logger';
+import { rateLimiter } from './middleware/rate-limiter';
 import openapiSpec from './openapi.json';
 
 // app.ts owns the Hono instance and route registration; features register here.

@@ -2,10 +2,9 @@ import type { Metadata } from 'next';
 import { Plus_Jakarta_Sans } from 'next/font/google';
 import type { ReactNode } from 'react';
 import { Toaster } from 'sonner';
-
-import { ThemeProvider } from '@/components/theme-provider';
 import { SiteFooter } from '@/components/shared/site-footer';
 import { SiteHeader } from '@/components/shared/site-header';
+import { ThemeProvider } from '@/components/theme-provider';
 import { defaultLocale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/dictionaries';
 

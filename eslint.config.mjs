@@ -1,5 +1,5 @@
-import nodeConfig from './packages/config/eslint/node.js';
 import nextConfig from './packages/config/eslint/next.js';
+import nodeConfig from './packages/config/eslint/node.js';
 
 export default [
   {

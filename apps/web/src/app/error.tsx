@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect } from 'react';
 import { buttonVariants, cn } from '@repo/ui';
+import { useEffect } from 'react';
 
 /**
  * Global Next.js client-side error boundary.

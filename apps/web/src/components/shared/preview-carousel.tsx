@@ -34,7 +34,7 @@ export function PreviewCarousel() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const id = window.setInterval(() => setIndex((v) => (v + 1) % slides.length), AUTOPLAY_MS);
     return () => window.clearInterval(id);
-  }, [playing, paused, index]);
+  }, [playing, paused]);
 
   return (
     <div

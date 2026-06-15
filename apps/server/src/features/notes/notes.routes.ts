@@ -7,7 +7,7 @@ import {
 import { Hono } from 'hono';
 
 import { errorBody, validationErrorBody } from '../../lib/errors';
-import { requireAuth, type AuthEnv } from '../../middleware/auth';
+import { type AuthEnv, requireAuth } from '../../middleware/auth';
 import { createNote, getNote, listNotes } from './notes.service';
 
 /*

@@ -1,4 +1,4 @@
-import { healthResponseSchema, type HealthResponse } from '@repo/types';
+import { type HealthResponse, healthResponseSchema } from '@repo/types';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3000/api/v1';
 

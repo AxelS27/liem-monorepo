@@ -10,37 +10,38 @@
     "dev": "turbo dev",
     "build": "turbo build",
     "verify": "pnpm lint && pnpm typecheck && pnpm test",
-    "lint": "turbo lint",
+    "lint": "turbo lint && biome lint .",
     "typecheck": "turbo typecheck",
     "test": "turbo test",
     "docs:check": "node scripts/check-docs.mjs",
-    "db:diff": "pnpm dlx supabase@latest db diff",
-    "db:new": "pnpm dlx supabase@latest migration new",
-    "db:push": "pnpm dlx supabase@latest db push",
-    "db:reset": "pnpm dlx supabase@latest db reset",
-    "db:types": "pnpm dlx supabase@latest gen types typescript --local > packages/types/src/database.types.ts",
-    "format": "prettier --write \"**/*.{ts,tsx,js,mjs,json,md}\"",
-    "format:check": "prettier --check \"**/*.{ts,tsx,js,mjs,json,md}\"",
+    "db:diff": "supabase db diff",
+    "db:new": "supabase migration new",
+    "db:push": "supabase db push",
+    "db:reset": "supabase db reset",
+    "db:types": "supabase gen types typescript --local > packages/types/src/database.types.ts",
+    "format": "biome format --write .",
+    "format:check": "biome format .",
     "prepare": "husky"
   },
   "prettier": "@repo/config/prettier",
   "devDependencies": {
+    "@biomejs/biome": "^2.5.0",
     "@repo/config": "workspace:*",
     "eslint": "^10.4.1",
     "husky": "^9.1.7",
     "lint-staged": "^17.0.7",
     "prettier": "^3.8.0",
     "prettier-plugin-tailwindcss": "^0.8.0",
+    "supabase": "^2.106.0",
     "turbo": "^2.9.0",
     "typescript": "^6.0.0"
   },
   "lint-staged": {
-    "**/*.{ts,tsx,js,mjs}": [
-      "pnpm exec eslint --fix",
-      "pnpm exec prettier --write"
+    "**/*.{ts,tsx,js,mjs,json}": [
+      "biome check --write --no-errors-on-unmatched"
     ],
-    "**/*.{json,md,css}": [
-      "pnpm exec prettier --write"
+    "**/*.{md,css}": [
+      "prettier --write"
     ]
   }
 }

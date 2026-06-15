@@ -1,15 +1,15 @@
 export type { Database } from './database.types';
-export { errorResponseSchema, type ErrorResponse } from './error';
-export { healthResponseSchema, type HealthResponse } from './health';
+export { type ErrorResponse, errorResponseSchema } from './error';
+export { type HealthResponse, healthResponseSchema } from './health';
 export {
-  createNoteInputSchema,
-  listNotesQuerySchema,
-  noteResponseSchema,
-  noteSchema,
-  notesListResponseSchema,
   type CreateNoteInput,
+  createNoteInputSchema,
   type ListNotesQuery,
+  listNotesQuerySchema,
   type Note,
   type NoteResponse,
   type NotesListResponse,
+  noteResponseSchema,
+  noteSchema,
+  notesListResponseSchema,
 } from './notes';

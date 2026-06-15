@@ -193,3 +193,11 @@
 - Rejected: Fixed-width slots for the switchers in the main nav (wastes space in one locale, truncates in another); icon-only controls to dodge the width problem (hurts discoverability, contradicts the icon+label control style); keeping single-tier and accepting the reflow (visible jank on a core interaction).
 - Status: Accepted
 - Date: 2026-06-12
+
+## ADR-023: Database querying via Drizzle ORM
+
+- Decision: Use Drizzle ORM as the primary TypeScript SQL query builder and schema manager for Supabase PostgreSQL in `apps/server`.
+- Reason: Provides full compile-time type safety and auto-complete for SQL queries without runtime overhead; schema is defined in TypeScript (`schema.ts`) and kept in sync with Supabase migrations.
+- Rejected: Raw postgres query builder (no auto-completion or compile-time type checking); Prisma ORM (heavier, requires a custom engine, doesn't match clean edge-ready Node.js targets as cleanly as Drizzle).
+- Status: Accepted
+- Date: 2026-06-16
